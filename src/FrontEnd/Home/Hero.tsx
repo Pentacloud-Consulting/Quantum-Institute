@@ -2,17 +2,21 @@
 
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
-import { ChevronLeft, ChevronRight, Play, Globe, Search, User, Bookmark } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+import { ChevronLeft, ChevronRight, Play, Hexagon, Search, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Lenis from 'lenis';
 
-const DESTINATIONS = [
-  { id: 1, title: "SAINT\nANTÖNIEN", subtitle: "Switzerland Alps", desc: "Discover the breathtaking pristine alpine landscapes, perfect for mountain biking and winter sports.", img: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 2, title: "MARRAKECH\nMERZOUGA", subtitle: "Sahara Desert - Morocco", desc: "Mauris malesuada erat amet, eget accumsan id. Maecenas tincidunt, velit at porttitor pulvinar, tortor eros facilisis libero.", img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 3, title: "YOSEMITE\nNATIONAL PARK", subtitle: "Sierra Nevada - United States", desc: "Experience the majestic valleys, towering granite monoliths, deep forests, and cascading waterfalls of Yosemite.", img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 4, title: "LOS LANCES\nBEACH", subtitle: "Tarifa - Spain", desc: "A spectacular stretch of white sand where the Mediterranean meets the Atlantic, perfect for kitesurfing.", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 5, title: "GÖREME\nVALLEY", subtitle: "Cappadocia - Turkey", desc: "Drift over fairy chimneys and ancient rock-cut churches in a hot air balloon at sunrise.", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 6, title: "MOUNT\nFUJI", subtitle: "Honshu - Japan", desc: "Japan's highest mountain and most iconic landmark, offering stunning views and a challenging climb.", img: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&w=1920&q=80" },
+const VALUES = [
+  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&w=1920&q=80" },
+  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&w=1920&q=80" },
+  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&w=1920&q=80" },
+  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&w=1920&q=80" },
+  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&w=1920&q=80" },
 ];
 
 const renderTitle = (title: string) => {
@@ -66,7 +70,7 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
   return (
     <div ref={containerRef} className="flex flex-col items-start w-full z-20">
       <div className="w-8 h-[2px] bg-white mb-6 anim-desc"></div>
-      <p className="text-sm md:text-lg tracking-wide mb-2 anim-desc">{displayItem.subtitle}</p>
+      <p className="text-sm md:text-lg tracking-wide mb-2 anim-desc font-serif italic text-white/80">{displayItem.subtitle}</p>
       <h1 className="text-6xl md:text-7xl lg:text-[100px] font-black uppercase tracking-tighter mb-6 flex flex-col drop-shadow-lg">
         {renderTitle(displayItem.title)}
       </h1>
@@ -78,16 +82,16 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
         <motion.button 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#fca311] flex items-center justify-center text-white shrink-0 shadow-[0_0_20px_rgba(252,163,17,0.4)]"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#d15000] flex items-center justify-center text-white shrink-0 shadow-[0_0_20px_rgba(209,80,0,0.4)]"
         >
-          <Bookmark className="w-4 h-4 md:w-5 md:h-5 fill-current" />
+          <Play className="w-4 h-4 md:w-5 md:h-5 fill-current ml-1" />
         </motion.button>
         <motion.button 
-          whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+          whileHover={{ scale: 1.05, backgroundColor: "rgba(209,80,0,0.9)", borderColor: "rgba(209,80,0,1)" }}
           whileTap={{ scale: 0.95 }}
-          className="px-6 py-3 md:px-8 md:py-4 rounded-full border border-white/30 text-xs md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm"
+          className="px-6 py-3 md:px-8 md:py-4 rounded-full border border-white/30 text-xs md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300"
         >
-          DISCOVER LOCATION
+          JOIN WAITLIST
         </motion.button>
       </div>
     </div>
@@ -104,6 +108,7 @@ const Hero = () => {
   // Clone data for shared element architecture
   const [cloneData, setCloneData] = useState<{ rect: DOMRect, item: any } | null>(null);
 
+  const heroPinRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
@@ -137,7 +142,23 @@ const Hero = () => {
         { x: 100, opacity: 0 },
         { x: 0, opacity: 1, stagger: 0.08, duration: 1, ease: "power3.out", delay: 0.5 }
       );
-    }, heroRef);
+      
+      // Pinning and overlap depth effect
+      gsap.to(heroRef.current, {
+        scale: 0.92,
+        opacity: 0.2,
+        filter: "blur(10px)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroPinRef.current,
+          start: "top top",
+          end: "bottom top",
+          pin: true,
+          pinSpacing: false, // Allows the next section to smoothly slide over
+          scrub: true,
+        }
+      });
+    }, heroPinRef);
     return () => ctx.revert();
   }, []);
 
@@ -149,8 +170,8 @@ const Hero = () => {
 
   const getUpcomingCards = () => {
     const cards = [];
-    for (let i = 1; i <= 5; i++) {
-      cards.push(DESTINATIONS[(activeIndex + i) % DESTINATIONS.length]);
+    for (let i = 1; i <= 4; i++) {
+      cards.push(VALUES[(activeIndex + i) % VALUES.length]);
     }
     return cards;
   };
@@ -166,20 +187,30 @@ const Hero = () => {
     if (!firstCard || !container) {
       // Fallback
       setPrevIndex(activeIndex);
-      setActiveIndex((prev) => (prev + 1) % DESTINATIONS.length);
+      setActiveIndex((prev) => (prev + 1) % VALUES.length);
       setIsAnimating(false);
       return;
     }
 
     // Step 1: Capture exact dimensions
     const rect = firstCard.getBoundingClientRect();
+    const heroRect = heroRef.current?.getBoundingClientRect();
+    
+    let relativeTop = rect.top;
+    let relativeLeft = rect.left;
+    
+    if (heroRect) {
+      relativeTop = rect.top - heroRect.top;
+      relativeLeft = rect.left - heroRect.left;
+    }
+
     const currentItem = getUpcomingCards()[0];
 
     // Trigger text animation immediately
-    setTextIndex((prev) => (prev + 1) % DESTINATIONS.length);
+    setTextIndex((prev) => (prev + 1) % VALUES.length);
 
     // Create the clone in state
-    setCloneData({ rect, item: currentItem });
+    setCloneData({ rect: { top: relativeTop, left: relativeLeft, width: rect.width, height: rect.height }, item: currentItem });
 
     // Step 2 & 3: Wait for React to render clone, then animate ONLY clone + transforms
     requestAnimationFrame(() => {
@@ -196,8 +227,8 @@ const Hero = () => {
           gsap.to(cloneEl, {
             top: 0,
             left: 0,
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
             borderRadius: 0,
             boxShadow: '0px 0px 0px rgba(0,0,0,0)',
             duration: 1.2,
@@ -224,7 +255,7 @@ const Hero = () => {
           onComplete: () => {
             // Step 4: Animation finished, update true state
             setPrevIndex(activeIndex);
-            setActiveIndex((prev) => (prev + 1) % DESTINATIONS.length);
+            setActiveIndex((prev) => (prev + 1) % VALUES.length);
             
             // Clean up
             setCloneData(null);
@@ -239,7 +270,7 @@ const Hero = () => {
     if (isAnimating) return;
     setIsAnimating(true);
     setPrevIndex(activeIndex);
-    const newIdx = (activeIndex - 1 + DESTINATIONS.length) % DESTINATIONS.length;
+    const newIdx = (activeIndex - 1 + VALUES.length) % VALUES.length;
     setActiveIndex(newIdx);
     setTextIndex(newIdx);
     setTimeout(() => setIsAnimating(false), 800);
@@ -286,63 +317,67 @@ const Hero = () => {
   };
 
   return (
-    <div 
-      ref={heroRef} 
-      className="relative w-full h-screen bg-[#0a0a0a] text-white overflow-hidden font-sans"
-    >
+    <div ref={heroPinRef} className="relative w-full h-screen z-0">
+      <div 
+        ref={heroRef} 
+        className="relative w-full h-full bg-[#000000] text-white overflow-hidden font-sans origin-center will-change-transform"
+      >
       <div className="absolute top-0 left-0 w-full h-[2px] bg-white/20 z-50 overflow-hidden">
-        <div ref={progressRef} className="absolute top-0 left-0 h-full w-full bg-[#fca311] origin-left scale-x-0 will-change-transform"></div>
+        <div ref={progressRef} className="absolute top-0 left-0 h-full w-full bg-[#d15000] origin-left scale-x-0 will-change-transform"></div>
       </div>
 
-      {prevIndex !== null && (
+      {prevIndex !== null && VALUES[prevIndex] && (
         <div className="absolute inset-0 z-0 old-bg">
-          <img src={DESTINATIONS[prevIndex].img} className="w-full h-full object-cover" alt="" />
-          <div className="absolute inset-0 bg-black/30" />
+          <img src={VALUES[prevIndex].img} className="w-full h-full object-cover" alt="" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
       )}
 
-      <div 
-        key={`bg-${DESTINATIONS[activeIndex].id}`}
-        className="absolute inset-0 z-0"
-      >
-        <img src={DESTINATIONS[activeIndex].img} className="active-bg-img w-full h-full object-cover scale-[1.01] will-change-transform" alt="" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-black/20 mix-blend-overlay opacity-50" />
-      </div>
+      {VALUES[activeIndex] && (
+        <div 
+          key={`bg-${VALUES[activeIndex].id}`}
+          className="absolute inset-0 z-0"
+        >
+          <img src={VALUES[activeIndex].img} className="active-bg-img w-full h-full object-cover scale-[1.01] will-change-transform" alt="" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-black/30 mix-blend-overlay opacity-50" />
+        </div>
+      )}
 
       <header className="absolute top-0 left-0 w-full px-6 md:px-12 pt-8 pb-6 flex items-center justify-between z-50">
         <div className="flex items-center gap-3">
-          <Globe className="w-6 h-6" />
-          <span className="font-bold tracking-[0.2em] text-sm md:text-base">GLOBE EXPRESS</span>
+          <Hexagon className="w-8 h-8 text-[#d15000] stroke-[1.5]" />
+          <div className="flex flex-col">
+             <span className="font-bold tracking-[0.2em] text-sm md:text-base leading-none">QUANTUM</span>
+             <span className="font-light tracking-[0.2em] text-xs md:text-sm text-gray-300 leading-none">INSTITUTE</span>
+          </div>
         </div>
         
         <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-widest text-gray-300">
-          <a href="#" className="text-[#fca311] relative">
-            HOME
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#fca311] rounded-full"></span>
+          <a href="#" className="hover:text-white transition-colors">HEALING</a>
+          <a href="#" className="hover:text-white transition-colors">EDUCATION</a>
+          <a href="#" className="hover:text-white transition-colors">RESEARCH</a>
+          <a href="#" className="text-[#d15000] relative">
+            EXPLORATION
+            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#d15000] rounded-full"></span>
           </a>
-          <a href="#" className="hover:text-white transition-colors">HOLIDAYS</a>
-          <a href="#" className="hover:text-white transition-colors">DESTINATIONS</a>
-          <a href="#" className="hover:text-white transition-colors">FLIGHTS</a>
-          <a href="#" className="hover:text-white transition-colors">OFFERS</a>
-          <a href="#" className="hover:text-white transition-colors">CONTACTS</a>
         </nav>
 
         <div className="flex items-center gap-6">
-          <button className="hover:text-[#fca311] transition-colors"><Search className="w-5 h-5" /></button>
-          <button className="hover:text-[#fca311] transition-colors"><User className="w-5 h-5" /></button>
+          <button className="hover:text-[#d15000] transition-colors"><Search className="w-5 h-5" /></button>
+          <button className="hover:text-[#d15000] transition-colors"><User className="w-5 h-5" /></button>
         </div>
       </header>
 
       <div className="relative z-30 w-full h-full flex flex-col justify-center px-6 md:px-12 lg:flex-row lg:items-center pb-20">
         
-        <div className="lg:w-1/2 flex flex-col items-start pr-0 lg:pr-10 pt-20 lg:pt-0 hero-text-content will-change-transform">
-          <TextContent activeItem={DESTINATIONS[textIndex]} />
+        <div className="lg:w-[55%] flex flex-col items-start pr-0 lg:pr-10 pt-20 lg:pt-24 hero-text-content will-change-transform">
+          {VALUES[textIndex] && <TextContent activeItem={VALUES[textIndex]} />}
         </div>
 
         <div 
-          className="lg:w-1/2 w-full flex flex-col mt-12 lg:mt-32 relative z-20"
+          className="lg:w-[45%] w-full flex flex-col mt-12 lg:mt-32 relative z-20"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -350,7 +385,7 @@ const Hero = () => {
             {getUpcomingCards().map((item) => (
               <div 
                 key={`card-${item.id}`}
-                className="slider-card relative w-48 h-72 md:w-52 md:h-[380px] rounded-[28px] overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                className="slider-card relative w-48 h-72 md:w-52 md:h-[380px] rounded-[28px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
                 onClick={handleNext}
                 onMouseEnter={(e) => handleCardHover(e, true)}
                 onMouseLeave={(e) => handleCardHover(e, false)}
@@ -360,12 +395,12 @@ const Hero = () => {
                   alt={item.title}
                   className="card-img absolute inset-0 w-full h-full object-cover will-change-transform"
                 />
-                <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
                 
                 <div className="absolute bottom-0 left-0 p-5 z-20">
-                  <div className="w-4 h-[1px] bg-white/50 mb-2"></div>
-                  <p className="text-[9px] text-white/70 uppercase tracking-widest mb-1">{item.subtitle}</p>
-                  <h3 className="text-base font-bold uppercase leading-tight whitespace-pre-line">{item.title}</h3>
+                  <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+                  <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
+                  <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
                 </div>
               </div>
             ))}
@@ -378,17 +413,17 @@ const Hero = () => {
         <div className="flex-1 hidden md:block"></div>
 
         <div className="flex items-center justify-center gap-4 pointer-events-auto flex-1">
-          <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors backdrop-blur-md">
-            <ChevronLeft className="w-5 h-5 text-white/70" />
+          <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
+            <ChevronLeft className="w-5 h-5 text-white/70 group-hover:text-white" />
           </button>
-          <button onClick={handleNext} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors backdrop-blur-md">
-            <ChevronRight className="w-5 h-5 text-white/70" />
+          <button onClick={handleNext} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
+            <ChevronRight className="w-5 h-5 text-white/70 group-hover:text-white" />
           </button>
         </div>
 
         <div className="flex-1 flex justify-end pointer-events-auto">
-          <div className="text-5xl lg:text-7xl font-light tracking-tighter">
-            0{(activeIndex % DESTINATIONS.length) + 1}
+          <div className="text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif">
+            0{(activeIndex % VALUES.length) + 1}
           </div>
         </div>
 
@@ -396,34 +431,35 @@ const Hero = () => {
 
       {cloneData && (
         <div 
-          className="card-clone fixed z-[5] overflow-hidden pointer-events-none"
+          className="card-clone absolute z-[5] overflow-hidden pointer-events-none"
           style={{
             top: cloneData.rect.top,
             left: cloneData.rect.left,
             width: cloneData.rect.width,
             height: cloneData.rect.height,
-            borderRadius: '28px',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+            borderRadius: '28px', // Matches the updated slider-card rounding
+            boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
           }}
         >
           <img src={cloneData.item.img} className="w-full h-full object-cover will-change-transform" alt="" />
           
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent clone-card-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 clone-card-overlay" />
           
           <div className="absolute inset-0 opacity-0 clone-bg-overlay">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute inset-0 bg-black/20 mix-blend-overlay opacity-50" />
+            <div className="absolute inset-0 bg-black/30 mix-blend-overlay opacity-50" />
           </div>
           
           <div className="absolute bottom-0 left-0 p-5 z-20 clone-text">
-            <div className="w-4 h-[1px] bg-white/50 mb-2"></div>
-            <p className="text-[9px] text-white/70 uppercase tracking-widest mb-1">{cloneData.item.subtitle}</p>
-            <h3 className="text-base font-bold uppercase leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
+            <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+            <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{cloneData.item.subtitle}</p>
+            <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
           </div>
         </div>
       )}
 
+      </div>
     </div>
   );
 };
