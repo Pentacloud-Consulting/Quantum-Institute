@@ -9,7 +9,7 @@ const BrandIdentity = () => {
     <section className="relative w-screen h-screen shrink-0 overflow-hidden bg-black z-30 flex flex-col lg:flex-row font-sans shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
       
       {/* Left Column - Text Content */}
-      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 z-10 overflow-hidden">
+      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-12 lg:px-16 xl:px-24 z-10 overflow-hidden">
         
         {/* Subtle geometric wireframe background (matching design) */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[800px] h-[800px] opacity-[0.04] pointer-events-none">
@@ -30,26 +30,22 @@ const BrandIdentity = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-10 flex flex-col items-start"
+          className="relative z-10 flex flex-col items-start w-full"
         >
           {/* Label */}
           <h4 className="text-[#d15000] text-xs font-bold tracking-[0.2em] uppercase mb-8">
-            BRAND &amp; IDENTITY
+            Interactive Site Element
           </h4>
 
           {/* Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-8">
-            Rooted in purpose. <br />
-            Designed for <br />
-            impact.
+          <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-light tracking-tight text-white leading-[1.1] mb-8 whitespace-nowrap">
+            Core Value Proposition <br />
+            Statements.
           </h2>
 
           {/* Body Text */}
-          <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-sm mb-12">
-            Quantum Institute is more than a space—<br className="hidden md:block" />
-            it's a movement. Our identity reflects<br className="hidden md:block" />
-            clarity, innovation, and the timeless pursuit<br className="hidden md:block" />
-            of truth.
+          <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xl mb-12">
+            A slot machine style slider element that combines Quantum Institute's core values and value propositions to engage and inform through thoughtful web design.
           </p>
 
           {/* CTA Link */}
@@ -70,8 +66,14 @@ const BrandIdentity = () => {
           playsInline
           className="w-full h-full object-cover"
         />
-        {/* Subtle inner shadow/gradient for blending the edge */}
-        <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#0a0a0a] to-transparent w-16 opacity-80" />
+        {/* Soft gradient edge to remove hard lines */}
+        {/* Mobile: Top edge fade */}
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0a0a0a] to-transparent lg:hidden" />
+        <div className="absolute inset-x-0 top-0 h-8 bg-[#0a0a0a] lg:hidden" />
+        
+        {/* Desktop: Left edge fade (ultra-wide and soft) */}
+        <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-[#0a0a0a] to-transparent hidden lg:block pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-8 bg-[#0a0a0a] hidden lg:block pointer-events-none" />
       </div>
 
     </section>

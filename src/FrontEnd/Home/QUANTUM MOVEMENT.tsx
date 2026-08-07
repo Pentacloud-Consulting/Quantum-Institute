@@ -36,7 +36,7 @@ const projects = [
   }
 ];
 
-const Researched = () => {
+const QuantumMovement = () => {
   const [currentIndex, setCurrentIndex] = useState(0); // Start at 0, goes infinitely negative/positive
   const N = projects.length;
 
@@ -52,15 +52,16 @@ const Researched = () => {
   const c = ((currentIndex % N) + N) % N;
 
   const sectionRef = useRef<HTMLElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Existing entry animation (triggered early)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          // Play once and never reverse, ensures it doesn't disappear
         }
       });
 
@@ -78,29 +79,40 @@ const Researched = () => {
         { y: 0, opacity: 1, scale: 1, duration: 1, ease: "power3.out" },
         "-=0.7"
       );
-    }, sectionRef);
+
+      // 2. Pinning logic: stick for a second (using the outer wrapper)
+      ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: "+=100%", 
+        pin: true,
+        pinSpacing: true, 
+      });
+
+    }, wrapperRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#0a0a0a] py-16 md:py-20 lg:py-24 flex flex-col items-center overflow-hidden font-sans z-20">
-      
-      {/* Top Header Section */}
-      <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto mb-10 md:mb-12 lg:mb-16 relative z-10 flex flex-col items-center text-center">
-        <div className="flex flex-col items-center">
-          <h4 className="quantum-subtitle text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">
-            THE QUANTUM MOVEMENT
-          </h4>
-          
-          <h2 className="quantum-title text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1]">
-            Where Every Mind <br />
-            Shapes Tomorrow.
-          </h2>
+    <div ref={wrapperRef} className="relative w-full bg-[#0a0a0a]">
+      <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans z-20 py-24">
+        
+        {/* Top Header Section */}
+        <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto mb-16 relative z-10 flex flex-col items-center text-center">
+          <div className="flex flex-col items-center">
+            <h4 className="quantum-subtitle text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">
+              THE QUANTUM MOVEMENT
+            </h4>
+            
+            <h2 className="quantum-title text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1]">
+              Where Every Mind <br />
+              Shapes Tomorrow.
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* Carousel Section (3D Coverflow Style) */}
+        {/* Carousel Section (3D Coverflow Style) */}
       <div className="quantum-carousel relative w-full max-w-[1600px] mx-auto flex items-center justify-center h-[300px] md:h-[360px] lg:h-[380px] px-4">
         
         {/* Left Nav Arrow */}
@@ -200,7 +212,8 @@ const Researched = () => {
       </div>
 
     </section>
+    </div>
   );
 };
 
-export default Researched;
+export default QuantumMovement;
