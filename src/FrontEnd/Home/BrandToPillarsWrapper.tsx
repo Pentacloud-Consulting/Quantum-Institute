@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import BrandIdentity from "./BRAND & IDENTITY";
+import Proposition from "./PROPOSITION";
 import PillarsQI from "./Pillars QI";
 
 const BrandToPillarsWrapper = () => {
@@ -25,14 +25,33 @@ const BrandToPillarsWrapper = () => {
         },
       });
 
-      // 1. Stick on Brand Identity section
+      // 1. Stick on Proposition section and hold briefly
       tl.to(trackRef.current, {
+        x: "0%",
+        duration: 0.5, 
+      })
+      // 1b. Fade out Slide 1 (Importance of Exploration)
+      .to(".prop-slide-1", {
+        opacity: 0,
+        y: -30,
+        duration: 0.4,
+        ease: "power2.inOut"
+      })
+      // 1c. Fade in Slide 2 (Brand Story)
+      .to(".prop-slide-2", {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      }, "<0.2")
+      // 1d. Hold on Slide 2 briefly before moving to next section
+      .to(trackRef.current, {
         x: "0%",
         duration: 0.5, 
       })
       // 2. Slide horizontally to Pillars QI section
       .to(trackRef.current, {
-        x: "-50%", // Moves the track to the left by 1 viewport width (50% of the 200vw track)
+        x: "-50%", // Moves the track to the left by 1 viewport width
         ease: "power1.inOut",
         duration: 1.5,
       })
@@ -53,7 +72,7 @@ const BrandToPillarsWrapper = () => {
         ref={trackRef} 
         className="flex h-full w-[200vw] will-change-transform"
       >
-        <BrandIdentity />
+        <Proposition />
         <PillarsQI />
       </div>
     </div>
