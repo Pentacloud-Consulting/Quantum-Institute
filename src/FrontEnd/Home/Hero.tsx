@@ -7,16 +7,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-import { ChevronLeft, ChevronRight, Play, Hexagon, Search, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Lenis from 'lenis';
+import { useRouter } from 'next/navigation';
 
 const VALUES = [
-  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&w=1920&q=80" },
-  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&w=1920&q=80" },
+  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Home/Quantum images Mock/Quantum 1.webp" },
+  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/Home/Quantum images Mock/Quantum 2.webp" },
+  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/Home/Quantum images Mock/Quantum 3.webp" },
+  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/Home/Quantum images Mock/Quantum 5.webp" },
+  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/Home/Quantum images Mock/Quantum 6.webp" },
 ];
 
 const renderTitle = (title: string) => {
@@ -34,6 +35,7 @@ const renderTitle = (title: string) => {
 const TextContent = ({ activeItem }: { activeItem: any }) => {
   const [displayItem, setDisplayItem] = useState(activeItem);
   const containerRef = useRef(null);
+  const router = useRouter();
 
   useLayoutEffect(() => {
     if (activeItem.id !== displayItem.id) {
@@ -80,16 +82,10 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
       
       <div className="flex items-center gap-4 md:gap-6 anim-btn">
         <motion.button 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#d15000] flex items-center justify-center text-white shrink-0 shadow-[0_0_20px_rgba(209,80,0,0.4)]"
-        >
-          <Play className="w-4 h-4 md:w-5 md:h-5 fill-current ml-1" />
-        </motion.button>
-        <motion.button 
+          onClick={() => router.push('/signup')}
           whileHover={{ scale: 1.05, backgroundColor: "rgba(209,80,0,0.9)", borderColor: "rgba(209,80,0,1)" }}
           whileTap={{ scale: 0.95 }}
-          className="px-6 py-3 md:px-8 md:py-4 rounded-full border border-white/30 text-xs md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300"
+          className="px-6 py-3 md:px-8 md:py-4 rounded-full border border-white/30 text-xs md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
         >
           JOIN WAITLIST
         </motion.button>
@@ -106,7 +102,7 @@ const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   
   // Clone data for shared element architecture
-  const [cloneData, setCloneData] = useState<{ rect: DOMRect, item: any } | null>(null);
+  const [cloneData, setCloneData] = useState<{ rect: { top: number, left: number, width: number, height: number }, item: any } | null>(null);
 
   const heroPinRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -133,10 +129,6 @@ const Hero = () => {
       gsap.fromTo('.active-bg-img', 
         { scale: 1.2 },
         { scale: 1, duration: 1.5, ease: "power3.out" }
-      );
-      gsap.fromTo('header',
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 }
       );
       gsap.fromTo('.slider-card',
         { x: 100, opacity: 0 },
@@ -339,36 +331,13 @@ const Hero = () => {
           className="absolute inset-0 z-0"
         >
           <img src={VALUES[activeIndex].img} className="active-bg-img w-full h-full object-cover scale-[1.01] will-change-transform" alt="" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-black/30 mix-blend-overlay opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-black/10 mix-blend-overlay opacity-30" />
         </div>
       )}
 
-      <header className="absolute top-0 left-0 w-full px-6 md:px-12 pt-8 pb-6 flex items-center justify-between z-50">
-        <div className="flex items-center gap-3">
-          <Hexagon className="w-8 h-8 text-[#d15000] stroke-[1.5]" />
-          <div className="flex flex-col">
-             <span className="font-bold tracking-[0.2em] text-sm md:text-base leading-none">QUANTUM</span>
-             <span className="font-light tracking-[0.2em] text-xs md:text-sm text-gray-300 leading-none">INSTITUTE</span>
-          </div>
-        </div>
-        
-        <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-widest text-gray-300">
-          <a href="#" className="hover:text-white transition-colors">HEALING</a>
-          <a href="#" className="hover:text-white transition-colors">EDUCATION</a>
-          <a href="#" className="hover:text-white transition-colors">RESEARCH</a>
-          <a href="#" className="text-[#d15000] relative">
-            EXPLORATION
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#d15000] rounded-full"></span>
-          </a>
-        </nav>
 
-        <div className="flex items-center gap-6">
-          <button className="hover:text-[#d15000] transition-colors"><Search className="w-5 h-5" /></button>
-          <button className="hover:text-[#d15000] transition-colors"><User className="w-5 h-5" /></button>
-        </div>
-      </header>
 
       <div className="relative z-30 w-full h-full flex flex-col justify-center px-6 md:px-12 lg:flex-row lg:items-center pb-20">
         
@@ -446,9 +415,9 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 clone-card-overlay" />
           
           <div className="absolute inset-0 opacity-0 clone-bg-overlay">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute inset-0 bg-black/30 mix-blend-overlay opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-black/10 mix-blend-overlay opacity-30" />
           </div>
           
           <div className="absolute bottom-0 left-0 p-5 z-20 clone-text">

@@ -1,17 +1,38 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Globe, ArrowRight, Atom, Sparkles } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const VisionMissionReveal = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
   
   // Triggers when at least 40% of Row 2 is in the viewport
   const isRow2InView = useInView(row2Ref, { amount: 0.4 });
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "bottom bottom", // Pin when the bottom of the section hits the bottom of the viewport
+        end: "+=100%", // Stay pinned for exactly 100vh of scrolling (height of the next section)
+        pin: true,
+        pinSpacing: false, // Crucial: allows the next section to slide over this one
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center py-20 px-6 md:px-12 lg:px-24 overflow-hidden gap-24 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+    <section ref={sectionRef} className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center py-20 px-6 md:px-12 lg:px-24 overflow-hidden gap-24 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
       {/* Background Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
         <div className="w-[800px] h-[800px] bg-[#d15000] opacity-5 rounded-full blur-[120px]" />

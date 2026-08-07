@@ -1,114 +1,81 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
-const AgoraReveal = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [revealedLines, setRevealedLines] = useState(0);
-
-  // Track video progress to trigger text reveals
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const updateProgress = () => {
-      // Avoid division by zero
-      if (!video.duration) return;
-      
-      const progress = (video.currentTime / video.duration) * 100;
-      
-      // Reveal lines based on video playback percentage
-      if (progress > 40) setRevealedLines(prev => Math.max(prev, 1));
-      if (progress > 70) setRevealedLines(prev => Math.max(prev, 2));
-      if (progress > 95) setRevealedLines(prev => Math.max(prev, 3));
-    };
-
-    video.addEventListener('timeupdate', updateProgress);
-    return () => video.removeEventListener('timeupdate', updateProgress);
-  }, []);
-
+const BrandIdentity = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black z-20 flex flex-col font-sans">
-      {/* Fullscreen Background Video */}
-      <video 
-        ref={videoRef}
-        src="/Home/BRAND & IDENTITY.mp4" 
-        autoPlay 
-        loop 
-        muted 
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+    <section className="relative w-screen h-screen shrink-0 overflow-hidden bg-black z-30 flex flex-col lg:flex-row font-sans shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
       
-      {/* Dark Vignette Overlay for Text Legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/20 to-black/60 pointer-events-none" />
-
-      {/* OVERLAYS CONTAINER */}
-      <div className="relative z-10 w-full h-full p-8 md:p-12 lg:p-16 flex flex-col justify-between">
+      {/* Left Column - Text Content */}
+      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 z-10 overflow-hidden">
         
-        {/* TOP ROW */}
-        <div className="flex justify-between items-start w-full">
-          
-          {/* Top-Left: Removed per request */}
-          <div></div>
-
-          {/* Top-Right: Editorial Quote */}
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-            className="flex flex-col items-end text-right"
-          >
-            <p className="text-white/60 font-serif italic text-sm md:text-base leading-relaxed max-w-[220px]">
-              "Design is 98% common sense. <br /> And 2% aesthetics."
-            </p>
-            <span className="text-white/40 font-mono text-[9px] md:text-[10px] tracking-[0.2em] uppercase mt-4">
-              DUBAI, UAE
-            </span>
-          </motion.div>
-
+        {/* Subtle geometric wireframe background (matching design) */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[800px] h-[800px] opacity-[0.04] pointer-events-none">
+          <svg viewBox="0 0 100 100" className="w-full h-full stroke-white fill-none stroke-[0.2]">
+            <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
+            <polygon points="50,15 85,35 85,65 50,85 15,65 15,35" />
+            <line x1="5" y1="25" x2="50" y2="50" />
+            <line x1="95" y1="25" x2="50" y2="50" />
+            <line x1="50" y1="95" x2="50" y2="50" />
+            <line x1="15" y1="35" x2="50" y2="50" />
+            <line x1="85" y1="35" x2="50" y2="50" />
+            <line x1="50" y1="85" x2="50" y2="50" />
+          </svg>
         </div>
 
-        {/* BOTTOM CENTER: Main Line */}
-        <div className="w-full flex justify-center pb-4 md:pb-8">
-          <div className="flex flex-col items-center text-center space-y-3">
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: revealedLines >= 1 ? 1 : 0, y: revealedLines >= 1 ? 0 : 20 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="text-white/90 text-3xl md:text-4xl lg:text-5xl font-light tracking-tight drop-shadow-lg"
-            >
-              The layers deepen in contrast
-            </motion.p>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: revealedLines >= 2 ? 1 : 0, y: revealedLines >= 2 ? 0 : 20 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="text-white/90 text-3xl md:text-4xl lg:text-5xl font-light tracking-tight drop-shadow-lg"
-            >
-              as they arrive at <span className="text-[#d15000] font-normal">the Agora</span>
-            </motion.p>
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10 flex flex-col items-start"
+        >
+          {/* Label */}
+          <h4 className="text-[#d15000] text-xs font-bold tracking-[0.2em] uppercase mb-8">
+            BRAND &amp; IDENTITY
+          </h4>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: revealedLines >= 3 ? 1 : 0, y: revealedLines >= 3 ? 0 : 20 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="text-white/70 text-lg md:text-xl lg:text-2xl font-light tracking-wide mt-3 drop-shadow-md"
-            >
-              the true center of our ecosystem.
-            </motion.p>
-            
-          </div>
-        </div>
+          {/* Heading */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1] mb-8">
+            Rooted in purpose. <br />
+            Designed for <br />
+            impact.
+          </h2>
 
+          {/* Body Text */}
+          <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-sm mb-12">
+            Quantum Institute is more than a space—<br className="hidden md:block" />
+            it's a movement. Our identity reflects<br className="hidden md:block" />
+            clarity, innovation, and the timeless pursuit<br className="hidden md:block" />
+            of truth.
+          </p>
+
+          {/* CTA Link */}
+          <button className="group flex items-center gap-4 text-xs font-bold tracking-[0.2em] uppercase text-white hover:text-[#d15000] transition-colors duration-300">
+            OUR STORY
+            <ArrowRight className="w-4 h-4 text-[#d15000] group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
       </div>
+
+      {/* Right Column - Video */}
+      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full bg-black">
+        <video 
+          src="/Home/BRAND & IDENTITY.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="w-full h-full object-cover"
+        />
+        {/* Subtle inner shadow/gradient for blending the edge */}
+        <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#0a0a0a] to-transparent w-16 opacity-80" />
+      </div>
+
     </section>
   );
 };
 
-export default AgoraReveal;
+export default BrandIdentity;
