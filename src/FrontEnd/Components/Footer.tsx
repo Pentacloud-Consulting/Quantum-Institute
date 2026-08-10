@@ -37,8 +37,24 @@ const HexagonLogo = () => (
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#050505] pt-24 pb-8 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5 relative z-20">
-      <div className="max-w-[1400px] mx-auto">
+    <footer className="w-full pt-24 pb-8 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5 relative z-20 overflow-hidden">
+      
+      {/* Background Video */}
+      <video 
+        src="/Videos/Footer Video.mp4" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        disablePictureInPicture
+        disableRemotePlayback
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+      />
+      
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black/80 z-0"></div>
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
@@ -114,7 +130,8 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full bg-transparent border border-white/20 rounded-full py-[14px] pl-6 pr-12 text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#d15000] transition-colors"
+                className="w-full bg-transparent border border-white/20 rounded-full py-[14px] pl-6 pr-12 text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#d15000]"
+                style={{ transition: "background-color 9999s ease-in-out 0s", WebkitTextFillColor: "#fff" }}
               />
               <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-white/50 hover:text-[#d15000] transition-colors">
                 <ArrowRight className="w-5 h-5" />

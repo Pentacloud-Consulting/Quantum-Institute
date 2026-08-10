@@ -141,7 +141,7 @@ const Proposition = () => {
       <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full bg-white flex items-center justify-center p-8 lg:p-16">
         <div className="relative w-full h-[90%] lg:w-[90%] lg:h-[75%] rounded-[2rem] overflow-hidden shadow-2xl mt-0 lg:mt-4">
           <video 
-            src="/Videos/Futuristic_institute_in_desert_1080p_202608101438.mp4" 
+            src="/Videos/PROPOSITION Video.mp4" 
             autoPlay 
             loop 
             muted 
