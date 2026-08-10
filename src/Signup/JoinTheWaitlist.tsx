@@ -6,14 +6,14 @@ import { Check } from 'lucide-react';
 
 // Reusable components
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <label className="block text-[11px] font-bold tracking-[0.15em] text-gray-400 uppercase mb-2">
+  <label className="block text-[11px] font-bold tracking-[0.15em] text-gray-600 uppercase mb-2">
     {children}
   </label>
 );
 
 const Input = ({ ...props }) => (
   <input 
-    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all"
+    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all"
     {...props}
   />
 );
@@ -47,19 +47,19 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
     <div className="relative" style={{ zIndex: isOpen ? 50 : 10 }}>
       <div 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-[#141414] border border-white/10 rounded-lg px-4 py-3.5 text-[14px] text-white cursor-pointer flex justify-between items-center hover:border-white/30 transition-colors"
+        className="w-full bg-white border border-black/10 rounded-lg px-4 py-3.5 text-[14px] text-black cursor-pointer flex justify-between items-center hover:border-black/20 shadow-sm transition-colors"
       >
-        <span className={selected.length ? "text-white" : "text-gray-500"}>
+        <span className={selected.length ? "text-black" : "text-gray-400"}>
           {getDisplayText()}
         </span>
-        <svg className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
       
       {showOtherInput && (
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-3">
-           <input type="text" value={otherText} onChange={(e) => setOtherText(e.target.value)} placeholder="Please specify..." className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-[14px] text-white placeholder:text-gray-600 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all" />
+           <input type="text" value={otherText} onChange={(e) => setOtherText(e.target.value)} placeholder="Please specify..." className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-[14px] text-black placeholder:text-gray-400 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all" />
         </motion.div>
       )}
 
@@ -70,7 +70,7 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 w-full mt-2 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-2xl max-h-[250px] overflow-y-auto"
+            className="absolute z-50 w-full mt-2 bg-white border border-black/10 rounded-lg shadow-xl max-h-[250px] overflow-y-auto"
           >
             {options.map((opt) => {
               const isSelected = selected.includes(opt.value);
@@ -78,10 +78,10 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
                 <div 
                   key={opt.value}
                   onClick={() => handleSelect(opt.value)}
-                  className={`px-4 py-3 text-[14px] flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#d15000]/20 text-white' : 'text-gray-300 hover:bg-[#d15000] hover:text-white'}`}
+                  className={`px-4 py-3 text-[14px] flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#d15000]/10 text-[#d15000] font-medium' : 'text-gray-600 hover:bg-black/5 hover:text-black'}`}
                 >
                   {multiple && (
-                    <div className={`w-[16px] h-[16px] rounded-[3px] border ${isSelected ? 'border-[#d15000] bg-[#d15000]' : 'border-white/30 bg-transparent'} flex items-center justify-center shrink-0`}>
+                    <div className={`w-[16px] h-[16px] rounded-[3px] border ${isSelected ? 'border-[#d15000] bg-[#d15000]' : 'border-black/20 bg-transparent'} flex items-center justify-center shrink-0`}>
                       {isSelected && <Check className="w-3 h-3 text-white" />}
                     </div>
                   )}
@@ -120,20 +120,20 @@ export default function JoinTheWaitlist() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="w-full bg-[#050505] text-white py-24 md:py-32 px-4 sm:px-6 flex justify-center items-start selection:bg-[#d15000] selection:text-white relative overflow-x-hidden">
+    <div className="w-full bg-[#fafafa] text-black py-24 md:py-32 px-4 sm:px-6 flex justify-center items-start selection:bg-[#d15000] selection:text-white relative overflow-x-hidden">
       
       {/* Background ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#d15000]/10 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#d15000]/5 blur-[120px] pointer-events-none rounded-full" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-full max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl relative z-10"
+        className="w-full max-w-4xl bg-white border border-black/5 rounded-2xl p-6 sm:p-8 shadow-xl relative z-10"
       >
         <div className="mb-6 text-center">
-          <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-4">Join the Waitlist</h1>
-          <p className="text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
+          <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-4 text-black">Join the Waitlist</h1>
+          <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed">
             Become part of the Quantum Movement. Provide your details below to request early access and help shape tomorrow.
           </p>
         </div>
@@ -150,9 +150,9 @@ export default function JoinTheWaitlist() {
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#d15000]/20 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">1</div>
-                  <h2 className="text-xl font-medium tracking-wide">Basic Information</h2>
-                  <div className="flex-1 h-px bg-white/10 ml-4" />
+                  <div className="w-8 h-8 rounded-full bg-[#d15000]/10 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">1</div>
+                  <h2 className="text-xl font-medium tracking-wide text-black">Basic Information</h2>
+                  <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -201,7 +201,7 @@ export default function JoinTheWaitlist() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 flex justify-end">
+                <div className="pt-6 border-t border-black/10 flex justify-end">
                   <button 
                     type="button" 
                     onClick={() => setStep(2)}
@@ -224,9 +224,9 @@ export default function JoinTheWaitlist() {
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#d15000]/20 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">2</div>
-                  <h2 className="text-xl font-medium tracking-wide">Background & Intent</h2>
-                  <div className="flex-1 h-px bg-white/10 ml-4" />
+                  <div className="w-8 h-8 rounded-full bg-[#d15000]/10 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">2</div>
+                  <h2 className="text-xl font-medium tracking-wide text-black">Background & Intent</h2>
+                  <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -281,12 +281,12 @@ export default function JoinTheWaitlist() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 flex flex-col items-center">
+                <div className="pt-6 border-t border-black/10 flex flex-col items-center">
                   <div className="flex items-center gap-4 w-full md:w-auto">
                     <button 
                       type="button" 
                       onClick={() => setStep(1)}
-                      className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all"
+                      className="px-8 py-4 bg-black/5 hover:bg-black/10 text-black text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all"
                     >
                       Back
                     </button>
