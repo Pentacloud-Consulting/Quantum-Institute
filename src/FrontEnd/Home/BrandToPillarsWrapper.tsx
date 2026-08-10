@@ -34,6 +34,7 @@ const BrandToPillarsWrapper = () => {
       .to(".prop-slide-1", {
         opacity: 0,
         y: -30,
+        pointerEvents: "none",
         duration: 0.4,
         ease: "power2.inOut"
       })
@@ -41,6 +42,7 @@ const BrandToPillarsWrapper = () => {
       .to(".prop-slide-2", {
         opacity: 1,
         y: 0,
+        pointerEvents: "auto",
         duration: 0.4,
         ease: "power2.out"
       }, "<0.2")

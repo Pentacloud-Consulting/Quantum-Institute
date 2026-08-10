@@ -13,11 +13,17 @@ import Lenis from 'lenis';
 import { useRouter } from 'next/navigation';
 
 const VALUES = [
-  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Home/Quantum images Mock/Quantum 1.webp" },
-  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/Home/Quantum images Mock/Quantum 2.webp" },
-  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/Home/Quantum images Mock/Quantum 3.webp" },
-  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/Home/Quantum images Mock/Quantum 5.webp" },
-  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/Home/Quantum images Mock/Quantum 6.webp" },
+  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Home/Quantum Hero/Quantum Hero - 1.webp" },
+  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/Home/Quantum Hero/Quantum Hero - 2.webp" },
+  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/Home/Quantum Hero/Quantum Hero - 3.webp" },
+  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/Home/Quantum Hero/Quantum Hero - 4.webp" },
+  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/Home/Quantum Hero/Quantum Hero - 5.webp" },
+  { id: 6, title: "FUTURE\nIMPACT", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/Home/Quantum Hero/Quantum Hero - 6.webp" },
+  { id: 7, title: "EXPAND\nHORIZONS", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/Home/Quantum Hero/Quantum Hero - 7.webp" },
+  { id: 8, title: "ELEVATE\nCONSCIOUSNESS", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/Home/Quantum Hero/Quantum Hero - 8.webp" },
+  { id: 9, title: "GLOBAL\nSYNERGY", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/Home/Quantum Hero/Quantum Hero - 9.webp" },
+  { id: 10, title: "QUANTUM\nMOVEMENT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/Home/Quantum Hero/Quantum Hero - 10.webp" },
+  { id: 11, title: "INFINITE\nPOSSIBILITIES", subtitle: "Where science meets wonder", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/Home/Quantum Hero/Quantum Hero - 11.webp" },
 ];
 
 const renderTitle = (title: string) => {
@@ -392,7 +398,7 @@ const Hero = () => {
 
         <div className="flex-1 flex justify-end pointer-events-auto">
           <div className="text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif">
-            0{(activeIndex % VALUES.length) + 1}
+            {String((activeIndex % VALUES.length) + 1).padStart(2, '0')}
           </div>
         </div>
 

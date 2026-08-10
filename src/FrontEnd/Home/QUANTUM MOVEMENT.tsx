@@ -12,32 +12,33 @@ const projects = [
   {
     title: "Quantum Healing Sanctuaries",
     subtitle: "Wellness meets science",
-    image: "/Home/Quantum images Mock/Quantum 1.webp"
+    image: "/Quantum images Mock/Quantum 1.webp"
   },
   {
     title: "Infinite Learning Campus",
     subtitle: "Education beyond boundaries",
-    image: "/Home/Quantum images Mock/Quantum 2.webp"
+    image: "/Quantum images Mock/Quantum 2.webp"
   },
   {
     title: "Quantum Research Labs",
     subtitle: "Discover. Innovate. Transform.",
-    image: "/Home/Quantum images Mock/Quantum 3.webp"
+    image: "/Quantum images Mock/Quantum 3.webp"
   },
   {
     title: "Global Exploration Initiatives",
     subtitle: "Expanding horizons, together.",
-    image: "/Home/Quantum images Mock/Quantum 5.webp"
+    image: "/Quantum images Mock/Quantum 5.webp"
   },
   {
     title: "Future Impact Programs",
     subtitle: "Building a better tomorrow.",
-    image: "/Home/Quantum images Mock/Quantum 6.webp"
+    image: "/Quantum images Mock/Quantum 6.webp"
   }
 ];
 
 const QuantumMovement = () => {
   const [currentIndex, setCurrentIndex] = useState(0); // Start at 0, goes infinitely negative/positive
+  const [isPaused, setIsPaused] = useState(false);
   const N = projects.length;
 
   const scroll = (direction: 'left' | 'right') => {
@@ -53,6 +54,14 @@ const QuantumMovement = () => {
 
   const sectionRef = useRef<HTMLElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -95,9 +104,10 @@ const QuantumMovement = () => {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="relative w-full bg-[#0a0a0a]">
-      <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans z-20 py-24">
-        
+    <div className="relative w-full bg-[#fafafa]">
+      <div ref={wrapperRef} className="w-full">
+        <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans z-20 py-24">
+          
         {/* Top Header Section */}
         <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto mb-16 relative z-10 flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
@@ -105,7 +115,7 @@ const QuantumMovement = () => {
               THE QUANTUM MOVEMENT
             </h4>
             
-            <h2 className="quantum-title text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white leading-[1.1]">
+            <h2 className="quantum-title text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black leading-[1.1]">
               Where Every Mind <br />
               Shapes Tomorrow.
             </h2>
@@ -118,7 +128,7 @@ const QuantumMovement = () => {
         {/* Left Nav Arrow */}
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-4 md:left-12 lg:left-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-sm text-white transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer"
+          className="absolute left-4 md:left-12 lg:left-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer shadow-sm"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
@@ -154,7 +164,7 @@ const QuantumMovement = () => {
                   rotateY: 0,
                   z: 0,
                   borderRadius: "1.5rem",
-                  borderColor: "rgba(255,255,255,0.1)",
+                  borderColor: "rgba(0,0,0,0.05)",
                 }}
                 whileHover={isCenter ? {
                   scale: 1.05,
@@ -163,10 +173,12 @@ const QuantumMovement = () => {
                   z: 30,
                   borderRadius: "2.5rem",
                   borderColor: "rgba(209, 80, 0, 0.6)",
-                  boxShadow: "0px 30px 60px rgba(0,0,0,0.8), 0 0 20px rgba(209, 80, 0, 0.3)",
+                  boxShadow: "0px 30px 60px rgba(0,0,0,0.2), 0 0 20px rgba(209, 80, 0, 0.3)",
                 } : {}}
                 transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                 onClick={() => setCurrentIndex((prev) => prev + offset)}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="absolute w-[200px] md:w-[240px] lg:w-[260px] h-[260px] md:h-[320px] lg:h-[340px] overflow-hidden cursor-pointer shadow-2xl origin-center group border"
               >
                 {/* Background Image */}
@@ -176,10 +188,10 @@ const QuantumMovement = () => {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
 
-                {/* Dark overlay for unfocused side cards */}
+                {/* Light overlay for unfocused side cards */}
                 <motion.div 
-                  className="absolute inset-0 bg-black pointer-events-none"
-                  animate={{ opacity: isCenter ? 0 : 0.6 }}
+                  className="absolute inset-0 bg-white pointer-events-none"
+                  animate={{ opacity: isCenter ? 0 : 0.3 }}
                   transition={{ duration: 0.6 }}
                 />
                 
@@ -204,14 +216,15 @@ const QuantumMovement = () => {
         {/* Right Nav Arrow */}
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-4 md:right-12 lg:right-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-sm text-white transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer"
+          className="absolute right-4 md:right-12 lg:right-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer shadow-sm"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
       </div>
 
-    </section>
+        </section>
+      </div>
     </div>
   );
 };

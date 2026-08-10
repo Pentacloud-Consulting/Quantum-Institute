@@ -156,22 +156,33 @@ const VisionMissionReveal = () => {
 
           {/* Image Container */}
           <div className="absolute inset-0 flex items-center justify-center w-full pointer-events-none">
-             <div className={`w-full flex ${step === 1 ? 'justify-end' : 'justify-start'} items-center h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]`}>
-                <div className="relative w-[45%] max-w-[400px] aspect-[4/5] flex items-center justify-center">
+             <div className={`w-full flex ${step === 1 ? 'justify-end' : 'justify-start'} items-center h-full`}>
+                <motion.div 
+                  layout
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-[45%] max-w-[400px] aspect-[4/5] flex items-center justify-center"
+                >
                   {/* Thin orange border frame */}
                   <div className="absolute inset-0 border border-[#d15000] opacity-40 z-0"></div>
                   
-                  {/* The Animated Image */}
+                  {/* The Images */}
                   <motion.img 
-                    layout
-                    src="/Home/Vision & Mission Reveal.png"
-                    alt="Reveal"
-                    className="absolute z-10 w-[150%] max-w-none object-contain pointer-events-none"
+                    src="/Home/Vision Mission Hero/Vision Hero.webp"
+                    alt="Vision"
+                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none"
                     initial={false}
-                    animate={{ rotate: step === 1 ? 0 : 180 }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    animate={{ opacity: step === 1 ? 1 : 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
                   />
-                </div>
+                  <motion.img 
+                    src="/Home/Vision Mission Hero/Mission Hero.webp"
+                    alt="Mission"
+                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none"
+                    initial={false}
+                    animate={{ opacity: step === 2 ? 1 : 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  />
+                </motion.div>
              </div>
           </div>
 

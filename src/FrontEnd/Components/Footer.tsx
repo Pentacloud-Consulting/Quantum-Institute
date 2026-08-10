@@ -46,11 +46,7 @@ const Footer = () => {
           {/* Logo & Socials */}
           <div className="lg:col-span-4 flex flex-col items-start pr-8">
             <div className="flex items-center gap-3 mb-6">
-              <HexagonLogo />
-              <div className="flex flex-col">
-                <span className="text-white font-bold tracking-[0.15em] text-[17px] leading-none">QUANTUM</span>
-                <span className="text-white font-light tracking-[0.15em] text-[17px] leading-none mt-[6px]">INSTITUTE</span>
-              </div>
+              <img src="/Logo/Quantum%20Institute%20Logo.png" alt="Quantum Institute Logo" className="h-10 md:h-12 w-auto object-contain scale-150 origin-left" />
             </div>
             
             <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-[240px]">
