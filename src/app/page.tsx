@@ -10,10 +10,12 @@ import PillarsQI from "@/FrontEnd/Home/Pillars QI";
 import TheWellnessSpectrum from "@/FrontEnd/Home/The Wellness Spectrum";
 import AncientWisdom from "@/FrontEnd/Home/Ancient Wisdom";
 import GetInTouch from "@/FrontEnd/Home/Get in Touch";
+import SplashAnimation from "@/FrontEnd/Animations/SplashAnimation";
 
 export default function Home() {
   return (
     <>
+      <SplashAnimation />
       <Navbar />
       <main>
         <div>
