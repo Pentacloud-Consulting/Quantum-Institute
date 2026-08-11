@@ -10,29 +10,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
+    title: "Future Impact Programs",
+    subtitle: "Shaping a better tomorrow.",
+    image: "/Home/QUANTUM MOVEMENT/Future Impact Programs.webp"
+  },
+  {
     title: "Quantum Healing Sanctuaries",
-    subtitle: "Wellness meets science",
-    image: "/Quantum images Mock/Quantum 1.webp"
+    subtitle: "Wellness meets science.",
+    image: "/Home/QUANTUM MOVEMENT/Quantum Healing Sanctuaries.webp"
   },
   {
     title: "Infinite Learning Campus",
-    subtitle: "Education beyond boundaries",
-    image: "/Quantum images Mock/Quantum 2.webp"
+    subtitle: "Explore. Learn. Evolve.",
+    image: "/Home/QUANTUM MOVEMENT/Infinite Learning Campus.webp"
   },
   {
     title: "Quantum Research Labs",
     subtitle: "Discover. Innovate. Transform.",
-    image: "/Quantum images Mock/Quantum 3.webp"
+    image: "/Home/QUANTUM MOVEMENT/Quantum Research Labs.webp"
   },
   {
     title: "Global Exploration Initiatives",
-    subtitle: "Expanding horizons, together.",
-    image: "/Quantum images Mock/Quantum 5.webp"
-  },
-  {
-    title: "Future Impact Programs",
-    subtitle: "Building a better tomorrow.",
-    image: "/Quantum images Mock/Quantum 6.webp"
+    subtitle: "Expanding horizons, together",
+    image: "/Home/QUANTUM MOVEMENT/Global Exploration Initiatives.webp"
   }
 ];
 

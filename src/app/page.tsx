@@ -6,6 +6,10 @@ import QuantumMovement from "@/FrontEnd/Home/QUANTUM MOVEMENT";
 import Trust from "@/FrontEnd/Home/Trust";
 import CTA from "@/FrontEnd/Home/CTA";
 import Footer from "@/FrontEnd/Components/Footer";
+import PillarsQI from "@/FrontEnd/Home/Pillars QI";
+import TheWellnessSpectrum from "@/FrontEnd/Home/The Wellness Spectrum";
+import AncientWisdom from "@/FrontEnd/Home/Ancient Wisdom";
+import GetInTouch from "@/FrontEnd/Home/Get in Touch";
 
 export default function Home() {
   return (
@@ -18,6 +22,10 @@ export default function Home() {
       <VisionMissionReveal />
       <BrandToPillarsWrapper />
       <QuantumMovement />
+      <TheWellnessSpectrum />
+      <AncientWisdom />
+      <GetInTouch />
+      <PillarsQI />
       <Trust />
       <CTA />
       <Footer />
