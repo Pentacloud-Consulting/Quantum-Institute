@@ -20,7 +20,7 @@ const VALUES = [
   { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/Home/Quantum Hero/Quantum Hero - 5.webp" },
   { id: 6, title: "FUTURE\nIMPACT", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/Home/Quantum Hero/Quantum Hero - 6.webp" },
   { id: 7, title: "EXPAND\nHORIZONS", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/Home/Quantum Hero/Quantum Hero - 7.webp" },
-  { id: 8, title: "ELEVATE\nCONSCIOUSNESS", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/Home/Quantum Hero/Quantum Hero - 8.webp" },
+  { id: 8, title: "ELEVATE\nCONSCIOUSNES", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/Home/Quantum Hero/Quantum Hero - 8.webp" },
   { id: 9, title: "GLOBAL\nSYNERGY", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/Home/Quantum Hero/Quantum Hero - 9.webp" },
   { id: 10, title: "QUANTUM\nMOVEMENT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/Home/Quantum Hero/Quantum Hero - 10.webp" },
   { id: 11, title: "INFINITE\nPOSSIBILITIES", subtitle: "Where science meets wonder", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/Home/Quantum Hero/Quantum Hero - 11.webp" },
@@ -109,6 +109,7 @@ const Hero = () => {
   
   // Clone data for shared element architecture
   const [cloneData, setCloneData] = useState<{ rect: { top: number, left: number, width: number, height: number }, item: any } | null>(null);
+  const [reverseCloneData, setReverseCloneData] = useState<{ rect: { top: number, left: number, width: number, height: number }, item: any } | null>(null);
 
   const heroPinRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -161,10 +162,11 @@ const Hero = () => {
   }, []);
 
   useLayoutEffect(() => {
-    // Sync GSAP DOM resets exactly when React paints the new activeIndex array
-    gsap.set('.cards-container', { x: 0 });
-    gsap.set('.slider-card', { opacity: 1 });
-  }, [activeIndex]);
+    if (!cloneData && !reverseCloneData) {
+      gsap.set('.cards-container', { x: 0 });
+      gsap.set('.slider-card', { opacity: 1 });
+    }
+  }, [activeIndex, cloneData, reverseCloneData]);
 
   const getUpcomingCards = () => {
     const cards = [];
@@ -183,96 +185,170 @@ const Hero = () => {
     const firstCard = cards[0] as HTMLElement;
 
     if (!firstCard || !container) {
-      // Fallback
       setPrevIndex(activeIndex);
       setActiveIndex((prev) => (prev + 1) % VALUES.length);
       setIsAnimating(false);
       return;
     }
 
-    // Step 1: Capture exact dimensions
     const rect = firstCard.getBoundingClientRect();
     const heroRect = heroRef.current?.getBoundingClientRect();
     
     let relativeTop = rect.top;
     let relativeLeft = rect.left;
-    
     if (heroRect) {
       relativeTop = rect.top - heroRect.top;
       relativeLeft = rect.left - heroRect.left;
     }
 
     const currentItem = getUpcomingCards()[0];
-
-    // Trigger text animation immediately
     setTextIndex((prev) => (prev + 1) % VALUES.length);
 
-    // Create the clone in state
     setCloneData({ rect: { top: relativeTop, left: relativeLeft, width: rect.width, height: rect.height }, item: currentItem });
-
-    // Step 2 & 3: Wait for React to render clone, then animate ONLY clone + transforms
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        
-        // Hide original card (but maintain its space perfectly in flexbox)
-        gsap.set(firstCard, { opacity: 0 });
-
-        const cloneEl = document.querySelector('.card-clone') as HTMLElement;
-        const cloneImg = cloneEl?.querySelector('img');
-
-        if (cloneEl) {
-          // Clone scales up to Fullscreen Background
-          gsap.to(cloneEl, {
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            borderRadius: 0,
-            boxShadow: '0px 0px 0px rgba(0,0,0,0)',
-            duration: 1.2,
-            ease: 'power4.inOut'
-          });
-          
-          gsap.to('.clone-card-overlay', { opacity: 0, duration: 1.2, ease: 'power4.inOut' });
-          gsap.to('.clone-bg-overlay', { opacity: 1, duration: 1.2, ease: 'power4.inOut' });
-          gsap.to('.clone-text', { opacity: 0, duration: 0.6, ease: 'power2.inOut' });
-          
-          if (cloneImg) {
-            gsap.to(cloneImg, { scale: 1.01, duration: 1.2, ease: 'power4.inOut' });
-          }
-        }
-
-        // Entire carousel slides smoothly via transform without re-rendering or reflow
-        const gap = 16; 
-        const moveDistance = firstCard.offsetWidth + gap;
-
-        gsap.to(container, {
-          x: -moveDistance,
-          duration: 1.2,
-          ease: 'power4.inOut',
-          onComplete: () => {
-            // Step 4: Animation finished, update true state
-            setPrevIndex(activeIndex);
-            setActiveIndex((prev) => (prev + 1) % VALUES.length);
-            
-            // Clean up
-            setCloneData(null);
-            setIsAnimating(false);
-          }
-        });
-      });
-    });
   };
+
+  useLayoutEffect(() => {
+    if (!cloneData) return;
+    const container = document.querySelector('.cards-container') as HTMLElement;
+    const cards = document.querySelectorAll('.slider-card');
+    const firstCard = cards[0] as HTMLElement;
+    const cloneEl = document.querySelector('.card-clone') as HTMLElement;
+    const cloneImg = cloneEl?.querySelector('img');
+
+    if (firstCard && container && cloneEl) {
+      gsap.set(firstCard, { opacity: 0 });
+      
+      gsap.to(cloneEl, {
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: 0,
+        boxShadow: '0px 0px 0px rgba(0,0,0,0)',
+        duration: 1.2,
+        ease: 'power4.inOut'
+      });
+      
+      gsap.to('.clone-card-overlay', { opacity: 0, duration: 1.2, ease: 'power4.inOut' });
+      gsap.to('.clone-bg-overlay', { opacity: 1, duration: 1.2, ease: 'power4.inOut' });
+      gsap.to('.clone-text', { opacity: 0, duration: 0.6, ease: 'power2.inOut' });
+      
+      if (cloneImg) {
+        gsap.to(cloneImg, { scale: 1.01, duration: 1.2, ease: 'power4.inOut' });
+      }
+
+      const gap = 16; 
+      const moveDistance = firstCard.offsetWidth + gap;
+
+      gsap.to(container, {
+        x: -moveDistance,
+        duration: 1.2,
+        ease: 'power4.inOut',
+        onComplete: () => {
+          setPrevIndex(activeIndex);
+          setActiveIndex((prev) => (prev + 1) % VALUES.length);
+          setCloneData(null);
+          setIsAnimating(false);
+        }
+      });
+    }
+  }, [cloneData]);
 
   const handlePrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
-    setPrevIndex(activeIndex);
+    
+    const container = document.querySelector('.cards-container') as HTMLElement;
+    const cards = document.querySelectorAll('.slider-card');
+    const firstCard = cards[0] as HTMLElement;
+
+    if (!firstCard || !container) {
+      setPrevIndex(activeIndex);
+      const newIdx = (activeIndex - 1 + VALUES.length) % VALUES.length;
+      setActiveIndex(newIdx);
+      setTextIndex(newIdx);
+      setIsAnimating(false);
+      return;
+    }
+
+    const rect = firstCard.getBoundingClientRect();
+    const heroRect = heroRef.current?.getBoundingClientRect();
+    
+    let relativeTop = rect.top;
+    let relativeLeft = rect.left;
+    if (heroRect) {
+      relativeTop = rect.top - heroRect.top;
+      relativeLeft = rect.left - heroRect.left;
+    }
+
+    const currentBgItem = VALUES[activeIndex];
     const newIdx = (activeIndex - 1 + VALUES.length) % VALUES.length;
-    setActiveIndex(newIdx);
+
     setTextIndex(newIdx);
-    setTimeout(() => setIsAnimating(false), 800);
+    
+    setReverseCloneData({ 
+      rect: { top: relativeTop, left: relativeLeft, width: rect.width, height: rect.height }, 
+      item: currentBgItem 
+    });
+    
+    setPrevIndex(activeIndex); 
+    setActiveIndex(newIdx); 
   };
+
+  useLayoutEffect(() => {
+    if (!reverseCloneData) return;
+
+    const currentContainer = document.querySelector('.cards-container') as HTMLElement;
+    const newCards = document.querySelectorAll('.slider-card');
+    const newFirstCard = newCards[0] as HTMLElement;
+    const cloneEl = document.querySelector('.reverse-clone') as HTMLElement;
+    const cloneImg = cloneEl?.querySelector('img');
+
+    if (newFirstCard && currentContainer && cloneEl) {
+      gsap.set(newFirstCard, { opacity: 0 });
+      
+      const gap = 16;
+      const moveDistance = newFirstCard.offsetWidth + gap;
+      
+      gsap.set(currentContainer, { x: -moveDistance });
+      
+      gsap.to(currentContainer, { x: 0, duration: 1.2, ease: 'power4.inOut' });
+
+      gsap.set(cloneEl, {
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '0px',
+        boxShadow: '0px 0px 0px rgba(0,0,0,0)'
+      });
+
+      gsap.to(cloneEl, {
+        top: reverseCloneData.rect.top,
+        left: reverseCloneData.rect.left,
+        width: reverseCloneData.rect.width,
+        height: reverseCloneData.rect.height,
+        borderRadius: '28px',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
+        duration: 1.2,
+        ease: 'power4.inOut'
+      });
+      
+      gsap.fromTo('.rev-clone-bg-overlay', { opacity: 1 }, { opacity: 0, duration: 1.2, ease: 'power4.inOut' });
+      gsap.fromTo('.rev-clone-card-overlay', { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power4.inOut' });
+      gsap.fromTo('.rev-clone-text', { opacity: 0 }, { opacity: 1, duration: 0.6, delay: 0.6, ease: 'power2.inOut' });
+      
+      if (cloneImg) {
+        gsap.fromTo(cloneImg, { scale: 1.01 }, { scale: 1, duration: 1.2, ease: 'power4.inOut' });
+      }
+
+      setTimeout(() => {
+        gsap.set(newFirstCard, { opacity: 1 });
+        setReverseCloneData(null);
+        setIsAnimating(false);
+      }, 1200);
+    }
+  }, [reverseCloneData]);
 
   useEffect(() => {
     if (tweenRef.current) tweenRef.current.kill();
@@ -430,6 +506,36 @@ const Hero = () => {
             <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
             <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{cloneData.item.subtitle}</p>
             <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
+          </div>
+        </div>
+      )}
+
+      {reverseCloneData && (
+        <div 
+          className="reverse-clone absolute z-[5] overflow-hidden pointer-events-none"
+          style={{
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            borderRadius: '0px', 
+            boxShadow: '0px 0px 0px rgba(0,0,0,0)'
+          }}
+        >
+          <img src={reverseCloneData.item.img} className="w-full h-full object-cover will-change-transform" alt="" />
+          
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 rev-clone-card-overlay opacity-0" />
+          
+          <div className="absolute inset-0 rev-clone-bg-overlay">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-black/10 mix-blend-overlay opacity-30" />
+          </div>
+          
+          <div className="absolute bottom-0 left-0 p-5 z-20 rev-clone-text opacity-0">
+            <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+            <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{reverseCloneData.item.subtitle}</p>
+            <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{reverseCloneData.item.title}</h3>
           </div>
         </div>
       )}
