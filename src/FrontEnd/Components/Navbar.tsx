@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Hexagon } from 'lucide-react';
+import { Hexagon, Menu, X } from 'lucide-react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavHovered, setIsNavHovered] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -71,11 +72,11 @@ const Navbar = () => {
       </div>
 
       {/* CENTER: LOGO */}
-      <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3 hover:opacity-80 transition-opacity">
+      <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity lg:absolute lg:left-1/2 lg:-translate-x-1/2">
         <img 
           src="/Logo/Quantum%20Institute%20Logo.png" 
           alt="Quantum Institute Logo" 
-          className="h-8 md:h-10 w-auto object-contain scale-150" 
+          className="h-7 sm:h-8 md:h-10 w-auto object-contain md:scale-150" 
           style={{ filter: "drop-shadow(0px 0px 8px rgba(255,255,255,0.6)) drop-shadow(0px 2px 4px rgba(0,0,0,0.6))" }}
         />
       </Link>
@@ -126,6 +127,51 @@ const Navbar = () => {
         </motion.div>
       </div>
 
+      {/* MOBILE MENU TOGGLE */}
+      <div className="lg:hidden flex items-center">
+         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
+            {isMobileMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+         </button>
+      </div>
+
+      {/* MOBILE DROPDOWN MENU */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-2xl border-b border-white/10 flex flex-col px-6 py-8 gap-6 z-[99] lg:hidden shadow-2xl"
+          >
+             <div className="flex flex-col gap-4 text-white">
+                <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold mb-1">H.E.R.E Pillars</p>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Healing</a>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Education</a>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Research</a>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Exploration</a>
+             </div>
+             
+             <div className="w-full h-[1px] bg-white/10 my-2"></div>
+             
+             <div className="flex flex-col gap-4 text-white">
+                <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold mb-1">Navigation</p>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Pricing</a>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Road Map</a>
+                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Blog</a>
+             </div>
+
+             <div className="mt-4 flex flex-col">
+                <button 
+                  onClick={() => { setIsMobileMenuOpen(false); router.push('/signup'); }}
+                  className="w-full bg-[#E05A00] text-white font-bold tracking-widest uppercase text-sm py-4 rounded-full hover:bg-[#ff6600] transition-colors shadow-lg shadow-[#E05A00]/20"
+                >
+                  Join Waitlist
+                </button>
+             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </motion.header>
   );

@@ -37,7 +37,7 @@ const HexagonLogo = () => (
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-24 pb-8 px-6 md:px-12 lg:px-20 font-sans border-t border-white/5 relative z-20 overflow-hidden">
+    <footer className="w-full pt-12 pb-6 px-4 md:pt-24 md:pb-8 md:px-12 lg:px-20 font-sans border-t border-white/5 relative z-20 overflow-hidden">
       
       {/* Background Video */}
       <video 
@@ -57,37 +57,37 @@ const Footer = () => {
       <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-8 mb-10 md:mb-20">
           
           {/* Logo & Socials */}
-          <div className="lg:col-span-4 flex flex-col items-start pr-8">
-            <div className="flex items-center gap-3 mb-6">
-              <img src="/Logo/Quantum%20Institute%20Logo.png" alt="Quantum Institute Logo" className="h-10 md:h-12 w-auto object-contain scale-150 origin-left" />
+          <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-8">
+            <div className="flex items-center gap-3 mb-4 md:mb-6">
+              <img src="/Logo/Quantum%20Institute%20Logo.png" alt="Quantum Institute Logo" className="h-8 md:h-12 w-auto object-contain scale-150 origin-left pl-2" />
             </div>
             
-            <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-[240px]">
+            <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 max-w-[240px]">
               Where minds collect &amp; <br/> possibilities connect.
             </p>
             
-            <div className="flex items-center gap-3">
-              {['X', <LinkedinIcon key="li" className="w-[18px] h-[18px]"/>, <YoutubeIcon key="yt" className="w-[18px] h-[18px]"/>, <InstagramIcon key="ig" className="w-[18px] h-[18px]"/>].map((icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
-                  {typeof icon === 'string' ? <span className="font-bold text-[13px]">{icon}</span> : icon}
+            <div className="flex items-center gap-2 md:gap-3">
+              {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>].map((icon, i) => (
+                <a key={i} href="#" className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
+                  {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[13px]">{icon}</span> : icon}
                 </a>
               ))}
             </div>
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-2 md:mt-0">
             
             {/* Explore */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">EXPLORE</h4>
-              <ul className="flex flex-col gap-5">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">EXPLORE</h4>
+              <ul className="flex flex-col gap-3 md:gap-5">
                 {['Vision', 'Brand & Identity', 'Pillars', 'Research', 'Impact'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -95,23 +95,23 @@ const Footer = () => {
 
             {/* Resources */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">RESOURCES</h4>
-              <ul className="flex flex-col gap-5">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">RESOURCES</h4>
+              <ul className="flex flex-col gap-3 md:gap-5">
                 {['Projects', 'Publications', 'Events', 'Careers', 'FAQs'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Connect */}
-            <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">CONNECT</h4>
-              <ul className="flex flex-col gap-5">
+            <div className="flex flex-col mt-4 md:mt-0 col-span-2 md:col-span-1">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">CONNECT</h4>
+              <ul className="flex flex-row md:flex-col flex-wrap gap-x-6 gap-y-3 md:gap-5">
                 {['Contact Us', 'Partners', 'Community', 'Support', 'Newsroom'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -120,21 +120,21 @@ const Footer = () => {
           </div>
 
           {/* Subscribe */}
-          <div className="lg:col-span-3 flex flex-col">
-            <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">SUBSCRIBE</h4>
-            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
+          <div className="lg:col-span-3 flex flex-col mt-4 md:mt-0">
+            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">SUBSCRIBE</h4>
+            <p className="text-white/60 text-xs md:text-[13px] leading-relaxed mb-4 md:mb-6">
               Stay updated with our latest<br/> research, events &amp; insights.
             </p>
             
-            <div className="relative w-full mt-2">
+            <div className="relative w-full">
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full bg-transparent border border-white/20 rounded-full py-[14px] pl-6 pr-12 text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
+                className="w-full bg-transparent border border-white/20 rounded-full py-3 md:py-[14px] pl-4 md:pl-6 pr-10 md:pr-12 text-xs md:text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
                 style={{ transition: "background-color 9999s ease-in-out 0s", WebkitTextFillColor: "#fff" }}
               />
               <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-white/50 hover:text-[#E05A00] transition-colors">
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
           </div>
@@ -142,14 +142,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-full pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-[11px] tracking-wide">
+        <div className="w-full pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/40 text-[9px] md:text-[11px] tracking-wide text-center md:text-left">
             © 2025 Quantum Institute. All rights reserved.
           </p>
-          <div className="flex items-center gap-8">
-            <Link href="#" className="text-white/40 hover:text-white text-[11px] transition-colors tracking-wide">Privacy Policy</Link>
-            <Link href="#" className="text-white/40 hover:text-white text-[11px] transition-colors tracking-wide">Terms of Use</Link>
-            <Link href="#" className="text-white/40 hover:text-white text-[11px] transition-colors tracking-wide">Sitemap</Link>
+          <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
+            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Privacy Policy</Link>
+            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Terms of Use</Link>
+            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Sitemap</Link>
           </div>
         </div>
 

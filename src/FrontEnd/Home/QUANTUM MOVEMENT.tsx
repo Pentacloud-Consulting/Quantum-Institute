@@ -89,14 +89,16 @@ const QuantumMovement = () => {
         "-=0.7"
       );
 
-      // 2. Pinning logic: stick for a second (using the outer wrapper)
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: "+=100%", 
-        pin: true,
-        pinSpacing: true, 
-      });
+      // 2. Pinning logic: stick for a second (only on desktop)
+      if (window.innerWidth >= 1024) {
+        ScrollTrigger.create({
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: "+=100%", 
+          pin: true,
+          pinSpacing: true, 
+        });
+      }
 
     }, wrapperRef);
 
@@ -106,31 +108,31 @@ const QuantumMovement = () => {
   return (
     <div className="relative w-full bg-[#fafafa]">
       <div ref={wrapperRef} className="w-full">
-        <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans z-20 py-24">
+        <section ref={sectionRef} className="relative w-full h-auto min-h-0 lg:min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans z-20 py-8 lg:py-24">
           
         {/* Top Header Section */}
-        <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto mb-16 relative z-10 flex flex-col items-center text-center">
+        <div className="w-full max-w-[1000px] px-4 sm:px-6 md:px-12 mx-auto mb-8 lg:mb-16 relative z-10 flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
-            <h4 className="quantum-subtitle text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">
+            <h4 className="quantum-subtitle text-[#E05A00] text-[8px] lg:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-2 lg:mb-4 md:mb-6">
               THE QUANTUM MOVEMENT
             </h4>
             
-            <h2 className="quantum-title text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black leading-[1.1]">
-              Where Every Mind <br />
+            <h2 className="quantum-title text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-black leading-[1.1]">
+              Where Every Mind <br className="hidden sm:block" />
               Shapes Tomorrow.
             </h2>
           </div>
         </div>
 
         {/* Carousel Section (3D Coverflow Style) */}
-      <div className="quantum-carousel relative w-full max-w-[1600px] mx-auto flex items-center justify-center h-[300px] md:h-[360px] lg:h-[380px] px-4">
+      <div className="quantum-carousel relative w-full max-w-[1600px] mx-auto flex items-center justify-center h-[220px] sm:h-[300px] md:h-[360px] lg:h-[380px] px-2 sm:px-4">
         
         {/* Left Nav Arrow */}
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-4 md:left-12 lg:left-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
+          className="absolute left-2 sm:left-4 md:left-12 lg:left-24 z-50 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
         >
-          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
 
         {/* Carousel Cards Container */}
@@ -179,7 +181,7 @@ const QuantumMovement = () => {
                 onClick={() => setCurrentIndex((prev) => prev + offset)}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
-                className="absolute w-[200px] md:w-[240px] lg:w-[260px] h-[260px] md:h-[320px] lg:h-[340px] overflow-hidden cursor-pointer shadow-2xl origin-center group border"
+                className="absolute w-[150px] sm:w-[200px] md:w-[240px] lg:w-[260px] h-[200px] sm:h-[260px] md:h-[320px] lg:h-[340px] overflow-hidden cursor-pointer shadow-2xl origin-center group border"
               >
                 {/* Background Image */}
                 <img 
@@ -199,11 +201,11 @@ const QuantumMovement = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90" />
 
                 {/* Card Content */}
-                <div className="absolute bottom-0 left-0 w-full p-4 lg:p-6 flex flex-col z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-white font-medium text-base md:text-lg lg:text-xl mb-1 md:mb-2 leading-snug drop-shadow-md">
+                <div className="absolute bottom-0 left-0 w-full p-2.5 sm:p-4 lg:p-6 flex flex-col z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-white font-medium text-xs sm:text-base md:text-lg lg:text-xl mb-0.5 sm:mb-1 md:mb-2 leading-snug drop-shadow-md">
                     {project.title}
                   </h3>
-                  <p className="text-white/80 text-[10px] md:text-xs lg:text-sm leading-relaxed drop-shadow-md">
+                  <p className="text-white/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm leading-tight sm:leading-relaxed drop-shadow-md">
                     {project.subtitle}
                   </p>
                 </div>
@@ -216,9 +218,9 @@ const QuantumMovement = () => {
         {/* Right Nav Arrow */}
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-4 md:right-12 lg:right-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
+          className="absolute right-2 sm:right-4 md:right-12 lg:right-24 z-50 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
         >
-          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
 
       </div>

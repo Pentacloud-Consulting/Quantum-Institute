@@ -51,6 +51,9 @@ const TheWellnessSpectrum = () => {
     };
 
     const ctx = gsap.context(() => {
+      // Only run GSAP animation on desktop
+      if (window.innerWidth < 1024) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -68,18 +71,18 @@ const TheWellnessSpectrum = () => {
       const HALF = TRANS_DUR / 2;
 
       // 1. Initial State Setup
-      gsap.set(".wellness-bg-0", { autoAlpha: 1, scale: 1.0 });
-      gsap.set(".wellness-content-0 .num-title", { autoAlpha: 1, y: 0, filter: "blur(0px)" });
-      gsap.set(".wellness-content-0 .desc", { autoAlpha: 1, y: 0, filter: "blur(0px)" });
+      gsap.set(".desktop-wellness .wellness-bg-0", { autoAlpha: 1, scale: 1.0 });
+      gsap.set(".desktop-wellness .wellness-content-0 .num-title", { autoAlpha: 1, y: 0, filter: "blur(0px)" });
+      gsap.set(".desktop-wellness .wellness-content-0 .desc", { autoAlpha: 1, y: 0, filter: "blur(0px)" });
       
       for (let i = 1; i < 5; i++) {
-        gsap.set(`.wellness-bg-${i}`, { autoAlpha: 0, scale: 1.03 });
-        gsap.set(`.wellness-content-${i} .num-title`, { autoAlpha: 0, y: 20, filter: "blur(6px)" });
-        gsap.set(`.wellness-content-${i} .desc`, { autoAlpha: 0, y: 20, filter: "blur(6px)" });
+        gsap.set(`.desktop-wellness .wellness-bg-${i}`, { autoAlpha: 0, scale: 1.03 });
+        gsap.set(`.desktop-wellness .wellness-content-${i} .num-title`, { autoAlpha: 0, y: 20, filter: "blur(6px)" });
+        gsap.set(`.desktop-wellness .wellness-content-${i} .desc`, { autoAlpha: 0, y: 20, filter: "blur(6px)" });
       }
 
       // Initial zoom for first image spanning its active lifetime
-      tl.to(".wellness-bg-0", { scale: 1.08, ease: "none", duration: 120 }, 0);
+      tl.to(".desktop-wellness .wellness-bg-0", { scale: 1.08, ease: "none", duration: 120 }, 0);
 
       // 2. Transitions
       for (let i = 0; i < 4; i++) {
@@ -97,7 +100,7 @@ const TheWellnessSpectrum = () => {
         }, start);
 
         // Background Crossfade
-        tl.to(`.wellness-bg-${i + 1}`, { 
+        tl.to(`.desktop-wellness .wellness-bg-${i + 1}`, { 
           autoAlpha: 1, 
           duration: TRANS_DUR, 
           ease: "none" 
@@ -105,25 +108,25 @@ const TheWellnessSpectrum = () => {
 
         // Image Zoom
         const endActive = (i === 3) ? 500 : (i + 2) * DURATION + HALF;
-        tl.fromTo(`.wellness-bg-${i + 1}`,
+        tl.fromTo(`.desktop-wellness .wellness-bg-${i + 1}`,
           { scale: 1.03 },
           { scale: 1.08, ease: "none", duration: (endActive - start) },
           start
         );
 
         // Text Fade Out (Old)
-        tl.to(`.wellness-content-${i} .num-title`, { 
+        tl.to(`.desktop-wellness .wellness-content-${i} .num-title`, { 
           autoAlpha: 0, y: -15, filter: "blur(6px)", duration: HALF, ease: "power2.inOut" 
         }, start);
-        tl.to(`.wellness-content-${i} .desc`, { 
+        tl.to(`.desktop-wellness .wellness-content-${i} .desc`, { 
           autoAlpha: 0, y: -15, filter: "blur(6px)", duration: HALF, ease: "power2.inOut" 
         }, start + 5);
 
         // Text Fade In (New)
-        tl.to(`.wellness-content-${i + 1} .num-title`, { 
+        tl.to(`.desktop-wellness .wellness-content-${i + 1} .num-title`, { 
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: HALF, ease: "power2.out" 
         }, mid);
-        tl.to(`.wellness-content-${i + 1} .desc`, { 
+        tl.to(`.desktop-wellness .wellness-content-${i + 1} .desc`, { 
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: HALF, ease: "power2.out" 
         }, mid + 5);
       }
@@ -136,65 +139,95 @@ const TheWellnessSpectrum = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-[#fafafa] z-20 pt-20">
+    <section ref={sectionRef} className="relative w-full bg-[#fafafa] z-20">
       
-      {/* Centered Main Container */}
-      <div className="relative w-full h-[70vh] min-h-[500px] lg:min-h-[600px] max-w-[1600px] mx-auto">
-        
-        {/* Background Images Container */}
-        <div className="absolute inset-4 md:inset-x-12 md:inset-y-0 lg:inset-x-24 lg:inset-y-0 rounded-[2rem] lg:rounded-[3rem] overflow-hidden bg-black shadow-2xl">
-          {states.map((s, i) => (
-          <div 
-            key={i} 
-            className={`wellness-bg-${i} absolute inset-0 w-full h-full will-change-transform`}
-          >
-            <img 
-              src={s.img} 
-              alt={s.title} 
-              className="w-full h-full object-cover object-center"
-            />
-            {/* Subtle dark overlay for readability */}
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-        ))}
-        </div>
-
-        {/* Content Card Wrapper */}
-        <div className="absolute inset-0 z-30 flex items-end pointer-events-none px-6 md:px-16 lg:px-32 pb-6 md:pb-8 lg:pb-10">
-          <div ref={wrapperRef} className="relative w-full h-full flex items-end">
+      {/* --- DESKTOP VIEW (GSAP Animated) --- */}
+      <div className="desktop-wellness hidden lg:flex relative w-full h-screen min-h-[600px] flex-col justify-center overflow-hidden">
+        {/* Centered Main Container */}
+        <div className="relative w-full h-[70vh] min-h-[500px] lg:min-h-[600px] max-w-[1600px] mx-auto mt-16">
           
-          {/* The Card */}
-          <div 
-            ref={cardRef} 
-            className="absolute right-0 w-full max-w-[420px] lg:max-w-[460px] bg-white/30 backdrop-blur-md rounded-[2rem] p-10 lg:p-12 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.15)] pointer-events-auto will-change-transform border border-white/40"
-          >
-            {/* Fixed height container to prevent jumping during crossfade */}
-            <div className="relative z-10 w-full h-[220px] md:h-[200px]">
-              {states.map((s, i) => (
-                <div 
-                  key={i} 
-                  className={`wellness-content-${i} absolute inset-0 flex flex-col justify-center`}
-                >
-                  <div className="num-title will-change-transform">
-                    <h4 className="text-[#E05A00] text-xs md:text-sm font-bold tracking-[0.2em] mb-3 opacity-90 uppercase">
-                      {s.num}
-                    </h4>
-                    <h2 className="text-3xl lg:text-[34px] font-serif text-black leading-[1.2] mb-4 font-light tracking-tight">
-                      {s.title}
-                    </h2>
-                  </div>
-                  <div className="desc will-change-transform mt-auto">
-                    <p className="text-[13px] lg:text-[14px] text-gray-700 leading-relaxed font-sans font-light">
-                      {s.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          {/* Background Images Container */}
+          <div className="absolute inset-4 md:inset-x-12 md:inset-y-0 lg:inset-x-24 lg:inset-y-0 rounded-[2rem] lg:rounded-[3rem] overflow-hidden bg-black shadow-2xl">
+            {states.map((s, i) => (
+            <div 
+              key={i} 
+              className={`wellness-bg-${i} absolute inset-0 w-full h-full will-change-transform`}
+            >
+              <img 
+                src={s.img} 
+                alt={s.title} 
+                className="w-full h-full object-cover object-center"
+              />
+              {/* Subtle dark overlay for readability */}
+              <div className="absolute inset-0 bg-black/20" />
             </div>
+          ))}
           </div>
 
+          {/* Content Card Wrapper */}
+          <div className="absolute inset-0 z-30 flex items-end pointer-events-none px-6 md:px-16 lg:px-32 pb-6 md:pb-8 lg:pb-10">
+            <div ref={wrapperRef} className="relative w-full h-full flex items-end">
+            
+            {/* The Card */}
+            <div 
+              ref={cardRef} 
+              className="absolute right-0 w-full max-w-[420px] lg:max-w-[460px] bg-white/30 backdrop-blur-md rounded-[2rem] p-10 lg:p-12 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.15)] pointer-events-auto will-change-transform border border-white/40"
+            >
+              {/* Fixed height container to prevent jumping during crossfade */}
+              <div className="relative z-10 w-full h-[220px] md:h-[200px]">
+                {states.map((s, i) => (
+                  <div 
+                    key={i} 
+                    className={`wellness-content-${i} absolute inset-0 flex flex-col justify-center`}
+                  >
+                    <div className="num-title will-change-transform">
+                      <h4 className="text-[#E05A00] text-xs md:text-sm font-bold tracking-[0.2em] mb-3 opacity-90 uppercase">
+                        {s.num}
+                      </h4>
+                      <h2 className="text-3xl lg:text-[34px] font-serif text-black leading-[1.2] mb-4 font-light tracking-tight">
+                        {s.title}
+                      </h2>
+                    </div>
+                    <div className="desc will-change-transform mt-auto">
+                      <p className="text-[13px] lg:text-[14px] text-gray-700 leading-relaxed font-sans font-light">
+                        {s.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
         </div>
       </div>
+
+      {/* --- MOBILE VIEW (Static Stack) --- */}
+      <div className="flex flex-col lg:hidden w-full py-8 px-4 sm:px-8 gap-6">
+        <div className="text-center mb-4">
+          <h2 className="text-3xl font-light tracking-tight text-black mb-2">The Wellness Spectrum</h2>
+          <p className="text-sm text-black/60">Explore our comprehensive wellness modalities.</p>
+        </div>
+        
+        {states.map((s, i) => (
+          <div key={i} className="flex flex-col w-full bg-white rounded-[2rem] overflow-hidden shadow-md border border-black/5">
+             <div className="w-full h-[220px] sm:h-[300px] relative">
+               <img src={s.img} alt={s.title} className="w-full h-full object-cover object-center" />
+             </div>
+             <div className="p-6 sm:p-8 flex flex-col">
+                <h4 className="text-[#E05A00] text-[10px] font-bold tracking-[0.2em] mb-2 uppercase">
+                  {s.num}
+                </h4>
+                <h2 className="text-2xl font-serif text-black leading-tight mb-3 font-light">
+                  {s.title}
+                </h2>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  {s.desc}
+                </p>
+             </div>
+          </div>
+        ))}
       </div>
 
     </section>

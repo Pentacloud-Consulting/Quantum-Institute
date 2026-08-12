@@ -7,7 +7,7 @@ import { Heart, BookOpen, Atom, Compass, Users } from 'lucide-react';
 const pillars = [
   {
     title: "HEALING",
-    icon: <Heart strokeWidth={1.5} className="w-8 h-8 text-black animate-draw-icon" />,
+    icon: <Heart strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Integrating science and<br/>
@@ -18,7 +18,7 @@ const pillars = [
   },
   {
     title: "EDUCATION",
-    icon: <BookOpen strokeWidth={1.5} className="w-8 h-8 text-black animate-draw-icon" />,
+    icon: <BookOpen strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Limitless learning<br/>
@@ -29,7 +29,7 @@ const pillars = [
   },
   {
     title: "RESEARCH",
-    icon: <Atom strokeWidth={1.5} className="w-8 h-8 text-black animate-draw-icon" />,
+    icon: <Atom strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Pioneering discoveries<br/>
@@ -40,7 +40,7 @@ const pillars = [
   },
   {
     title: "EXPLORATION",
-    icon: <Compass strokeWidth={1.5} className="w-8 h-8 text-black animate-draw-icon" />,
+    icon: <Compass strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Pushing boundaries to<br/>
@@ -51,7 +51,7 @@ const pillars = [
   },
   {
     title: "COMMUNITY",
-    icon: <Users strokeWidth={1.5} className="w-8 h-8 text-black animate-draw-icon" />,
+    icon: <Users strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Uniting global minds<br/>
@@ -64,7 +64,7 @@ const pillars = [
 
 const PillarsQI = () => {
   return (
-    <section className="relative w-screen h-screen shrink-0 overflow-y-auto overflow-x-hidden bg-[#faf9f8] py-16 md:py-24 flex flex-col items-center justify-center font-sans z-20">
+    <section className="relative w-full h-auto lg:min-h-screen bg-[#faf9f8] py-8 lg:py-24 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
       
       {/* Custom styles for SVG Path Drawing loops */}
       <style>{`
@@ -88,18 +88,18 @@ const PillarsQI = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center text-center mb-20 md:mb-24"
+          className="flex flex-col items-center text-center mb-10 lg:mb-24"
         >
-          <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4">
+          <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-2 lg:mb-4">
             PILLARS OF QUANTUM INSTITUTE
           </h4>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-black">
             Building the future on five pillars.
           </h2>
         </motion.div>
 
         {/* Pillars Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 w-full relative gap-y-12 lg:gap-y-0">
+        <div className="grid grid-cols-2 lg:grid-cols-5 w-full relative gap-y-10 lg:gap-y-0 gap-x-2 lg:gap-x-0">
           {pillars.map((pillar, index) => (
             <motion.div 
               key={index}
@@ -107,12 +107,12 @@ const PillarsQI = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-              className={`relative flex flex-col items-center text-center px-4 ${
+              className={`relative flex flex-col items-center text-center px-1 sm:px-4 ${
                 index !== pillars.length - 1 ? 'lg:border-r lg:border-gray-200' : ''
-              }`}
+              } ${index === 4 ? 'col-span-2 lg:col-span-1' : ''}`}
             >
               {/* Hexagon Icon Container */}
-              <div className="relative flex items-center justify-center w-24 h-24 mb-8 group cursor-pointer">
+              <div className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mb-4 lg:mb-8 group cursor-pointer">
                 {/* SVG Hexagon Outline with Rotating Line */}
                 <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full group-hover:fill-[#E05A00]/5 transition-colors duration-500">
                   {/* Faint static outline */}
@@ -136,12 +136,12 @@ const PillarsQI = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-sm font-bold tracking-[0.1em] text-black uppercase mb-4">
+              <h3 className="text-[10px] lg:text-sm font-bold tracking-[0.1em] text-black uppercase mb-1.5 lg:mb-4">
                 {pillar.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-500 text-xs md:text-sm leading-relaxed max-w-[220px]">
+              <p className="text-gray-500 text-[9px] sm:text-[10px] md:text-sm leading-tight lg:leading-relaxed max-w-[160px] lg:max-w-[220px]">
                 {pillar.description}
               </p>
 

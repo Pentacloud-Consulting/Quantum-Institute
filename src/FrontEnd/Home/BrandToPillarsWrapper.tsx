@@ -46,7 +46,7 @@ const BrandToPillarsWrapper = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-black z-30">
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-white z-30">
       <Proposition />
     </div>
   );

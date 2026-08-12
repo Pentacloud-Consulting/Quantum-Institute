@@ -33,7 +33,7 @@ const stats = [
 
 const Trust = () => {
   return (
-    <section className="relative w-full bg-[#fdfcfb] py-24 md:py-32 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
+    <section className="relative w-full bg-[#fdfcfb] py-12 md:py-32 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
       
       {/* Animated looping background map overlay */}
       <motion.div 
@@ -59,14 +59,14 @@ const Trust = () => {
       <div className="w-full max-w-[1400px] px-6 md:px-12 lg:px-20 mx-auto relative z-10 flex flex-col items-center">
         
         {/* Header Row */}
-        <div className="w-full relative flex flex-col md:flex-row items-center justify-center mb-20 md:mb-28">
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center mb-8 md:mb-28">
           
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="md:absolute left-0 top-1/2 md:-translate-y-1/2 mb-8 md:mb-0 w-full text-center md:text-left"
+            className="md:absolute left-0 top-1/2 md:-translate-y-1/2 mb-2 md:mb-0 w-full text-center md:text-left"
           >
             <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
               GLOBAL IMPACT
@@ -80,7 +80,7 @@ const Trust = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center w-full"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-[2rem] font-normal tracking-tight text-[#1a1a1a]">
+            <h2 className="text-xl md:text-3xl lg:text-[2rem] font-normal tracking-tight text-[#1a1a1a]">
               A global movement for a better tomorrow.
             </h2>
           </motion.div>
@@ -88,7 +88,7 @@ const Trust = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0">
+        <div className="w-full grid grid-cols-4 gap-y-0">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -97,15 +97,15 @@ const Trust = () => {
               viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
               transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
               className={`flex flex-col items-center justify-center text-center w-full ${
-                idx !== stats.length - 1 ? 'md:border-r md:border-[#1a1a1a]/10' : ''
-              } px-2 md:px-4 lg:px-6`}
+                idx !== stats.length - 1 ? 'border-r border-[#1a1a1a]/10' : ''
+              } px-1 md:px-4 lg:px-6`}
             >
-              <div className="h-16 md:h-20 flex items-center justify-center mb-2">
-                <h3 className="font-light leading-none text-[#222222] text-4xl md:text-5xl lg:text-[3.25rem]">
+              <div className="h-10 md:h-20 flex items-center justify-center mb-1 md:mb-2">
+                <h3 className="font-light leading-none text-[#222222] text-[15px] sm:text-xl md:text-5xl lg:text-[3.25rem]">
                   <AnimatedCounter from={0} to={stat.value} suffix={stat.suffix} />
                 </h3>
               </div>
-              <p className="text-[#1a1a1a]/60 text-[10px] md:text-xs font-semibold tracking-wide">
+              <p className="text-[#1a1a1a]/60 text-[7px] sm:text-[9px] md:text-xs font-semibold tracking-wide">
                 {stat.label}
               </p>
             </motion.div>

@@ -77,12 +77,12 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
 
   return (
     <div ref={containerRef} className="flex flex-col items-start w-full z-20">
-      <div className="w-8 h-[2px] bg-white mb-6 anim-desc"></div>
-      <p className="text-sm md:text-lg tracking-wide mb-2 anim-desc font-serif italic text-white/80">{displayItem.subtitle}</p>
-      <h1 className="text-6xl md:text-7xl lg:text-[100px] font-black uppercase tracking-tighter mb-6 flex flex-col drop-shadow-lg">
+      <div className="w-6 md:w-8 h-[2px] bg-white mb-4 md:mb-6 anim-desc"></div>
+      <p className="text-xs md:text-lg tracking-wide mb-2 anim-desc font-serif italic text-white/80">{displayItem.subtitle}</p>
+      <h1 className="text-4xl md:text-7xl lg:text-[100px] font-black uppercase tracking-tighter mb-4 md:mb-6 flex flex-col drop-shadow-lg">
         {renderTitle(displayItem.title)}
       </h1>
-      <p className="text-gray-200 text-sm md:text-base max-w-md leading-relaxed mb-10 anim-desc drop-shadow-md">
+      <p className="text-gray-200 text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-10 anim-desc drop-shadow-md">
         {displayItem.desc}
       </p>
       
@@ -91,7 +91,7 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
           onClick={() => router.push('/signup')}
           whileHover={{ scale: 1.05, backgroundColor: "rgba(209,80,0,0.9)", borderColor: "rgba(209,80,0,1)" }}
           whileTap={{ scale: 0.95 }}
-          className="px-6 py-3 md:px-8 md:py-4 rounded-full border border-white/30 text-xs md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
+          className="px-5 py-2.5 md:px-8 md:py-4 rounded-full border border-white/30 text-[10px] md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
         >
           JOIN WAITLIST
         </motion.button>
@@ -237,7 +237,8 @@ const Hero = () => {
         gsap.to(cloneImg, { scale: 1.01, duration: 1.2, ease: 'power4.inOut' });
       }
 
-      const gap = 16; 
+      const computedStyle = window.getComputedStyle(container);
+      const gap = parseFloat(computedStyle.gap) || 16; 
       const moveDistance = firstCard.offsetWidth + gap;
 
       gsap.to(container, {
@@ -307,7 +308,8 @@ const Hero = () => {
     if (newFirstCard && currentContainer && cloneEl) {
       gsap.set(newFirstCard, { opacity: 0 });
       
-      const gap = 16;
+      const computedStyle = window.getComputedStyle(currentContainer);
+      const gap = parseFloat(computedStyle.gap) || 16;
       const moveDistance = newFirstCard.offsetWidth + gap;
       
       gsap.set(currentContainer, { x: -moveDistance });
@@ -421,22 +423,22 @@ const Hero = () => {
 
 
 
-      <div className="relative z-30 w-full h-full flex flex-col justify-center px-6 md:px-12 lg:flex-row lg:items-center pb-20">
+      <div className="relative z-30 w-full h-full flex flex-col justify-center px-6 md:px-12 lg:flex-row lg:items-center pb-16 md:pb-20">
         
-        <div className="lg:w-[55%] flex flex-col items-start pr-0 lg:pr-10 pt-20 lg:pt-24 hero-text-content will-change-transform">
+        <div className="lg:w-[55%] flex flex-col items-start pr-0 lg:pr-10 pt-16 md:pt-20 lg:pt-24 hero-text-content will-change-transform">
           {VALUES[textIndex] && <TextContent activeItem={VALUES[textIndex]} />}
         </div>
 
         <div 
-          className="lg:w-[45%] w-full flex flex-col mt-12 lg:mt-32 relative z-20"
+          className="lg:w-[45%] w-full flex flex-col mt-6 md:mt-12 lg:mt-32 relative z-20"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="flex gap-4 overflow-visible pb-4 cards-container will-change-transform">
+          <div className="flex gap-3 md:gap-4 overflow-visible pb-4 cards-container will-change-transform">
             {getUpcomingCards().map((item) => (
               <div 
                 key={`card-${item.id}`}
-                className="slider-card relative w-48 h-72 md:w-52 md:h-[380px] rounded-[28px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                className="slider-card relative w-36 h-52 sm:w-48 sm:h-72 md:w-52 md:h-[380px] rounded-[28px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
                 onClick={handleNext}
                 onMouseEnter={(e) => handleCardHover(e, true)}
                 onMouseLeave={(e) => handleCardHover(e, false)}
@@ -448,10 +450,10 @@ const Hero = () => {
                 />
                 <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
                 
-                <div className="absolute bottom-0 left-0 p-5 z-20">
-                  <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
-                  <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
-                  <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
+                <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20">
+                  <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
+                  <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
+                  <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
                 </div>
               </div>
             ))}
@@ -459,21 +461,21 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 py-8 flex items-center justify-between z-50 pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 py-4 md:py-8 flex items-center justify-between z-50 pointer-events-none">
         
         <div className="flex-1 hidden md:block"></div>
 
-        <div className="flex items-center justify-center gap-4 pointer-events-auto flex-1">
-          <button onClick={handlePrev} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
-            <ChevronLeft className="w-5 h-5 text-white/70 group-hover:text-white" />
+        <div className="flex items-center justify-center gap-3 md:gap-4 pointer-events-auto flex-1">
+          <button onClick={handlePrev} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white" />
           </button>
-          <button onClick={handleNext} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
-            <ChevronRight className="w-5 h-5 text-white/70 group-hover:text-white" />
+          <button onClick={handleNext} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white" />
           </button>
         </div>
 
         <div className="flex-1 flex justify-end pointer-events-auto">
-          <div className="text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif">
+          <div className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif">
             {String((activeIndex % VALUES.length) + 1).padStart(2, '0')}
           </div>
         </div>
@@ -502,10 +504,10 @@ const Hero = () => {
             <div className="absolute inset-0 bg-black/10 mix-blend-overlay opacity-30" />
           </div>
           
-          <div className="absolute bottom-0 left-0 p-5 z-20 clone-text">
-            <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
-            <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{cloneData.item.subtitle}</p>
-            <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
+          <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20 clone-text">
+            <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
+            <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{cloneData.item.subtitle}</p>
+            <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
           </div>
         </div>
       )}
@@ -532,10 +534,10 @@ const Hero = () => {
             <div className="absolute inset-0 bg-black/10 mix-blend-overlay opacity-30" />
           </div>
           
-          <div className="absolute bottom-0 left-0 p-5 z-20 rev-clone-text opacity-0">
-            <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
-            <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{reverseCloneData.item.subtitle}</p>
-            <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{reverseCloneData.item.title}</h3>
+          <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20 rev-clone-text opacity-0">
+            <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
+            <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{reverseCloneData.item.subtitle}</p>
+            <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{reverseCloneData.item.title}</h3>
           </div>
         </div>
       )}

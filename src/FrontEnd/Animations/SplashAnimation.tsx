@@ -98,20 +98,20 @@ const SplashAnimation = () => {
         
         {/* Text Container */}
         <div ref={textRef} className="flex flex-col items-center will-change-transform">
-          <h1 className="text-5xl md:text-7xl lg:text-[100px] font-serif font-light tracking-[0.1em] text-white uppercase leading-none mb-3 text-center drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[100px] font-serif font-light tracking-[0.1em] text-white uppercase leading-none mb-2 sm:mb-3 text-center drop-shadow-2xl">
             Quantum
           </h1>
-          <div className="flex items-center gap-4">
-            <div className="h-[1px] w-8 md:w-16 bg-[#E05A00]/50" />
-            <p className="text-xs md:text-sm font-sans font-medium tracking-[0.5em] uppercase text-[#E05A00] drop-shadow-lg">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="h-[1px] w-6 sm:w-8 md:w-16 bg-[#E05A00]/50" />
+            <p className="text-[10px] sm:text-xs md:text-sm font-sans font-medium tracking-[0.3em] sm:tracking-[0.5em] uppercase text-[#E05A00] drop-shadow-lg">
               Institute
             </p>
-            <div className="h-[1px] w-8 md:w-16 bg-[#E05A00]/50" />
+            <div className="h-[1px] w-6 sm:w-8 md:w-16 bg-[#E05A00]/50" />
           </div>
         </div>
 
         {/* Minimal Progress Line */}
-        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-48 md:w-80 h-[1px] bg-white/10 overflow-hidden">
+        <div className="absolute -bottom-16 sm:-bottom-20 left-1/2 -translate-x-1/2 w-40 sm:w-48 md:w-80 h-[1px] bg-white/10 overflow-hidden">
           <div 
             ref={progressRef}
             className="w-full h-full bg-gradient-to-r from-transparent via-[#E05A00] to-transparent origin-center will-change-transform"

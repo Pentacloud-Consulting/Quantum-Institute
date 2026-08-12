@@ -16,21 +16,45 @@ const VisionMissionReveal = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top", 
-        end: "+=200%", // Pin for 200vh
-        pin: true,
-        pinSpacing: false, // Allows next section to slide over
-        onUpdate: (self) => {
-          // Flip at 25% of the total 200vh pin (which is 50vh of scrolling)
-          if (self.progress > 0.25) {
-            setStep(2);
-          } else {
-            setStep(1);
+      const mm = gsap.matchMedia();
+
+      // Desktop & Tablet
+      mm.add("(min-width: 768px)", () => {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top", 
+          end: "+=200%", // Pin for 200vh
+          pin: true,
+          pinSpacing: false, // Allows next section to slide over
+          onUpdate: (self) => {
+            // Flip at 25% of the total 200vh pin
+            if (self.progress > 0.25) {
+              setStep(2);
+            } else {
+              setStep(1);
+            }
           }
-        }
+        });
       });
+
+      // Mobile
+      mm.add("(max-width: 767px)", () => {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top", 
+          end: "+=80%", // Shorter scroll distance on mobile to reduce 'spacing'
+          pin: true,
+          pinSpacing: false,
+          onUpdate: (self) => {
+            if (self.progress > 0.25) {
+              setStep(2);
+            } else {
+              setStep(1);
+            }
+          }
+        });
+      });
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -38,16 +62,16 @@ const VisionMissionReveal = () => {
 
   return (
     <div className="relative w-full flex flex-col">
-      <section ref={sectionRef} className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <section ref={sectionRef} className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center pt-20 lg:pt-32 pb-8 lg:pb-16 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden z-20 lg:shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         {/* Background Glow */}
         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
           <div className="w-[800px] h-[800px] bg-[#E05A00] opacity-5 rounded-full blur-[120px]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1200px] mx-auto h-full flex items-center justify-center">
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-4 lg:gap-0">
           
-          {/* Texts Container (Absolute to overlay) */}
-          <div className="absolute inset-0 flex items-center w-full pointer-events-none">
+          {/* Texts Container */}
+          <div className="relative lg:absolute lg:inset-0 flex items-center w-full pointer-events-none z-20 order-2 lg:order-none min-h-[320px] lg:min-h-0">
             <AnimatePresence mode="wait">
               {step === 1 && (
                 <motion.div 
@@ -56,21 +80,21 @@ const VisionMissionReveal = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full lg:w-1/2 flex flex-col items-start pr-8 pointer-events-auto"
+                  className="w-full lg:w-1/2 flex flex-col items-start px-0 lg:pr-8 pointer-events-auto"
                 >
                   <div className="flex flex-col items-start">
-                    <h4 className="text-[#E05A00] text-xs font-bold tracking-[0.3em] uppercase mb-3">Vision</h4>
-                    <div className="w-8 h-[2px] bg-[#E05A00]"></div>
+                    <h4 className="text-[#E05A00] text-[8px] lg:text-xs font-bold tracking-[0.3em] uppercase mb-1.5 lg:mb-3">Vision</h4>
+                    <div className="w-4 lg:w-8 h-[2px] bg-[#E05A00]"></div>
                   </div>
                   
-                  <h2 className="text-4xl md:text-5xl lg:text-5xl font-light tracking-tight leading-[1.1] text-black mt-8">
-                    Where minds collect <br/>
-                    & possibilities <br/>
+                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-black mt-3 lg:mt-8">
+                    Where minds collect <br className="hidden sm:block"/>
+                    & possibilities <br className="hidden sm:block"/>
                     connect.
                   </h2>
                   
-                  <div className="flex flex-col mt-10 w-full max-w-lg">
-                    <h5 className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-4 border-b border-gray-200 pb-3">Substantiation</h5>
+                  <div className="flex flex-col mt-4 lg:mt-10 w-full max-w-lg">
+                    <h5 className="text-[7px] lg:text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-2 lg:mb-4 border-b border-gray-200 pb-1.5 lg:pb-3">Substantiation</h5>
                     <div className="flex flex-col">
                       {[
                         { title: 'Minds', tags: ['Scientists', 'Researchers', 'Academics', 'Students', 'Seekers', 'Patients'] },
@@ -78,11 +102,11 @@ const VisionMissionReveal = () => {
                         { title: 'Possibilities', tags: ['Advancement', 'Breakthroughs', 'Recovery', 'Growth'] },
                         { title: 'Connect', tags: ['Understand', 'Co-create', 'Meet', 'Accomplish'] }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 py-3 border-b border-gray-100 last:border-0 group">
-                          <span className="text-[11px] font-bold uppercase tracking-widest text-black w-32 shrink-0 pt-1 group-hover:text-[#E05A00] transition-colors">{item.title}</span>
-                          <div className="flex flex-wrap gap-1.5">
+                        <div key={idx} className="flex flex-col lg:flex-row lg:items-start gap-1 lg:gap-4 py-1.5 lg:py-3 border-b border-gray-100 last:border-0 group">
+                          <span className="text-[8px] lg:text-[11px] font-bold uppercase tracking-widest text-black lg:w-32 shrink-0 pt-1 group-hover:text-[#E05A00] transition-colors">{item.title}</span>
+                          <div className="flex flex-wrap gap-1 lg:gap-1.5">
                             {item.tags.map((tag, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-50/80 text-gray-600 text-[11px] font-medium rounded-full border border-gray-200/80 hover:border-[#E05A00]/40 hover:bg-[#E05A00]/5 hover:text-black transition-all cursor-default">
+                              <span key={i} className="px-1.5 py-[2px] lg:px-3 lg:py-1 bg-gray-50/80 text-gray-600 text-[8px] lg:text-[11px] font-medium rounded-full border border-gray-200/80 hover:border-[#E05A00]/40 hover:bg-[#E05A00]/5 hover:text-black transition-all cursor-default">
                                 {tag}
                               </span>
                             ))}
@@ -92,10 +116,10 @@ const VisionMissionReveal = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-wrap items-center gap-8 mt-6">
-                    <button className="group flex items-center gap-4 px-8 py-3 border border-gray-300 rounded-full bg-transparent text-black text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#E05A00] hover:bg-[#E05A00]/5 transition-colors duration-300">
+                  <div className="flex flex-wrap items-center gap-8 mt-4 lg:mt-6">
+                    <button className="group flex items-center gap-2 lg:gap-4 px-4 py-2 lg:px-8 lg:py-3 border border-gray-300 rounded-full bg-transparent text-black text-[8px] lg:text-[10px] font-bold tracking-[0.2em] uppercase hover:border-[#E05A00] hover:bg-[#E05A00]/5 transition-colors duration-300">
                       Explore Our Vision
-                      <ArrowRight className="w-4 h-4 text-[#E05A00] group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4 text-[#E05A00] group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </motion.div>
@@ -108,30 +132,30 @@ const VisionMissionReveal = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full lg:w-1/2 flex flex-col items-start pl-8 ml-auto pointer-events-auto"
+                  className="w-full lg:w-1/2 flex flex-col items-start px-0 lg:pl-8 lg:ml-auto pointer-events-auto z-20"
                 >
                   <div className="flex flex-col items-start">
-                    <h4 className="text-[#E05A00] text-xs font-bold tracking-[0.3em] uppercase mb-3">Mission</h4>
-                    <div className="w-8 h-[2px] bg-[#E05A00]"></div>
+                    <h4 className="text-[#E05A00] text-[8px] lg:text-xs font-bold tracking-[0.3em] uppercase mb-1.5 lg:mb-3">Mission</h4>
+                    <div className="w-4 lg:w-8 h-[2px] bg-[#E05A00]"></div>
                   </div>
                   
-                  <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-relaxed text-black font-serif italic mt-8">
+                  <h2 className="text-lg sm:text-2xl md:text-3xl font-light tracking-tight leading-relaxed text-black font-serif italic mt-3 lg:mt-8">
                     Empower minds through quantum-lensed exploration, fostering a global ecosystem for expanded learning, scientific discovery, and transformative healing.
                   </h2>
                   
-                  <div className="flex flex-col mt-10 w-full max-w-lg">
-                    <h5 className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-4 border-b border-gray-200 pb-3">Substantiation</h5>
+                  <div className="flex flex-col mt-4 lg:mt-10 w-full max-w-lg">
+                    <h5 className="text-[7px] lg:text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400 mb-2 lg:mb-4 border-b border-gray-200 pb-1.5 lg:pb-3">Substantiation</h5>
                     <div className="flex flex-col">
                       {[
                         { title: 'Minds', tags: ['Scientists', 'Researchers', 'Academics', 'Students', 'Seekers', 'Patients'] },
                         { title: 'Quantum Exploration', tags: ['Toolkit', 'Science', 'Research', 'Journey'] },
                         { title: 'Ecosystem', tags: ['Network', 'Coherence', 'Interconnected', 'Rooted', 'Natural'] }
                       ].map((item, idx) => (
-                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 py-3 border-b border-gray-100 last:border-0 group">
-                          <span className="text-[11px] font-bold uppercase tracking-widest text-black w-40 shrink-0 pt-1 group-hover:text-[#E05A00] transition-colors">{item.title}</span>
-                          <div className="flex flex-wrap gap-1.5">
+                        <div key={idx} className="flex flex-col lg:flex-row lg:items-start gap-1 lg:gap-4 py-1.5 lg:py-3 border-b border-gray-100 last:border-0 group">
+                          <span className="text-[8px] lg:text-[11px] font-bold uppercase tracking-widest text-black lg:w-40 shrink-0 pt-1 group-hover:text-[#E05A00] transition-colors">{item.title}</span>
+                          <div className="flex flex-wrap gap-1 lg:gap-1.5">
                             {item.tags.map((tag, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-50/80 text-gray-600 text-[11px] font-medium rounded-full border border-gray-200/80 hover:border-[#E05A00]/40 hover:bg-[#E05A00]/5 hover:text-black transition-all cursor-default">
+                              <span key={i} className="px-1.5 py-[2px] lg:px-3 lg:py-1 bg-gray-50/80 text-gray-600 text-[8px] lg:text-[11px] font-medium rounded-full border border-gray-200/80 hover:border-[#E05A00]/40 hover:bg-[#E05A00]/5 hover:text-black transition-all cursor-default">
                                 {tag}
                               </span>
                             ))}
@@ -141,8 +165,8 @@ const VisionMissionReveal = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-wrap items-center gap-8 mt-6">
-                    <button className="group flex flex-col items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-black hover:text-[#E05A00] transition-colors duration-300">
+                  <div className="flex flex-wrap items-center gap-8 mt-4 lg:mt-6">
+                    <button className="group flex flex-col items-center gap-1.5 lg:gap-2 text-[8px] lg:text-[10px] font-bold tracking-[0.2em] uppercase text-black hover:text-[#E05A00] transition-colors duration-300">
                       <span>Learn More</span>
                       <div className="w-full h-[1px] bg-gray-300 group-hover:bg-[#E05A00] transition-colors relative">
                         <div className="absolute left-0 top-0 h-full w-1/3 bg-[#E05A00]"></div>
@@ -155,12 +179,12 @@ const VisionMissionReveal = () => {
           </div>
 
           {/* Image Container */}
-          <div className="absolute inset-0 flex items-center justify-center w-full pointer-events-none">
-             <div className={`w-full flex ${step === 1 ? 'justify-end' : 'justify-start'} items-center h-full`}>
+          <div className="relative lg:absolute lg:inset-0 flex items-center justify-center w-full pointer-events-none z-10 order-1 lg:order-none">
+             <div className={`w-full flex ${step === 1 ? 'lg:justify-end justify-center' : 'lg:justify-start justify-center'} items-center h-full`}>
                 <motion.div 
                   layout
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-[45%] max-w-[400px] aspect-[4/5] flex items-center justify-center"
+                  className="relative w-[45%] sm:w-[40%] lg:w-[45%] max-w-[200px] lg:max-w-[400px] aspect-[4/5] flex items-center justify-center lg:mx-0 mx-auto"
                 >
                   {/* Thin orange border frame */}
                   <div className="absolute inset-0 border border-[#E05A00] opacity-40 z-0"></div>
@@ -190,7 +214,7 @@ const VisionMissionReveal = () => {
       </section>
 
       {/* Invisible spacer to delay the next section from overlapping prematurely */}
-      <div className="w-full h-[200vh] pointer-events-none"></div>
+      <div className="w-full h-[80vh] md:h-[200vh] pointer-events-none"></div>
     </div>
   );
 };
