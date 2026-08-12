@@ -39,7 +39,35 @@ const projects = [
 const QuantumMovement = () => {
   const [currentIndex, setCurrentIndex] = useState(0); // Start at 0, goes infinitely negative/positive
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const N = projects.length;
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      scroll('right');
+    } else if (isRightSwipe) {
+      scroll('left');
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (direction === 'left') {
@@ -125,7 +153,12 @@ const QuantumMovement = () => {
         </div>
 
         {/* Carousel Section (3D Coverflow Style) */}
-      <div className="quantum-carousel relative w-full max-w-[1600px] mx-auto flex items-center justify-center h-[220px] sm:h-[300px] md:h-[360px] lg:h-[380px] px-2 sm:px-4">
+      <div 
+        className="quantum-carousel relative w-full max-w-[1600px] mx-auto flex items-center justify-center h-[220px] sm:h-[300px] md:h-[360px] lg:h-[380px] px-2 sm:px-4"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         
         {/* Left Nav Arrow */}
         <button 
