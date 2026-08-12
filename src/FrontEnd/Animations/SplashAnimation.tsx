@@ -8,8 +8,7 @@ const SplashAnimation = () => {
   
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const topHalfRef = useRef<HTMLDivElement>(null);
-  const bottomHalfRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const logoWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -25,43 +24,30 @@ const SplashAnimation = () => {
         }
       });
 
-      // 1. Fade in the text with a slight vertical drift and blur removal
+      // 1. Fluid entrance
       tl.fromTo(textRef.current,
-        { opacity: 0, y: 30, filter: 'blur(10px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.5, ease: "power3.out", delay: 0.2 }
+        { opacity: 0, y: 20, filter: 'blur(15px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 2, ease: "power3.out", delay: 0.2 }
+      )
+      .fromTo(progressRef.current,
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 0.5, duration: 2, ease: "power3.out" },
+        "<0.2"
       )
       
-      // 2. Animate the glowing progress bar expanding from the center
-      .fromTo(progressRef.current,
-        { scaleX: 0 },
-        { scaleX: 1, duration: 1.5, ease: "expo.inOut" },
-        "-=1.0"
-      )
-
-      // 3. Short pause for dramatic effect
-      .to({}, { duration: 0.4 })
-
-      // 4. Fade out the text and line gracefully
+      // 2. Continuous fluid exit (fade everything out smoothly)
       .to(logoWrapperRef.current, {
         opacity: 0,
-        scale: 0.95,
+        scale: 1.05,
         filter: 'blur(10px)',
-        duration: 0.6,
-        ease: "power2.in"
-      })
-
-      // 5. Cinematic split screen reveal!
-      // Top half slides up, Bottom half slides down
-      .to(topHalfRef.current, {
-        y: "-100%",
-        duration: 1.2,
-        ease: "expo.inOut"
-      }, "-=0.2")
-      .to(bottomHalfRef.current, {
-        y: "100%",
-        duration: 1.2,
-        ease: "expo.inOut"
-      }, "<"); // Run at the exact same time as topHalf
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, "+=0.2")
+      .to(bgRef.current, {
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, "<0.3");
 
     }, containerRef);
 
@@ -78,16 +64,10 @@ const SplashAnimation = () => {
       ref={containerRef}
       className="fixed inset-0 z-[99999] flex flex-col items-center justify-center pointer-events-none"
     >
-      {/* Top Half of the screen */}
+      {/* Full screen smooth background */}
       <div 
-        ref={topHalfRef}
-        className="absolute top-0 left-0 w-full h-1/2 bg-[#050505] origin-top will-change-transform shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-10"
-      />
-      
-      {/* Bottom Half of the screen */}
-      <div 
-        ref={bottomHalfRef}
-        className="absolute bottom-0 left-0 w-full h-1/2 bg-[#050505] origin-bottom will-change-transform shadow-[0_-10px_30px_rgba(0,0,0,0.5)] z-10"
+        ref={bgRef}
+        className="absolute inset-0 w-full h-full bg-[#050505] z-10 will-change-transform"
       />
 
       {/* Ambient background glow attached to the back of the logo */}

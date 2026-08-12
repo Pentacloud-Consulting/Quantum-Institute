@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Quantum Institute",
   description: "Integrating science and consciousness for holistic well-being.",
+  icons: {
+    icon: '/Logo/Quantum%20institute%20-%20fav.png',
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

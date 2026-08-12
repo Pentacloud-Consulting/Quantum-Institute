@@ -97,9 +97,11 @@ const Navbar = () => {
                 exit={{ opacity: 0, width: 0, scale: 0 }}
                 className="flex items-center pl-1 pr-3 overflow-hidden origin-left"
               >
-                <div className="bg-[#E05A00] p-1 rounded flex items-center justify-center">
-                  <Hexagon className="w-4 h-4 text-white" />
-                </div>
+                <img 
+                  src="/Logo/Quantum%20Institute%20Logo%20-%20Icon.png" 
+                  alt="Quantum Institute Icon" 
+                  className="w-6 h-6 object-cover rounded-full"
+                />
               </motion.div>
             )}
           </AnimatePresence>
