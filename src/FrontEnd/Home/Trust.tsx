@@ -68,7 +68,7 @@ const Trust = () => {
             transition={{ duration: 0.6 }}
             className="md:absolute left-0 top-1/2 md:-translate-y-1/2 mb-8 md:mb-0 w-full text-center md:text-left"
           >
-            <h4 className="text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+            <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
               GLOBAL IMPACT
             </h4>
           </motion.div>

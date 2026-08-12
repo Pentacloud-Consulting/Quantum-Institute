@@ -29,7 +29,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 // Nested hexagon SVG for the Logo
 const HexagonLogo = () => (
-  <svg width="40" height="40" viewBox="0 0 100 100" className="text-[#d15000]">
+  <svg width="40" height="40" viewBox="0 0 100 100" className="text-[#E05A00]">
     <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" className="stroke-current fill-none stroke-[6]" />
     <polygon points="50,18 80,32 80,68 50,82 20,68 20,32" className="stroke-current fill-none stroke-[3]" />
   </svg>
@@ -71,7 +71,7 @@ const Footer = () => {
             
             <div className="flex items-center gap-3">
               {['X', <LinkedinIcon key="li" className="w-[18px] h-[18px]"/>, <YoutubeIcon key="yt" className="w-[18px] h-[18px]"/>, <InstagramIcon key="ig" className="w-[18px] h-[18px]"/>].map((icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#d15000] hover:border-[#d15000] transition-all duration-300 hover:scale-110">
+                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
                   {typeof icon === 'string' ? <span className="font-bold text-[13px]">{icon}</span> : icon}
                 </a>
               ))}
@@ -83,11 +83,11 @@ const Footer = () => {
             
             {/* Explore */}
             <div className="flex flex-col">
-              <h4 className="text-[#d15000] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">EXPLORE</h4>
+              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">EXPLORE</h4>
               <ul className="flex flex-col gap-5">
                 {['Vision', 'Brand & Identity', 'Pillars', 'Research', 'Impact'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#d15000] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -95,11 +95,11 @@ const Footer = () => {
 
             {/* Resources */}
             <div className="flex flex-col">
-              <h4 className="text-[#d15000] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">RESOURCES</h4>
+              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">RESOURCES</h4>
               <ul className="flex flex-col gap-5">
                 {['Projects', 'Publications', 'Events', 'Careers', 'FAQs'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#d15000] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -107,11 +107,11 @@ const Footer = () => {
 
             {/* Connect */}
             <div className="flex flex-col">
-              <h4 className="text-[#d15000] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">CONNECT</h4>
+              <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">CONNECT</h4>
               <ul className="flex flex-col gap-5">
                 {['Contact Us', 'Partners', 'Community', 'Support', 'Newsroom'].map(link => (
                   <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#d15000] text-[13px] transition-colors">{link}</Link>
+                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-[13px] transition-colors">{link}</Link>
                   </li>
                 ))}
               </ul>
@@ -121,7 +121,7 @@ const Footer = () => {
 
           {/* Subscribe */}
           <div className="lg:col-span-3 flex flex-col">
-            <h4 className="text-[#d15000] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">SUBSCRIBE</h4>
+            <h4 className="text-[#E05A00] text-[11px] font-bold tracking-[0.2em] uppercase mb-8">SUBSCRIBE</h4>
             <p className="text-white/60 text-[13px] leading-relaxed mb-6">
               Stay updated with our latest<br/> research, events &amp; insights.
             </p>
@@ -130,10 +130,10 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full bg-transparent border border-white/20 rounded-full py-[14px] pl-6 pr-12 text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#d15000]"
+                className="w-full bg-transparent border border-white/20 rounded-full py-[14px] pl-6 pr-12 text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
                 style={{ transition: "background-color 9999s ease-in-out 0s", WebkitTextFillColor: "#fff" }}
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-white/50 hover:text-[#d15000] transition-colors">
+              <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-white/50 hover:text-[#E05A00] transition-colors">
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>

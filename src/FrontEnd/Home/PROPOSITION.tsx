@@ -37,7 +37,7 @@ const Proposition = () => {
             {/* SLIDE 1: IMPORTANCE OF EXPLORATION */}
             <div className="prop-slide-1 col-start-1 row-start-1 flex flex-col w-full h-fit z-20">
               {/* Label */}
-              <h4 className="text-[#d15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-4">
+              <h4 className="text-[#E05A00] text-[10px] font-bold tracking-[0.2em] uppercase mb-4">
                 PROPOSITION
               </h4>
 
@@ -76,11 +76,11 @@ const Proposition = () => {
                   ].map((item, i) => (
                     <div 
                       key={i} 
-                      className="group relative overflow-hidden bg-black/[0.02] border border-black/5 rounded-xl p-3 transition-all duration-300 hover:bg-black/[0.04] hover:border-[#d15000]/30 hover:-translate-y-0.5 cursor-default"
+                      className="group relative overflow-hidden bg-black/[0.02] border border-black/5 rounded-xl p-3 transition-all duration-300 hover:bg-black/[0.04] hover:border-[#E05A00]/30 hover:-translate-y-0.5 cursor-default"
                     >
-                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#d15000]/30 to-transparent group-hover:from-[#d15000] group-hover:to-[#d15000]/30 transition-colors duration-300" />
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#E05A00]/30 to-transparent group-hover:from-[#E05A00] group-hover:to-[#E05A00]/30 transition-colors duration-300" />
                       <div className="relative z-10 pl-2">
-                        <h6 className="text-black text-[12px] font-bold mb-0.5 group-hover:text-[#d15000] transition-colors tracking-wide">{item.title}</h6>
+                        <h6 className="text-black text-[12px] font-bold mb-0.5 group-hover:text-[#E05A00] transition-colors tracking-wide">{item.title}</h6>
                         <p className="text-black/60 text-[11px] leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
@@ -92,7 +92,7 @@ const Proposition = () => {
             {/* SLIDE 2: BRAND STORY */}
             <div className="prop-slide-2 col-start-1 row-start-1 flex flex-col w-full h-fit opacity-0 translate-y-8 pointer-events-none z-10">
               {/* Label */}
-              <h4 className="text-[#d15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 border-b border-black/10 pb-3 inline-block">
+              <h4 className="text-[#E05A00] text-[10px] font-bold tracking-[0.2em] uppercase mb-4 border-b border-black/10 pb-3 inline-block">
                 BRAND STORY (H.E.R.E FOR YOU)
               </h4>
 
@@ -122,11 +122,11 @@ const Proposition = () => {
                 ].map((item, i) => (
                   <div 
                     key={i} 
-                    className="group relative overflow-hidden bg-black/[0.02] border border-black/5 rounded-xl p-3 transition-all duration-300 hover:bg-black/[0.04] hover:border-[#d15000]/30 hover:-translate-y-0.5 cursor-default"
+                    className="group relative overflow-hidden bg-black/[0.02] border border-black/5 rounded-xl p-3 transition-all duration-300 hover:bg-black/[0.04] hover:border-[#E05A00]/30 hover:-translate-y-0.5 cursor-default"
                   >
-                    <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#d15000]/30 to-transparent group-hover:from-[#d15000] group-hover:to-[#d15000]/30 transition-colors duration-300" />
+                    <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#E05A00]/30 to-transparent group-hover:from-[#E05A00] group-hover:to-[#E05A00]/30 transition-colors duration-300" />
                     <div className="relative z-10 pl-2">
-                      <h6 className="text-black text-[12px] font-bold mb-0.5 group-hover:text-[#d15000] transition-colors tracking-wide uppercase">{item.label}</h6>
+                      <h6 className="text-black text-[12px] font-bold mb-0.5 group-hover:text-[#E05A00] transition-colors tracking-wide uppercase">{item.label}</h6>
                       <p className="text-black/60 text-[11px] leading-relaxed">{item.desc}</p>
                     </div>
                   </div>

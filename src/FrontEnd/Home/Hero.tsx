@@ -397,7 +397,7 @@ const Hero = () => {
         className="relative w-full h-full bg-[#000000] text-white overflow-hidden font-sans origin-center will-change-transform"
       >
       <div className="absolute top-0 left-0 w-full h-[2px] bg-white/20 z-50 overflow-hidden">
-        <div ref={progressRef} className="absolute top-0 left-0 h-full w-full bg-[#d15000] origin-left scale-x-0 will-change-transform"></div>
+        <div ref={progressRef} className="absolute top-0 left-0 h-full w-full bg-[#E05A00] origin-left scale-x-0 will-change-transform"></div>
       </div>
 
       {prevIndex !== null && VALUES[prevIndex] && (
@@ -449,7 +449,7 @@ const Hero = () => {
                 <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
                 
                 <div className="absolute bottom-0 left-0 p-5 z-20">
-                  <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+                  <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
                   <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
                   <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
                 </div>
@@ -503,7 +503,7 @@ const Hero = () => {
           </div>
           
           <div className="absolute bottom-0 left-0 p-5 z-20 clone-text">
-            <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+            <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
             <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{cloneData.item.subtitle}</p>
             <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{cloneData.item.title}</h3>
           </div>
@@ -533,7 +533,7 @@ const Hero = () => {
           </div>
           
           <div className="absolute bottom-0 left-0 p-5 z-20 rev-clone-text opacity-0">
-            <div className="w-6 h-[2px] bg-[#d15000] mb-3"></div>
+            <div className="w-6 h-[2px] bg-[#E05A00] mb-3"></div>
             <p className="text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{reverseCloneData.item.subtitle}</p>
             <h3 className="text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{reverseCloneData.item.title}</h3>
           </div>

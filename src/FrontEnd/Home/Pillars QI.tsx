@@ -90,7 +90,7 @@ const PillarsQI = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center text-center mb-20 md:mb-24"
         >
-          <h4 className="text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4">
+          <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4">
             PILLARS OF QUANTUM INSTITUTE
           </h4>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black">
@@ -114,16 +114,16 @@ const PillarsQI = () => {
               {/* Hexagon Icon Container */}
               <div className="relative flex items-center justify-center w-24 h-24 mb-8 group cursor-pointer">
                 {/* SVG Hexagon Outline with Rotating Line */}
-                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full group-hover:fill-[#d15000]/5 transition-colors duration-500">
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full group-hover:fill-[#E05A00]/5 transition-colors duration-500">
                   {/* Faint static outline */}
                   <polygon 
                     points="50,5 95,25 95,75 50,95 5,75 5,25" 
-                    className="stroke-[#d15000]/10 fill-none stroke-[1.5]"
+                    className="stroke-[#E05A00]/10 fill-none stroke-[1.5]"
                   />
                   {/* Rotating highlighted line (traces the perimeter) */}
                   <motion.polygon 
                     points="50,5 95,25 95,75 50,95 5,75 5,25" 
-                    className="stroke-[#d15000] fill-none stroke-[2]"
+                    className="stroke-[#E05A00] fill-none stroke-[2]"
                     strokeDasharray="40 260"
                     animate={{ strokeDashoffset: [300, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}

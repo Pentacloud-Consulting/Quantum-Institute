@@ -24,8 +24,8 @@ const CTA = () => {
             transition={{ duration: 0.6 }}
             className="md:col-span-5 flex flex-col items-start relative z-10"
           >
-            <h4 className="text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-5 flex items-center gap-3">
-              <span className="w-8 h-[1px] bg-[#d15000]"></span>
+            <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-5 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-[#E05A00]"></span>
               JOIN THE FUTURE
             </h4>
             <h2 className="text-3xl md:text-4xl lg:text-[3.25rem] font-light tracking-tight text-black leading-[1.1] drop-shadow-sm">
@@ -55,7 +55,7 @@ const CTA = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="md:col-span-3 flex md:justify-end relative z-10"
           >
-            <button className="group relative flex items-center justify-center gap-3 bg-[#d15000] hover:bg-[#b04300] text-white px-8 py-5 rounded-full text-[11px] md:text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-lg cursor-pointer whitespace-nowrap">
+            <button className="group relative flex items-center justify-center gap-3 bg-[#E05A00] hover:bg-[#C04800] text-white px-8 py-5 rounded-full text-[11px] md:text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 shadow-lg cursor-pointer whitespace-nowrap">
               <span>JOIN OUR COMMUNITY</span>
               <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
             </button>

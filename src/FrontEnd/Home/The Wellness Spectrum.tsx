@@ -176,7 +176,7 @@ const TheWellnessSpectrum = () => {
                   className={`wellness-content-${i} absolute inset-0 flex flex-col justify-center`}
                 >
                   <div className="num-title will-change-transform">
-                    <h4 className="text-[#d15000] text-xs md:text-sm font-bold tracking-[0.2em] mb-3 opacity-90 uppercase">
+                    <h4 className="text-[#E05A00] text-xs md:text-sm font-bold tracking-[0.2em] mb-3 opacity-90 uppercase">
                       {s.num}
                     </h4>
                     <h2 className="text-3xl lg:text-[34px] font-serif text-black leading-[1.2] mb-4 font-light tracking-tight">

@@ -111,7 +111,7 @@ const QuantumMovement = () => {
         {/* Top Header Section */}
         <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto mb-16 relative z-10 flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
-            <h4 className="quantum-subtitle text-[#d15000] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">
+            <h4 className="quantum-subtitle text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 md:mb-6">
               THE QUANTUM MOVEMENT
             </h4>
             
@@ -128,7 +128,7 @@ const QuantumMovement = () => {
         {/* Left Nav Arrow */}
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-4 md:left-12 lg:left-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer shadow-sm"
+          className="absolute left-4 md:left-12 lg:left-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
@@ -216,7 +216,7 @@ const QuantumMovement = () => {
         {/* Right Nav Arrow */}
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-4 md:right-12 lg:right-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#d15000] hover:text-[#d15000] cursor-pointer shadow-sm"
+          className="absolute right-4 md:right-12 lg:right-24 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/10 flex items-center justify-center bg-white/80 backdrop-blur-sm text-black transition-colors hover:border-[#E05A00] hover:text-[#E05A00] cursor-pointer shadow-sm"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>

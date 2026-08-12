@@ -57,13 +57,13 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-5 text-[15px] font-medium tracking-wide whitespace-nowrap"
               >
-                <a href="#" className="text-black hover:text-[#d15000] font-semibold transition-colors">Healing</a>
+                <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Healing</a>
                 <span className="text-gray-300 font-light">|</span>
-                <a href="#" className="text-black hover:text-[#d15000] font-semibold transition-colors">Education</a>
+                <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Education</a>
                 <span className="text-gray-300 font-light">|</span>
-                <a href="#" className="text-black hover:text-[#d15000] font-semibold transition-colors">Research</a>
+                <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Research</a>
                 <span className="text-gray-300 font-light">|</span>
-                <a href="#" className="text-black hover:text-[#d15000] font-semibold transition-colors">Exploration</a>
+                <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Exploration</a>
               </motion.div>
             )}
           </AnimatePresence>
@@ -96,7 +96,7 @@ const Navbar = () => {
                 exit={{ opacity: 0, width: 0, scale: 0 }}
                 className="flex items-center pl-1 pr-3 overflow-hidden origin-left"
               >
-                <div className="bg-[#d15000] p-1 rounded flex items-center justify-center">
+                <div className="bg-[#E05A00] p-1 rounded flex items-center justify-center">
                   <Hexagon className="w-4 h-4 text-white" />
                 </div>
               </motion.div>
@@ -104,9 +104,9 @@ const Navbar = () => {
           </AnimatePresence>
 
           <div className="flex items-center gap-5 px-3 text-[13px] font-semibold whitespace-nowrap">
-             <a href="#" className="text-black hover:text-[#d15000] transition-colors">Pricing</a>
-             <a href="#" className="text-black hover:text-[#d15000] transition-colors">Road Map</a>
-             <a href="#" className="text-black hover:text-[#d15000] transition-colors">Blog</a>
+             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Pricing</a>
+             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Road Map</a>
+             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Blog</a>
           </div>
 
           <AnimatePresence mode="popLayout">

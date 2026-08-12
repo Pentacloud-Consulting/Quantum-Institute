@@ -81,7 +81,7 @@ const AncientWisdom = () => {
         <div className="w-full flex-1 flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[300px]">
           
           {/* Left Box (Hero Text & Image) */}
-          <div ref={box1Ref} className="relative w-full lg:w-2/3 h-full rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-xl group flex items-center ring-0 hover:ring-2 hover:ring-inset hover:ring-[#9c512d]/80 transition-all duration-500 cursor-pointer opacity-0">
+          <div ref={box1Ref} className="relative w-full lg:w-2/3 h-full rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-xl group flex items-center ring-0 hover:ring-2 hover:ring-inset hover:ring-[#E05A00]/80 transition-all duration-500 cursor-pointer opacity-0">
             <div className="absolute inset-0 z-0">
               <video 
                 src="/Videos/Yoga.mp4" 
@@ -98,7 +98,7 @@ const AncientWisdom = () => {
               <p className="text-base md:text-lg text-white/90 max-w-md font-light leading-relaxed">
                 Experience the power of Ayurveda for natural healing and lifelong balance.
               </p>
-              <button className="flex items-center gap-2 bg-[#9c512d] hover:bg-[#854526] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors mt-2">
+              <button className="flex items-center gap-2 bg-[#E05A00] hover:bg-[#C04800] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors mt-2">
                 Explore Ayurveda <ChevronRight size={18} />
               </button>
             </div>
@@ -167,7 +167,7 @@ const AncientWisdom = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 h-[220px] lg:h-[260px]">
           
           {/* Card 1 */}
-          <div ref={box3Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#9c512d]/80 transition-all duration-500 opacity-0">
+          <div ref={box3Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#E05A00]/80 transition-all duration-500 opacity-0">
             <video 
               src="/Videos/Ayurvedic Massage.mp4" 
               autoPlay muted loop playsInline
@@ -190,7 +190,7 @@ const AncientWisdom = () => {
           </div>
 
           {/* Card 2 */}
-          <div ref={box4Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#9c512d]/80 transition-all duration-500 opacity-0">
+          <div ref={box4Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#E05A00]/80 transition-all duration-500 opacity-0">
             <video 
               src="/Videos/Herbal Healing.mp4" 
               autoPlay muted loop playsInline
@@ -213,7 +213,7 @@ const AncientWisdom = () => {
           </div>
 
           {/* Card 3 */}
-          <div ref={box5Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#9c512d]/80 transition-all duration-500 opacity-0">
+          <div ref={box5Ref} className="relative rounded-[2rem] overflow-hidden w-full h-full group cursor-pointer shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#E05A00]/80 transition-all duration-500 opacity-0">
             <video 
               src="/Videos/Meditation.mp4" 
               autoPlay muted loop playsInline

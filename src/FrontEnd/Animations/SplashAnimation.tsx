@@ -91,7 +91,7 @@ const SplashAnimation = () => {
       />
 
       {/* Ambient background glow attached to the back of the logo */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#d15000] rounded-full blur-[150px] opacity-10 pointer-events-none z-20" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E05A00] rounded-full blur-[150px] opacity-10 pointer-events-none z-20" />
 
       {/* Main Content Wrapper */}
       <div ref={logoWrapperRef} className="relative z-30 flex flex-col items-center">
@@ -102,11 +102,11 @@ const SplashAnimation = () => {
             Quantum
           </h1>
           <div className="flex items-center gap-4">
-            <div className="h-[1px] w-8 md:w-16 bg-[#d15000]/50" />
-            <p className="text-xs md:text-sm font-sans font-medium tracking-[0.5em] uppercase text-[#d15000] drop-shadow-lg">
+            <div className="h-[1px] w-8 md:w-16 bg-[#E05A00]/50" />
+            <p className="text-xs md:text-sm font-sans font-medium tracking-[0.5em] uppercase text-[#E05A00] drop-shadow-lg">
               Institute
             </p>
-            <div className="h-[1px] w-8 md:w-16 bg-[#d15000]/50" />
+            <div className="h-[1px] w-8 md:w-16 bg-[#E05A00]/50" />
           </div>
         </div>
 
@@ -114,7 +114,7 @@ const SplashAnimation = () => {
         <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-48 md:w-80 h-[1px] bg-white/10 overflow-hidden">
           <div 
             ref={progressRef}
-            className="w-full h-full bg-gradient-to-r from-transparent via-[#d15000] to-transparent origin-center will-change-transform"
+            className="w-full h-full bg-gradient-to-r from-transparent via-[#E05A00] to-transparent origin-center will-change-transform"
           />
         </div>
 

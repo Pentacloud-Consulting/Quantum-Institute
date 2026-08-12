@@ -13,7 +13,7 @@ const Label = ({ children }: { children: React.ReactNode }) => (
 
 const Input = ({ ...props }) => (
   <input 
-    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all"
+    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:border-[#E05A00] focus:ring-1 focus:ring-[#E05A00] transition-all"
     {...props}
   />
 );
@@ -59,7 +59,7 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
       
       {showOtherInput && (
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-3">
-           <input type="text" value={otherText} onChange={(e) => setOtherText(e.target.value)} placeholder="Please specify..." className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-[14px] text-black placeholder:text-gray-400 focus:outline-none focus:border-[#d15000] focus:ring-1 focus:ring-[#d15000] transition-all" />
+           <input type="text" value={otherText} onChange={(e) => setOtherText(e.target.value)} placeholder="Please specify..." className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-[14px] text-black placeholder:text-gray-400 focus:outline-none focus:border-[#E05A00] focus:ring-1 focus:ring-[#E05A00] transition-all" />
         </motion.div>
       )}
 
@@ -78,10 +78,10 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
                 <div 
                   key={opt.value}
                   onClick={() => handleSelect(opt.value)}
-                  className={`px-4 py-3 text-[14px] flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#d15000]/10 text-[#d15000] font-medium' : 'text-gray-600 hover:bg-black/5 hover:text-black'}`}
+                  className={`px-4 py-3 text-[14px] flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#E05A00]/10 text-[#E05A00] font-medium' : 'text-gray-600 hover:bg-black/5 hover:text-black'}`}
                 >
                   {multiple && (
-                    <div className={`w-[16px] h-[16px] rounded-[3px] border ${isSelected ? 'border-[#d15000] bg-[#d15000]' : 'border-black/20 bg-transparent'} flex items-center justify-center shrink-0`}>
+                    <div className={`w-[16px] h-[16px] rounded-[3px] border ${isSelected ? 'border-[#E05A00] bg-[#E05A00]' : 'border-black/20 bg-transparent'} flex items-center justify-center shrink-0`}>
                       {isSelected && <Check className="w-3 h-3 text-white" />}
                     </div>
                   )}
@@ -120,10 +120,10 @@ export default function JoinTheWaitlist() {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="w-full bg-[#fafafa] text-black py-24 md:py-32 px-4 sm:px-6 flex justify-center items-start selection:bg-[#d15000] selection:text-white relative overflow-x-hidden">
+    <div className="w-full bg-[#fafafa] text-black py-24 md:py-32 px-4 sm:px-6 flex justify-center items-start selection:bg-[#E05A00] selection:text-white relative overflow-x-hidden">
       
       {/* Background ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#d15000]/5 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E05A00]/5 blur-[120px] pointer-events-none rounded-full" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -150,7 +150,7 @@ export default function JoinTheWaitlist() {
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#d15000]/10 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">1</div>
+                  <div className="w-8 h-8 rounded-full bg-[#E05A00]/10 flex items-center justify-center text-[#E05A00] text-sm font-bold shrink-0">1</div>
                   <h2 className="text-xl font-medium tracking-wide text-black">Basic Information</h2>
                   <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
@@ -205,7 +205,7 @@ export default function JoinTheWaitlist() {
                   <button 
                     type="button" 
                     onClick={() => setStep(2)}
-                    className="px-12 py-4 bg-[#d15000] hover:bg-[#b04300] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center gap-3"
+                    className="px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center gap-3"
                   >
                     Next Step
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -224,7 +224,7 @@ export default function JoinTheWaitlist() {
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#d15000]/10 flex items-center justify-center text-[#d15000] text-sm font-bold shrink-0">2</div>
+                  <div className="w-8 h-8 rounded-full bg-[#E05A00]/10 flex items-center justify-center text-[#E05A00] text-sm font-bold shrink-0">2</div>
                   <h2 className="text-xl font-medium tracking-wide text-black">Background & Intent</h2>
                   <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
@@ -292,7 +292,7 @@ export default function JoinTheWaitlist() {
                     </button>
                     <button 
                       type="button" 
-                      className="flex-1 md:flex-none px-12 py-4 bg-[#d15000] hover:bg-[#b04300] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center justify-center gap-3"
+                      className="flex-1 md:flex-none px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center justify-center gap-3"
                     >
                       Submit Application
                     </button>

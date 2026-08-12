@@ -73,7 +73,7 @@ const GetInTouch = () => {
         <div className="relative w-full lg:w-1/2 flex items-end justify-center lg:justify-start gap-4 lg:gap-6 min-h-[500px] pl-0 lg:pl-6">
           
           {/* Circular Badge */}
-          <div ref={badgeRef} className="absolute top-10 left-[5%] lg:left-[16%] z-20 w-28 h-28 bg-[#9c512d] rounded-full flex items-center justify-center shadow-xl opacity-0">
+          <div ref={badgeRef} className="absolute top-10 left-[5%] lg:left-[16%] z-20 w-28 h-28 bg-[#E05A00] rounded-full flex items-center justify-center shadow-xl opacity-0">
              {/* Inner Leaf */}
              <div className="absolute inset-0 flex items-center justify-center">
                <Leaf size={24} className="text-white" strokeWidth={1.5} />
@@ -109,14 +109,14 @@ const GetInTouch = () => {
           
           {/* Decorative Leaves Background */}
           <div className="absolute -left-10 bottom-0 -z-0 opacity-40 pointer-events-none">
-             <Leaf size={140} className="text-[#9c512d] -rotate-[60deg]" strokeWidth={0.5} />
+             <Leaf size={140} className="text-[#E05A00] -rotate-[60deg]" strokeWidth={0.5} />
           </div>
 
         </div>
 
         {/* Right Side - Content */}
         <div ref={rightContentRef} className="w-full lg:w-1/2 flex flex-col gap-5 lg:pl-6">
-          <div className="flex items-center gap-2 text-[#9c512d] font-semibold text-xs tracking-[0.15em] uppercase opacity-0">
+          <div className="flex items-center gap-2 text-[#E05A00] font-semibold text-xs tracking-[0.15em] uppercase opacity-0">
             <Leaf size={14} />
             <span>ABOUT AYURVEDA</span>
           </div>
@@ -124,14 +124,14 @@ const GetInTouch = () => {
           <h2 className="text-4xl md:text-5xl lg:text-[52px] font-serif text-[#222] leading-[1.15] opacity-0">
             Ayurveda.<br />
             Ancient Wisdom,<br />
-            Timeless <span className="text-[#9c512d]">Healing.</span>
+            Timeless <span className="text-[#E05A00]">Healing.</span>
           </h2>
 
           {/* Decorative Divider */}
           <div className="flex items-center gap-4 my-2 opacity-0">
-            <div className="h-[1px] w-8 bg-[#9c512d]/30"></div>
-            <Flower2 size={16} className="text-[#9c512d]" strokeWidth={1.5} />
-            <div className="h-[1px] w-8 bg-[#9c512d]/30"></div>
+            <div className="h-[1px] w-8 bg-[#E05A00]/30"></div>
+            <Flower2 size={16} className="text-[#E05A00]" strokeWidth={1.5} />
+            <div className="h-[1px] w-8 bg-[#E05A00]/30"></div>
           </div>
 
           <p className="text-gray-600 text-sm md:text-base max-w-lg leading-relaxed opacity-0">
@@ -144,7 +144,7 @@ const GetInTouch = () => {
           <div className="grid grid-cols-4 gap-2 mt-4 max-w-[420px] opacity-0">
             {/* Icon 1 */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#48543b]">
+              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
                 <Leaf size={22} strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[11px] font-semibold text-center leading-tight">Natural<br/>Therapies</span>
@@ -152,7 +152,7 @@ const GetInTouch = () => {
             
             {/* Icon 2 */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#48543b]">
+              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
                 <Heart size={22} strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[11px] font-semibold text-center leading-tight">Holistic<br/>Wellbeing</span>
@@ -160,7 +160,7 @@ const GetInTouch = () => {
 
             {/* Icon 3 */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#48543b]">
+              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
                 <Droplets size={22} strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[11px] font-semibold text-center leading-tight">Authentic<br/>Ayurveda</span>
@@ -168,7 +168,7 @@ const GetInTouch = () => {
 
             {/* Icon 4 */}
             <div className="flex flex-col items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#48543b]">
+              <div className="w-14 h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
                 <Flower2 size={22} strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[11px] font-semibold text-center leading-tight">Inner<br/>Balance</span>
@@ -176,7 +176,7 @@ const GetInTouch = () => {
           </div>
 
           <div className="mt-6 opacity-0">
-            <button className="flex items-center justify-center gap-3 bg-[#9c512d] hover:bg-[#854526] text-white px-8 py-3.5 rounded-[2rem] text-sm font-medium transition-all hover:scale-105 duration-300 shadow-lg group w-fit">
+            <button className="flex items-center justify-center gap-3 bg-[#E05A00] hover:bg-[#C04800] text-white px-8 py-3.5 rounded-[2rem] text-sm font-medium transition-all hover:scale-105 duration-300 shadow-lg group w-fit">
               Discover Our Approach
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </button>
