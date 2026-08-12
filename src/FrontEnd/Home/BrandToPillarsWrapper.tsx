@@ -26,17 +26,15 @@ const BrandToPillarsWrapper = () => {
 
       // 1. Fade out Slide 1 (Importance of Exploration)
       tl.to(".prop-slide-1", {
-        opacity: 0,
+        autoAlpha: 0,
         y: -30,
-        pointerEvents: "none",
         duration: 0.4,
         ease: "power2.inOut"
       })
       // 2. Fade in Slide 2 (Brand Story)
       .to(".prop-slide-2", {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
-        pointerEvents: "auto",
         duration: 0.4,
         ease: "power2.out"
       }, "<0.2");

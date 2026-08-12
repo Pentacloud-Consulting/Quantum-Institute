@@ -171,10 +171,10 @@ const TheWellnessSpectrum = () => {
             {/* The Card */}
             <div 
               ref={cardRef} 
-              className="absolute right-0 w-full max-w-[420px] lg:max-w-[460px] bg-white/30 backdrop-blur-md rounded-[2rem] p-10 lg:p-12 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.15)] pointer-events-auto will-change-transform border border-white/40"
+              className="absolute right-0 w-full max-w-[420px] lg:max-w-[460px] bg-white/30 backdrop-blur-md rounded-[2rem] p-8 lg:p-10 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.15)] pointer-events-auto will-change-transform border border-white/40"
             >
               {/* Fixed height container to prevent jumping during crossfade */}
-              <div className="relative z-10 w-full h-[220px] md:h-[200px]">
+              <div className="relative z-10 w-full h-[150px] md:h-[140px]">
                 {states.map((s, i) => (
                   <div 
                     key={i} 
@@ -188,7 +188,7 @@ const TheWellnessSpectrum = () => {
                         {s.title}
                       </h2>
                     </div>
-                    <div className="desc will-change-transform mt-auto">
+                    <div className="desc will-change-transform">
                       <p className="text-[13px] lg:text-[14px] text-gray-700 leading-relaxed font-sans font-light">
                         {s.desc}
                       </p>

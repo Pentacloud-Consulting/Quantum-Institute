@@ -23,8 +23,9 @@ const GetInTouch = () => {
         ScrollTrigger.create({
           trigger: sectionRef.current,
           start: "center 55%", // Pins slightly lower so top content isn't cut off
-          end: "+=500", // Sticks for 500px of scrolling
+          end: "+=800", // Sticks for 800px of scrolling to allow full curtain effect
           pin: true,
+          pinSpacing: false,
         });
       });
 

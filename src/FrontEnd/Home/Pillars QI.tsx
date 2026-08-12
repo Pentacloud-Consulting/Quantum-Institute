@@ -64,7 +64,7 @@ const pillars = [
 
 const PillarsQI = () => {
   return (
-    <section className="relative w-full h-auto lg:min-h-screen bg-[#faf9f8] py-8 lg:py-24 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
+    <section className="relative w-full bg-[#faf9f8] pt-16 lg:pt-24 pb-12 lg:pb-16 flex flex-col items-center font-sans z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
       
       {/* Custom styles for SVG Path Drawing loops */}
       <style>{`

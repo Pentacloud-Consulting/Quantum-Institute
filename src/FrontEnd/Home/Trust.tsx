@@ -33,7 +33,7 @@ const stats = [
 
 const Trust = () => {
   return (
-    <section className="relative w-full bg-[#fdfcfb] py-12 md:py-32 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
+    <section className="relative w-full bg-[#fdfcfb] pt-8 md:pt-16 pb-8 md:pb-12 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
       
       {/* Animated looping background map overlay */}
       <motion.div 

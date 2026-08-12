@@ -90,7 +90,7 @@ const Proposition = () => {
             </div>
 
             {/* SLIDE 2: BRAND STORY */}
-            <div className="prop-slide-2 col-start-1 row-start-1 flex flex-col w-full h-fit opacity-0 translate-y-8 pointer-events-none z-10">
+            <div className="prop-slide-2 col-start-1 row-start-1 flex flex-col w-full h-fit opacity-0 invisible translate-y-8 z-10">
               {/* Label */}
               <h4 className="text-[#E05A00] text-[8px] lg:text-[10px] font-bold tracking-[0.2em] uppercase mb-1.5 lg:mb-4 border-b border-black/10 pb-1.5 lg:pb-3 inline-block">
                 BRAND STORY (H.E.R.E FOR YOU)
