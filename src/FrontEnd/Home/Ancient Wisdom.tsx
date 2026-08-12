@@ -173,7 +173,7 @@ const AncientWisdom = () => {
           {/* Card 1 */}
           <div ref={box3Ref} className="relative rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden w-full h-[180px] lg:h-full group cursor-pointer shadow-md lg:shadow-lg ring-0 hover:ring-2 hover:ring-inset hover:ring-[#E05A00]/80 transition-all duration-500 lg:opacity-0">
             <video 
-              src="/Videos/Ayurvedic Massage.mp4" 
+              src="/Videos/Ayurvedic-Massage.mp4" 
               autoPlay muted loop playsInline
               className="absolute inset-0 w-full h-full object-cover scale-[1.25] group-hover:scale-[1.35] transition-transform duration-700"
             />
