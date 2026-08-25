@@ -58,7 +58,7 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-5 text-[15px] font-medium tracking-wide whitespace-nowrap"
               >
-                <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Healing</a>
+                <Link href="/healing" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Healing</Link>
                 <span className="text-gray-300 font-light">|</span>
                 <a href="#" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Education</a>
                 <span className="text-gray-300 font-light">|</span>
@@ -148,7 +148,7 @@ const Navbar = () => {
           >
              <div className="flex flex-col gap-4 text-white">
                 <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold mb-1">H.E.R.E Pillars</p>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Healing</a>
+                <Link href="/healing" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-light hover:text-[#E05A00] transition-colors">Healing</Link>
                 <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Education</a>
                 <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Research</a>
                 <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Exploration</a>
