@@ -25,15 +25,15 @@ const AnimatedCounter = ({ from, to, suffix, duration = 2.5 }: { from: number, t
 };
 
 const stats = [
-  { value: 24, suffix: "M+", label: "Lives Touched" },
-  { value: 120, suffix: "+", label: "Countries Reached" },
-  { value: 200, suffix: "K+", label: "Researchers & Learners" },
-  { value: 500, suffix: "+", label: "Ongoing Projects" }
+  { value: "432", suffix: "Hz", label: "Universal Frequency" },
+  { value: "1", suffix: " Field", label: "Unified Consciousness" },
+  { value: "∞", suffix: "", label: "Infinite Potential" },
+  { value: "0", suffix: " Point", label: "Absolute Stillness" }
 ];
 
 const Trust = () => {
   return (
-    <section className="relative w-full bg-[#fdfcfb] pt-8 md:pt-16 pb-8 md:pb-12 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
+    <section className="relative w-full bg-[#fdfcfb] py-4 md:py-8 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
       
       {/* Animated looping background map overlay */}
       <motion.div 
@@ -56,60 +56,35 @@ const Trust = () => {
         }}
       />
 
-      <div className="w-full max-w-[1400px] px-6 md:px-12 lg:px-20 mx-auto relative z-10 flex flex-col items-center">
+      <div className="w-full max-w-[100vw] mx-auto relative z-10 flex flex-col items-center overflow-hidden">
         
-        {/* Header Row */}
-        <div className="w-full relative flex flex-col md:flex-row items-center justify-center mb-8 md:mb-28">
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
-            transition={{ duration: 0.6 }}
-            className="md:absolute left-0 top-1/2 md:-translate-y-1/2 mb-2 md:mb-0 w-full text-center md:text-left"
+        {/* Massive Animated Looping Text */}
+        <div className="w-full relative flex items-center overflow-hidden py-2 md:py-4">
+          {/* Fading Edges for the Marquee */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-[#fdfcfb] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-[#fdfcfb] to-transparent z-20 pointer-events-none"></div>
+
+          <motion.div
+            className="flex whitespace-nowrap"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
-            <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
-              GLOBAL IMPACT
-            </h4>
+            {[...Array(4)].map((_, i) => (
+              <h2 
+                key={i} 
+                className="text-[40px] sm:text-[60px] md:text-[8vw] lg:text-[120px] font-bold tracking-tighter text-zinc-900 pr-8 md:pr-16 flex items-center"
+              >
+                A global awakening for a peaceful tomorrow.
+                <motion.span 
+                  className="text-[#E05A00] text-[40px] md:text-[6vw] lg:text-[100px] flex items-center justify-center w-[1em] h-[1em] mx-4 md:mx-12 leading-none pb-2 md:pb-6"
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                >
+                  ✦
+                </motion.span>
+              </h2>
+            ))}
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center w-full"
-          >
-            <h2 className="text-xl md:text-3xl lg:text-[2rem] font-normal tracking-tight text-[#1a1a1a]">
-              A global movement for a better tomorrow.
-            </h2>
-          </motion.div>
-
-        </div>
-
-        {/* Stats Row */}
-        <div className="w-full grid grid-cols-4 gap-y-0">
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
-              transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
-              className={`flex flex-col items-center justify-center text-center w-full ${
-                idx !== stats.length - 1 ? 'border-r border-[#1a1a1a]/10' : ''
-              } px-1 md:px-4 lg:px-6`}
-            >
-              <div className="h-10 md:h-20 flex items-center justify-center mb-1 md:mb-2">
-                <h3 className="font-light leading-none text-[#222222] text-[15px] sm:text-xl md:text-5xl lg:text-[3.25rem]">
-                  <AnimatedCounter from={0} to={stat.value} suffix={stat.suffix} />
-                </h3>
-              </div>
-              <p className="text-[#1a1a1a]/60 text-[7px] sm:text-[9px] md:text-xs font-semibold tracking-wide">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
         </div>
 
       </div>

@@ -6,57 +6,57 @@ import { Heart, BookOpen, Atom, Compass, Users } from 'lucide-react';
 
 const pillars = [
   {
-    title: "QUANTUM HEALING",
+    title: "HEALING",
     icon: <Heart strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
-        Aligning your core frequency<br/>
-        with the restorative energy<br/>
-        <span className="font-medium text-black">of the universe.</span>
+        Integrating science and<br/>
+        consciousness for<br/>
+        <span className="font-medium text-black">holistic well-being.</span>
       </>
     )
   },
   {
-    title: "INNER STILLNESS",
+    title: "EDUCATION",
     icon: <BookOpen strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
-        Silencing mental noise<br/>
-        to hear the profound whispers<br/>
-        <span className="font-medium text-black">of your true essence.</span>
+        Limitless learning<br/>
+        experiences for every<br/>
+        <span className="font-medium text-black">curious mind.</span>
       </>
     )
   },
   {
-    title: "CONSCIOUS EVOLUTION",
+    title: "RESEARCH",
     icon: <Atom strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
-        Transcending physical limits<br/>
-        to expand your awareness into<br/>
-        <span className="font-medium text-black">higher dimensions.</span>
+        Pioneering discoveries<br/>
+        that shape tomorrow's<br/>
+        <span className="font-medium text-black">world.</span>
       </>
     )
   },
   {
-    title: "SOUL RESONANCE",
+    title: "EXPLORATION",
     icon: <Compass strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
-        Harmonizing your spirit<br/>
-        with the unified field of<br/>
-        <span className="font-medium text-black">absolute love and peace.</span>
+        Pushing boundaries to<br/>
+        explore the unknown<br/>
+        <span className="font-medium text-black">with purpose.</span>
       </>
     )
   },
   {
-    title: "SACRED UNITY",
+    title: "COMMUNITY",
     icon: <Users strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
-        Dissolving the illusion of<br/>
-        separation to merge with<br/>
-        <span className="font-medium text-black">the collective consciousness.</span>
+        Uniting global minds<br/>
+        to create meaningful<br/>
+        <span className="font-medium text-black">impact together.</span>
       </>
     )
   }
@@ -64,7 +64,8 @@ const pillars = [
 
 const PillarsQI = () => {
   return (
-    <>
+    <section className="relative w-full bg-[#faf9f8] pt-16 lg:pt-24 pb-12 lg:pb-16 flex flex-col items-center font-sans z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
+      
       {/* Custom styles for SVG Path Drawing loops */}
       <style>{`
         .animate-draw-icon {
@@ -78,8 +79,8 @@ const PillarsQI = () => {
           100% { stroke-dashoffset: 120; }
         }
       `}</style>
-      <section className="relative w-full bg-[#faf9f8] pt-16 lg:pt-24 pb-12 lg:pb-16 flex flex-col items-center font-sans z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
-        <div className="w-full max-w-[1600px] px-6 md:px-12 mx-auto flex flex-col items-center">
+
+      <div className="w-full max-w-[1600px] px-6 md:px-12 mx-auto flex flex-col items-center">
         
         {/* Header */}
         <motion.div 
@@ -90,10 +91,10 @@ const PillarsQI = () => {
           className="flex flex-col items-center text-center mb-10 lg:mb-24"
         >
           <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-2 lg:mb-4">
-            PILLARS OF SOUL PEACE
+            PILLARS OF QUANTUM INSTITUTE
           </h4>
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-black">
-            Building spiritual harmony on five pillars.
+            Building the future on five pillars.
           </h2>
         </motion.div>
 
@@ -150,7 +151,6 @@ const PillarsQI = () => {
 
       </div>
     </section>
-    </>
   );
 };
 

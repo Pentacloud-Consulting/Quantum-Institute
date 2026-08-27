@@ -17,18 +17,6 @@ const GetInTouch = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pinning logic
-      let mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "center 55%", // Pins slightly lower so top content isn't cut off
-          end: "+=800", // Sticks for 800px of scrolling to allow full curtain effect
-          pin: true,
-          pinSpacing: false,
-        });
-      });
-
       // Entrance Animations
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -69,8 +57,8 @@ const GetInTouch = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full bg-[#fbf9f4]">
-      <section ref={sectionRef as any} className="relative w-full py-12 lg:py-24 overflow-hidden z-20">
+    <div ref={containerRef} className="w-full bg-white">
+      <section ref={sectionRef as any} className="relative w-full py-12 lg:py-24 overflow-hidden z-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8 flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         
         {/* Left Side - Images */}
@@ -94,7 +82,7 @@ const GetInTouch = () => {
           </div>
 
           {/* Arch Image (Left) */}
-          <div ref={leftImage1Ref} className="relative w-[45%] max-w-[260px] aspect-[2.8/4] rounded-t-[500px] overflow-hidden shadow-xl mt-10 lg:mt-16 z-10 border-4 border-[#fbf9f4] opacity-0">
+          <div ref={leftImage1Ref} className="relative w-[45%] max-w-[260px] aspect-[2.8/4] rounded-t-[500px] overflow-hidden shadow-xl mt-10 lg:mt-16 z-10 border-4 border-white opacity-0">
             <img 
               src="/Home/The Wellness Spectrum/Holistic & Integrative Wellness.webp" 
               alt="Ayurvedic Herbs"
@@ -103,9 +91,9 @@ const GetInTouch = () => {
           </div>
 
           {/* Pill Image (Right) */}
-          <div ref={leftImage2Ref} className="relative w-[45%] max-w-[260px] aspect-[1/2.2] rounded-full overflow-hidden shadow-xl mb-4 lg:mb-8 z-10 border-4 border-[#fbf9f4] opacity-0">
+          <div ref={leftImage2Ref} className="relative w-[45%] max-w-[260px] aspect-[1/2.2] rounded-full overflow-hidden shadow-xl mb-4 lg:mb-8 z-10 border-4 border-white opacity-0">
             <img 
-              src="/Home/The Wellness Spectrum/Meditation, Breathwork & Movement.webp" 
+              src="/Peace/Peace -7.webp" 
               alt="Meditation and Wellness"
               className="w-full h-full object-cover object-center"
             />

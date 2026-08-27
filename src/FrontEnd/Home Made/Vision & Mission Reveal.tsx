@@ -62,7 +62,7 @@ const VisionMissionReveal = () => {
 
   return (
     <div className="relative w-full flex flex-col">
-      <section ref={sectionRef} className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center pt-20 lg:pt-32 pb-8 lg:pb-16 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden z-20 lg:shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <section ref={sectionRef} className="relative w-full min-h-screen bg-white text-black flex flex-col items-center justify-center pt-20 lg:pt-32 pb-8 lg:pb-16 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden z-20">
         {/* Background Glow */}
         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
           <div className="w-[800px] h-[800px] bg-[#E05A00] opacity-5 rounded-full blur-[120px]" />
@@ -187,13 +187,13 @@ const VisionMissionReveal = () => {
                   className="relative w-[45%] sm:w-[40%] lg:w-[45%] max-w-[200px] lg:max-w-[400px] aspect-[4/5] flex items-center justify-center lg:mx-0 mx-auto"
                 >
                   {/* Thin orange border frame */}
-                  <div className="absolute inset-0 border border-[#E05A00] opacity-40 z-0"></div>
+                  <div className="absolute inset-0 border border-[#E05A00] opacity-40 z-0 rounded-3xl"></div>
                   
                   {/* The Images */}
                   <motion.img 
                     src="/Home/Vision Mission Hero/Vision Hero.webp"
                     alt="Vision"
-                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none"
+                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none rounded-2xl"
                     initial={false}
                     animate={{ opacity: step === 1 ? 1 : 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -201,7 +201,7 @@ const VisionMissionReveal = () => {
                   <motion.img 
                     src="/Home/Vision Mission Hero/Mission Hero.webp"
                     alt="Mission"
-                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none"
+                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none rounded-2xl"
                     initial={false}
                     animate={{ opacity: step === 2 ? 1 : 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
