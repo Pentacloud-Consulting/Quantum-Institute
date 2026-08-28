@@ -466,11 +466,11 @@ const Hero = () => {
         <div className="flex-1 hidden md:block"></div>
 
         <div className="flex items-center justify-center gap-3 md:gap-4 pointer-events-auto flex-1">
-          <button onClick={handlePrev} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
-            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white" />
+          <button onClick={handlePrev} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
           </button>
-          <button onClick={handleNext} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group">
-            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white" />
+          <button onClick={handleNext} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
           </button>
         </div>
 
