@@ -1,6 +1,68 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const PeaceView = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play reverse play reverse",
+        }
+      });
+
+      // Circle scales up and fades in
+      tl.fromTo(circleRef.current,
+        { scale: 0.5, opacity: 0, y: -50 },
+        { scale: 1, opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
+        0
+      );
+
+      if (textContentRef.current && textContentRef.current.children.length >= 4) {
+        const children = textContentRef.current.children;
+        
+        // Heading comes from LEFT
+        tl.fromTo(children[0],
+          { x: -100, opacity: 0 },
+          { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+          0.3
+        )
+        // Paragraph comes from RIGHT
+        .fromTo(children[1],
+          { x: 100, opacity: 0 },
+          { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+          0.4
+        )
+        // Button comes from UP (drops down)
+        .fromTo(children[2],
+          { y: -50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.5)" },
+          0.5
+        )
+        // Bottom Grid comes from DOWN (rises up)
+        .fromTo(children[3],
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+          0.6
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
       <style>
@@ -17,9 +79,9 @@ const PeaceView = () => {
           }
         `}
       </style>
-      <section className="relative w-full min-h-[850px] bg-white overflow-hidden flex flex-col font-sans">
+      <section ref={sectionRef} className="relative w-full min-h-[850px] bg-white overflow-hidden flex flex-col font-sans">
       {/* Circle Container */}
-      <div className="absolute top-[80px] sm:top-[100px] left-1/2 w-[1000px] h-[1000px] z-0 pointer-events-none"
+      <div ref={circleRef} className="absolute top-[80px] sm:top-[100px] left-1/2 w-[1000px] h-[1000px] z-0 pointer-events-none opacity-0 will-change-transform"
            style={{ transform: 'translateX(-50%)' }}>
         <div className="w-full h-full relative animate-spin-slow">
           {[...Array(12)].map((_, i) => (
@@ -41,22 +103,24 @@ const PeaceView = () => {
       <div className="absolute top-[370px] left-0 w-full h-[150px] bg-gradient-to-b from-white/0 to-white z-0 pointer-events-none"></div>
 
       {/* Text Content Layer */}
-      <div className="relative z-10 w-full max-w-4xl px-6 mx-auto flex flex-col items-center text-center mt-[320px] sm:mt-[380px]">
+      <div ref={textContentRef} className="relative z-10 w-full max-w-4xl px-6 mx-auto flex flex-col items-center text-center mt-[320px] sm:mt-[380px]">
         
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-zinc-900 mb-4 leading-[1.1] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-zinc-900 mb-4 leading-[1.1] tracking-tight opacity-0">
           Experience Profound <br className="hidden sm:block" /> 
           <span className="text-[#E05A00]">Soul Peace</span> With Us
         </h2>
         
-        <p className="text-zinc-500 mb-8 max-w-xl text-base font-light leading-relaxed">
+        <p className="text-zinc-500 mb-8 max-w-xl text-base font-light leading-relaxed opacity-0">
           Awaken your highest self and cultivate a lasting sense of tranquility that resonates through every aspect of your life.
         </p>
         
-        <button className="bg-[#E05A00] text-white px-6 py-3 rounded-full font-medium text-base hover:bg-[#c24e00] transition-all hover:scale-105 flex items-center gap-2 mb-12 shadow-[0_10px_25px_rgba(224,90,0,0.3)]">
-          Start Your Journey <span className="text-lg">→</span>
-        </button>
+        <div className="opacity-0">
+          <button className="bg-[#E05A00] text-white px-6 py-3 rounded-full font-medium text-base hover:bg-[#c24e00] transition-all hover:scale-105 flex items-center gap-2 mb-12 shadow-[0_10px_25px_rgba(224,90,0,0.3)]">
+            Start Your Journey <span className="text-lg">→</span>
+          </button>
+        </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 w-full pt-12 pb-8 border-t border-zinc-100">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 w-full pt-12 pb-8 border-t border-zinc-100 opacity-0">
           <div className="flex flex-col items-center text-center px-4">
             <h4 className="text-zinc-800 font-serif text-xl mb-3">Mind & Soul Alignment</h4>
             <p className="text-zinc-500 text-sm font-light leading-relaxed">Synchronize your inner energy<br/>to achieve true serenity.</p>

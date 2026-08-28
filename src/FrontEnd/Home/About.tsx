@@ -21,33 +21,36 @@ const About = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top 80%", // Start slightly earlier
+          toggleActions: "play reverse play reverse", // Play on enter (down), Reverse on leave (down), Play on enter (up), Reverse on leave (up)
         }
       });
 
+      // Arch image comes from the LEFT
       tl.fromTo(leftImage1Ref.current, 
-        { y: '10vh', opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
+        { x: '-10vw', opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
         0
       )
+      // Pill video comes from the BOTTOM
       .fromTo(leftImage2Ref.current, 
-        { y: '-10vh', opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
-        0.1
-      )
-      .fromTo(badgeRef.current, 
-        { scale: 0, opacity: 0, rotation: -45 }, 
-        { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.5)" }, 
+        { y: '10vh', opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
         0.2
+      )
+      // Badge pops in with rotation
+      .fromTo(badgeRef.current, 
+        { scale: 0, opacity: 0, rotation: -90 }, 
+        { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "back.out(1.5)" }, 
+        0.4
       );
 
-      // Animate the right side content sequentially
+      // Right side content staggers in from the RIGHT
       if (rightContentRef.current) {
         tl.fromTo(rightContentRef.current.children,
-          { y: '5vh', opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
-          0.2
+          { x: '10vw', opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+          0.3
         );
       }
 
@@ -98,7 +101,9 @@ const About = () => {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover object-center"
+              disablePictureInPicture
+              disableRemotePlayback
+              className="w-full h-full object-cover object-center pointer-events-none"
             />
           </div>
           
@@ -186,3 +191,4 @@ const About = () => {
 };
 
 export default About;
+

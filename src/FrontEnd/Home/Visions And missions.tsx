@@ -40,6 +40,8 @@ const VisionsAndMissions = () => {
   const circleContainerRef = useRef<HTMLDivElement>(null);
   const circleRotRef = useRef<HTMLDivElement>(null);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const circleEntranceRef = useRef<HTMLDivElement>(null);
+  const textEntranceRef = useRef<HTMLDivElement>(null);
   
   // Independent rotation state
   const rotState = useRef({ speed: 1 });
@@ -63,10 +65,9 @@ const VisionsAndMissions = () => {
 
   // GSAP ScrollTrigger Timeline
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
+    const mm = gsap.matchMedia(sectionRef);
 
-      mm.add({
+    mm.add({
         isDesktop: "(min-width: 1024px)",
         isMobile: "(max-width: 1023px)"
       }, (context) => {
@@ -82,6 +83,29 @@ const VisionsAndMissions = () => {
         gsap.set(textRefs.current[0], { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
         gsap.set(textRefs.current[1], { opacity: 0, y: 40, scale: 0.95, filter: "blur(4px)" });
 
+        // 1. Entrance Animation Timeline (Triggers when entering section)
+        const entranceTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%", // Start early
+            toggleActions: "play reverse play reverse", // Animate from both top and bottom
+          }
+        });
+
+        // Circle container slides in from LEFT
+        entranceTl.fromTo(circleEntranceRef.current,
+          { x: "-15vw", opacity: 0 },
+          { x: "0vw", opacity: 1, duration: 1.2, ease: "power3.out" },
+          0
+        )
+        // Text container slides in from RIGHT
+        .fromTo(textEntranceRef.current,
+          { x: "15vw", opacity: 0 },
+          { x: "0vw", opacity: 1, duration: 1.2, ease: "power3.out" },
+          0.2
+        );
+
+        // 2. Scrub Timeline (Triggers when pinned)
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -111,13 +135,13 @@ const VisionsAndMissions = () => {
         tl.to({}, { duration: 1 }, startTime + 2);
 
       });
-    }, sectionRef);
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full h-[100vh] min-h-[700px] bg-[#F5F3EE] border-b border-zinc-200 overflow-hidden font-sans">
+    <div className="w-full bg-[#F5F3EE]">
+      <section ref={sectionRef} className="relative w-full h-[100vh] min-h-[700px] border-b border-zinc-200 overflow-hidden font-sans">
       
       {/* Background Subtle Grain/Texture (Optional minimal feel) */}
       <div className="absolute inset-0 opacity-[0.02] z-0 pointer-events-none mix-blend-multiply">
@@ -125,7 +149,7 @@ const VisionsAndMissions = () => {
       </div>
 
       {/* Circular Image Composition */}
-      <div className="absolute inset-0 flex items-start lg:items-center justify-center pt-24 lg:pt-0 z-10 pointer-events-none">
+      <div ref={circleEntranceRef} className="absolute inset-0 flex items-start lg:items-center justify-center pt-24 lg:pt-0 z-10 pointer-events-none opacity-0 will-change-transform">
         <div ref={circleContainerRef} className="relative w-[75vw] md:w-[500px] lg:w-[450px] xl:w-[550px] 2xl:w-[650px] aspect-square rounded-full will-change-transform">
           
           <div ref={circleRotRef} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
@@ -143,8 +167,17 @@ const VisionsAndMissions = () => {
           
           {/* Central Quantum Visual Core (Now un-rotated) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
-            <img src="/Peace/Peace -5.webp" className="w-full h-full object-cover scale-110" alt="" />
-            <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay"></div>
+            <video 
+              src="/Videos/PROPOSITION Video.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              className="w-full h-full object-cover scale-110 pointer-events-none" 
+            />
+            <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
           </div>
           
         </div>
@@ -152,8 +185,8 @@ const VisionsAndMissions = () => {
 
       {/* Editorial Content Container */}
       <div className="absolute bottom-0 lg:top-0 left-0 w-full h-[55vh] lg:h-full z-20 pointer-events-none">
-        
-        {/* Vision State */}
+        <div ref={textEntranceRef} className="absolute inset-0 w-full h-full opacity-0 will-change-transform">
+          {/* Vision State */}
         <div 
           ref={el => { textRefs.current[0] = el; }} 
           className="absolute right-0 w-full lg:w-[55%] top-[50%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform px-6 sm:px-12 lg:px-16 xl:px-24"
@@ -226,10 +259,12 @@ const VisionsAndMissions = () => {
             </div>
           </div>
         </div>
+        </div>
 
       </div>
 
-    </section>
+      </section>
+    </div>
   );
 };
 

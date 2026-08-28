@@ -1,8 +1,14 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, BookOpen, Atom, Compass, Users } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const pillars = [
   {
@@ -63,6 +69,50 @@ const pillars = [
 ];
 
 const PillarsQI = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+          toggleActions: "play reverse play reverse",
+        }
+      });
+
+      // Header comes from LEFT
+      if (headerRef.current) {
+        tl.fromTo(headerRef.current,
+          { x: -100, opacity: 0 },
+          { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+          0
+        );
+      }
+
+      // Grid items come from different directions
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.pillar-card');
+        
+        // 1: From Left
+        tl.fromTo(cards[0], { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.2);
+        // 2: From Bottom
+        tl.fromTo(cards[1], { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.3);
+        // 3: From Top
+        tl.fromTo(cards[2], { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.4);
+        // 4: From Bottom
+        tl.fromTo(cards[3], { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.5);
+        // 5: From Right
+        tl.fromTo(cards[4], { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.6);
+      }
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
       {/* Custom styles for SVG Path Drawing loops */}
@@ -78,16 +128,13 @@ const PillarsQI = () => {
           100% { stroke-dashoffset: 120; }
         }
       `}</style>
-      <section className="relative w-full bg-[#faf9f8] pt-16 lg:pt-24 pb-12 lg:pb-16 flex flex-col items-center font-sans z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
+      <section ref={sectionRef} className="relative w-full bg-[#faf9f8] pt-16 lg:pt-24 pb-12 lg:pb-16 flex flex-col items-center font-sans z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] overflow-hidden">
         <div className="w-full max-w-[1600px] px-6 md:px-12 mx-auto flex flex-col items-center">
         
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-center text-center mb-10 lg:mb-24"
+        <div 
+          ref={headerRef}
+          className="flex flex-col items-center text-center mb-10 lg:mb-24 opacity-0"
         >
           <h4 className="text-[#E05A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-2 lg:mb-4">
             PILLARS OF SOUL PEACE
@@ -95,18 +142,14 @@ const PillarsQI = () => {
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-black">
             Building spiritual harmony on five pillars.
           </h2>
-        </motion.div>
+        </div>
 
         {/* Pillars Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 w-full relative gap-y-10 lg:gap-y-0 gap-x-2 lg:gap-x-0">
+        <div ref={gridRef} className="grid grid-cols-2 lg:grid-cols-5 w-full relative gap-y-10 lg:gap-y-0 gap-x-2 lg:gap-x-0">
           {pillars.map((pillar, index) => (
-            <motion.div 
+            <div 
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-              className={`relative flex flex-col items-center text-center px-1 sm:px-4 ${
+              className={`pillar-card relative flex flex-col items-center text-center px-1 sm:px-4 opacity-0 ${
                 index !== pillars.length - 1 ? 'lg:border-r lg:border-gray-200' : ''
               } ${index === 4 ? 'col-span-2 lg:col-span-1' : ''}`}
             >
@@ -144,7 +187,7 @@ const PillarsQI = () => {
                 {pillar.description}
               </p>
 
-            </motion.div>
+            </div>
           ))}
         </div>
 

@@ -14,14 +14,14 @@ const QuantumView = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Staggered fade in for the panels
+      // 1. Staggered fade in for the panels (Triggers early, doesn't fade out on scroll down)
       gsap.fromTo(".value-panel",
         { opacity: 0, y: 30 },
         {
           scrollTrigger: {
             trigger: ".values-section",
-            start: "top 60%",
-            toggleActions: "play reverse play reverse"
+            start: "top 85%", // Triggers much earlier ("coming fast")
+            toggleActions: "play none none reverse" // Doesn't fade out when scrolling past
           },
           opacity: 1,
           y: 0,
@@ -37,8 +37,8 @@ const QuantumView = () => {
         {
           scrollTrigger: {
             trigger: ".values-section",
-            start: "top 50%",
-            toggleActions: "play reverse play reverse"
+            start: "top 80%", // Triggers earlier
+            toggleActions: "play none none reverse"
           },
           opacity: 1,
           duration: 0.8,

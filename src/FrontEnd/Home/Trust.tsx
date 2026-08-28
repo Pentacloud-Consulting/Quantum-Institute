@@ -2,6 +2,12 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, animate, useInView } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const AnimatedCounter = ({ from, to, suffix, duration = 2.5 }: { from: number, to: number, suffix: string, duration?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -32,8 +38,34 @@ const stats = [
 ];
 
 const Trust = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const marqueeWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+          toggleActions: "play reverse play reverse",
+        }
+      });
+
+      // Marquee wrapper drops in from Top
+      if (marqueeWrapperRef.current) {
+        tl.fromTo(marqueeWrapperRef.current,
+          { y: -100, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" },
+          0
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative w-full bg-[#fdfcfb] py-4 md:py-8 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
+    <section ref={sectionRef} className="relative w-full bg-[#fdfcfb] py-4 md:py-8 flex flex-col items-center justify-center font-sans z-20 overflow-hidden">
       
       {/* Animated looping background map overlay */}
       <motion.div 
@@ -59,7 +91,7 @@ const Trust = () => {
       <div className="w-full max-w-[100vw] mx-auto relative z-10 flex flex-col items-center overflow-hidden">
         
         {/* Massive Animated Looping Text */}
-        <div className="w-full relative flex items-center overflow-hidden py-2 md:py-4">
+        <div ref={marqueeWrapperRef} className="w-full relative flex items-center overflow-hidden py-2 md:py-4 opacity-0">
           {/* Fading Edges for the Marquee */}
           <div className="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-[#fdfcfb] to-transparent z-20 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-[#fdfcfb] to-transparent z-20 pointer-events-none"></div>
