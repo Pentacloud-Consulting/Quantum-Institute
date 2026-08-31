@@ -95,13 +95,13 @@ const QuantumView = () => {
         />
 
         {/* Layer 2: Stencil Mask */}
-        <div className="relative z-10 bg-white mix-blend-screen w-full flex items-center justify-center pt-4 md:pt-8 pb-6 md:pb-10">
+        <div className="relative z-10 bg-white mix-blend-screen w-full flex items-center justify-center pt-6 md:pt-8 pb-8 md:pb-10">
           
-          <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 px-4 w-full">
+          <div className="flex items-center justify-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 px-2 w-full">
             {letters.map((char, i) => (
               <span 
                 key={i}
-                className="text-black text-[15vw] md:text-[18vw] leading-none uppercase tracking-tighter"
+                className="text-black text-[13.5vw] sm:text-[15vw] md:text-[18vw] leading-none uppercase tracking-tighter"
                 style={{ 
                   fontFamily: 'Impact, "Arial Black", sans-serif',
                   fontWeight: 900
@@ -116,13 +116,13 @@ const QuantumView = () => {
       </section>
 
       {/* 2. The GSAP Value Panels Accordion */}
-      <section className="values-section relative w-full h-auto bg-white z-20 pb-20 md:pb-28 px-4 md:px-8">
-        <div className="flex flex-col md:flex-row gap-4 md:gap-2 h-[80vh] md:h-[55vh]">
+      <section className="values-section relative w-full h-auto bg-white z-20 pb-12 md:pb-28 px-4 md:px-8">
+        <div className="grid grid-cols-2 md:flex md:flex-row gap-3 md:gap-2 h-auto md:h-[55vh]">
           
           {panels.map((panel, idx) => (
             <div 
               key={idx} 
-              className="value-panel relative flex flex-col items-center justify-end h-full overflow-hidden flex-1 hover:flex-[1.5] lg:hover:flex-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group rounded-xl md:rounded-none"
+              className={`value-panel relative flex flex-col items-center justify-center md:justify-end h-[160px] sm:h-[200px] md:h-full overflow-hidden w-full md:flex-1 md:hover:flex-[1.5] lg:hover:flex-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group rounded-2xl md:rounded-none ${idx === panels.length - 1 ? 'col-span-2 md:col-auto' : ''}`}
             >
               {/* Parallax Background */}
               <div className="absolute inset-[-15%] z-0 panel-bg">
@@ -134,10 +134,10 @@ const QuantumView = () => {
               </div>
               
               {/* Hover Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-100 group-hover:opacity-30 transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-100 md:opacity-100 group-hover:opacity-30 transition-opacity duration-700"></div>
               
               {/* Bottom Badge Text */}
-              <span className="panel-text relative z-20 text-white font-bold uppercase tracking-[0.2em] text-[10px] md:text-[12px] font-sans opacity-90 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-500 mb-8 md:mb-12 whitespace-nowrap bg-black/40 backdrop-blur-md px-4 py-2 rounded-md shadow-[0_4px_30px_rgba(0,0,0,0.2)] border border-white/20 w-auto inline-block">
+              <span className="panel-text relative z-20 text-white font-bold uppercase tracking-[0.2em] text-[11px] md:text-[12px] font-sans opacity-100 md:opacity-90 md:group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-500 mb-0 md:mb-12 whitespace-nowrap bg-black/40 backdrop-blur-md px-4 py-2 rounded-md shadow-[0_4px_30px_rgba(0,0,0,0.2)] border border-white/20 w-auto inline-block">
                 {panel.word}
               </span>
             </div>

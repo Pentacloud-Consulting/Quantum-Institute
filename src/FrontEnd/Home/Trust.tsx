@@ -104,11 +104,11 @@ const Trust = () => {
             {[...Array(4)].map((_, i) => (
               <h2 
                 key={i} 
-                className="text-[40px] sm:text-[60px] md:text-[8vw] lg:text-[120px] font-bold tracking-tighter text-zinc-900 pr-8 md:pr-16 flex items-center"
+                className="text-[24px] sm:text-[40px] md:text-[8vw] lg:text-[120px] font-bold tracking-tighter text-zinc-900 pr-6 sm:pr-8 md:pr-16 flex items-center"
               >
                 A global awakening for a peaceful tomorrow.
                 <motion.span 
-                  className="text-[#E05A00] text-[40px] md:text-[6vw] lg:text-[100px] flex items-center justify-center w-[1em] h-[1em] mx-4 md:mx-12 leading-none pb-2 md:pb-6"
+                  className="text-[#E05A00] text-[24px] sm:text-[40px] md:text-[6vw] lg:text-[100px] flex items-center justify-center w-[1em] h-[1em] mx-3 sm:mx-4 md:mx-12 leading-none pb-1 sm:pb-2 md:pb-6"
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 >

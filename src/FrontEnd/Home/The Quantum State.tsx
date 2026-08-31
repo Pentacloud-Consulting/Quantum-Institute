@@ -185,7 +185,7 @@ const TheQuantumState = () => {
 
         {/* Text Area Placed Center with Video Background */}
         <div className="relative z-20 w-full max-w-4xl mx-auto flex flex-col items-center text-center px-4 pointer-events-none">
-          <div ref={centerBoxRef} className="relative pointer-events-auto flex flex-col items-center py-12 px-10 md:px-16 rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 overflow-hidden opacity-0">
+          <div ref={centerBoxRef} className="relative pointer-events-auto flex flex-col items-center py-8 px-6 sm:py-12 sm:px-10 md:px-16 rounded-[2rem] sm:rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 overflow-hidden opacity-0">
             
             {/* Background Video */}
             <video 
@@ -205,13 +205,13 @@ const TheQuantumState = () => {
 
             {/* Text Content */}
             <div className="inner-content relative z-10 flex flex-col items-center">
-              <button className="px-6 py-2.5 border border-[#E05A00]/30 rounded-full text-[#E05A00] text-[14px] font-bold mb-6 hover:bg-[#E05A00] hover:text-white transition-colors bg-white/90 backdrop-blur-md shadow-[0_4px_14px_rgba(224,90,0,0.1)] flex items-center justify-center opacity-0">
+              <button className="px-5 py-2 sm:px-6 sm:py-2.5 border border-[#E05A00]/30 rounded-full text-[#E05A00] text-[12px] sm:text-[14px] font-bold mb-4 sm:mb-6 hover:bg-[#E05A00] hover:text-white transition-colors bg-white/90 backdrop-blur-md shadow-[0_4px_14px_rgba(224,90,0,0.1)] flex items-center justify-center opacity-0">
                 The Quantum State
               </button>
-              <h2 className="text-[32px] sm:text-[40px] md:text-[50px] font-bold text-zinc-900 mb-2 tracking-tight leading-tight max-w-2xl drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] opacity-0">
+              <h2 className="text-[24px] sm:text-[40px] md:text-[50px] font-bold text-zinc-900 mb-2 tracking-tight leading-tight max-w-2xl drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] opacity-0">
                 Elevate your frequency and awaken
               </h2>
-              <p className="text-[24px] sm:text-[30px] md:text-[36px] font-bold text-[#E05A00] tracking-tight leading-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] opacity-0">
+              <p className="text-[18px] sm:text-[30px] md:text-[36px] font-bold text-[#E05A00] tracking-tight leading-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] opacity-0">
                 to a state of profound soul peace
               </p>
             </div>
