@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, BookOpen, Atom, Compass, Users } from 'lucide-react';
+import { Heart, Feather, Atom, Infinity as InfinityIcon, Users } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -24,7 +24,7 @@ const pillars = [
   },
   {
     title: "INNER STILLNESS",
-    icon: <BookOpen strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
+    icon: <Feather strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Silencing mental noise<br/>
@@ -46,7 +46,7 @@ const pillars = [
   },
   {
     title: "SOUL RESONANCE",
-    icon: <Compass strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
+    icon: <InfinityIcon strokeWidth={1.5} className="w-5 h-5 lg:w-8 lg:h-8 text-black animate-draw-icon" />,
     description: (
       <>
         Harmonizing your spirit<br/>

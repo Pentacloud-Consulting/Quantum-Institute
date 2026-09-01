@@ -67,20 +67,20 @@ const QuantumView = () => {
   }, []);
 
   const panels = [
-    { word: "Presence", img: "/OG%20IMAGES/q1.png" },
-    { word: "Harmony", img: "/OG%20IMAGES/q2.png" },
-    { word: "Flow", img: "/OG%20IMAGES/q4.png" },
-    { word: "Awakening", img: "/OG%20IMAGES/q5.png" },
-    { word: "Connection", img: "/OG%20IMAGES/q6.png" }, // Fallbacks in case "Quantum Hero" files aren't in this project
-    { word: "Evolution", img: "/OG%20IMAGES/q8.png" },
-    { word: "Transcendence", img: "/OG%20IMAGES/q1.png" }
+    { word: "Access Point", img: "/OG%20IMAGES/q1.png" },
+    { word: "Access Render", img: "/OG%20IMAGES/q2.png" },
+    { word: "The Agorà", img: "/OG%20IMAGES/q4.png" },
+    { word: "The Elysium", img: "/OG%20IMAGES/q5.png" },
+    { word: "Architectural Render", img: "/OG%20IMAGES/q6.png" },
+    { word: "The Canyon", img: "/OG%20IMAGES/q8.png" },
+    { word: "Access Point", img: "/OG%20IMAGES/q1.png" }
   ];
 
   return (
     <div ref={containerRef} className="w-full flex flex-col bg-white border-b border-zinc-200">
       
       {/* 1. The QUANTUM Stencil Cutout */}
-      <section className="relative w-full bg-white overflow-hidden flex items-center justify-center font-sans z-20">
+      <section className="hidden relative w-full bg-white overflow-hidden items-center justify-center font-sans z-20">
         
         {/* Layer 1: Background Video */}
         <video 

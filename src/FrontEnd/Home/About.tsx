@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { Leaf, ArrowRight, Flower2, Heart, Droplets } from 'lucide-react';
+import { Leaf, ArrowRight, Flower2, Heart, Droplets, Sun, Feather } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -145,7 +145,7 @@ const About = () => {
             {/* Icon 1 */}
             <div className="flex flex-col items-center gap-1.5 lg:gap-3">
               <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
-                <Leaf size={16} className="lg:w-[22px] lg:h-[22px]" strokeWidth={1.5} />
+                <Sun size={16} className="lg:w-[22px] lg:h-[22px]" strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[9px] lg:text-[11px] font-semibold text-center leading-tight">Soul<br/>Awakening</span>
             </div>
@@ -161,7 +161,7 @@ const About = () => {
             {/* Icon 3 */}
             <div className="flex flex-col items-center gap-1.5 lg:gap-3">
               <div className="w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-[#f1ebd9] border border-black/5 flex items-center justify-center text-[#E05A00]">
-                <Droplets size={16} className="lg:w-[22px] lg:h-[22px]" strokeWidth={1.5} />
+                <Feather size={16} className="lg:w-[22px] lg:h-[22px]" strokeWidth={1.5} />
               </div>
               <span className="text-gray-600 text-[9px] lg:text-[11px] font-semibold text-center leading-tight">Inner<br/>Stillness</span>
             </div>

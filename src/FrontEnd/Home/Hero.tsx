@@ -13,17 +13,17 @@ import Lenis from 'lenis';
 import { useRouter } from 'next/navigation';
 
 const VALUES = [
-  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/OG%20IMAGES/q1.png" },
-  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/OG%20IMAGES/q2.png" },
-  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/OG%20IMAGES/q3.png" },
-  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/OG%20IMAGES/q4.png" },
-  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/OG%20IMAGES/q5.png" },
-  { id: 6, title: "FUTURE\nIMPACT", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/OG%20IMAGES/q6.png" },
-  { id: 7, title: "EXPAND\nHORIZONS", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/OG%20IMAGES/q7.png" },
-  { id: 8, title: "ELEVATE\nCONSCIOUSNES", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/OG%20IMAGES/q8.png" },
-  { id: 9, title: "GLOBAL\nSYNERGY", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/OG%20IMAGES/q9.png" },
-  { id: 10, title: "QUANTUM\nMOVEMENT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/OG%20IMAGES/q1.png" },
-  { id: 11, title: "INFINITE\nPOSSIBILITIES", subtitle: "Where science meets wonder", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/OG%20IMAGES/q2.png" },
+  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Home/Quantum%20Hero/Quantum%20Hero%20-%2010.webp" },
+  { id: 2, title: "ACCESS\nPOINT", subtitle: "Architectural Render", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/OG%20IMAGES/q2.png" },
+  { id: 3, title: "EXTERIOR\nVIEW", subtitle: "Architectural Render", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/OG%20IMAGES/q3.png" },
+  { id: 4, title: "THE\nAGORÀ", subtitle: "Interior View in Meditation Arrangement", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/OG%20IMAGES/q4.png" },
+  { id: 5, title: "THE\nELYSIUM", subtitle: "Interior View for Healing and Relaxation", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/OG%20IMAGES/q5.png" },
+  { id: 6, title: "ARCHITECTURAL\nRENDER", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/OG%20IMAGES/q6.png" },
+  { id: 7, title: "DESERT\nENVIRONMENT", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/OG%20IMAGES/q7.png" },
+  { id: 8, title: "INTERIOR\nCANYON", subtitle: "Interior View of the Canyon", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/OG%20IMAGES/q8.png" },
+  { id: 9, title: "THE\nOASIS", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/OG%20IMAGES/q9.png" },
+  { id: 10, title: "ACCESS\nPOINT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/OG%20IMAGES/q1.png" },
+  { id: 11, title: "ACCESS\nPOINT", subtitle: "Architectural Render", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/OG%20IMAGES/q2.png" },
 ];
 
 const renderTitle = (title: string) => {
@@ -352,30 +352,7 @@ const Hero = () => {
     }
   }, [reverseCloneData]);
 
-  useEffect(() => {
-    if (tweenRef.current) tweenRef.current.kill();
-    gsap.set(progressRef.current, { scaleX: 0 });
-    
-    tweenRef.current = gsap.to(progressRef.current, {
-      scaleX: 1,
-      duration: 6,
-      ease: "linear",
-      onComplete: () => handleNextRef.current()
-    });
-
-    return () => {
-      if (tweenRef.current) tweenRef.current.kill();
-    };
-  }, [activeIndex]);
-
-  useEffect(() => {
-    if (!tweenRef.current) return;
-    if (isAnimating || isHovered) {
-      tweenRef.current.pause();
-    } else {
-      tweenRef.current.play();
-    }
-  }, [isAnimating, isHovered]);
+  // Auto-play rotation has been removed as per request
 
   const handleCardHover = (e: React.MouseEvent, isEnter: boolean) => {
     const target = e.currentTarget;
@@ -398,9 +375,7 @@ const Hero = () => {
         ref={heroRef} 
         className="relative w-full h-full bg-[#000000] text-white overflow-hidden font-sans origin-center will-change-transform"
       >
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-white/20 z-50 overflow-hidden">
-        <div ref={progressRef} className="absolute top-0 left-0 h-full w-full bg-[#E05A00] origin-left scale-x-0 will-change-transform"></div>
-      </div>
+      {/* Progress bar removed since rotation is disabled */}
 
       {prevIndex !== null && VALUES[prevIndex] && (
         <div className="absolute inset-0 z-0 old-bg">
