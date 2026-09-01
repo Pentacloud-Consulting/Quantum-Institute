@@ -73,7 +73,7 @@ const QuantumView = () => {
     { word: "The Elysium", img: "/OG%20IMAGES/q5.png" },
     { word: "Architectural Render", img: "/OG%20IMAGES/q6.png" },
     { word: "The Canyon", img: "/OG%20IMAGES/q8.png" },
-    { word: "Access Point", img: "/OG%20IMAGES/q1.png" }
+    { word: "The Oasis", img: "/OG%20IMAGES/q9.png" }
   ];
 
   return (
@@ -137,7 +137,7 @@ const QuantumView = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-100 md:opacity-100 group-hover:opacity-30 transition-opacity duration-700"></div>
               
               {/* Bottom Badge Text */}
-              <span className="panel-text relative z-20 text-white font-bold uppercase tracking-[0.2em] text-[11px] md:text-[12px] font-sans opacity-100 md:opacity-90 md:group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-500 mb-0 md:mb-12 whitespace-nowrap bg-black/40 backdrop-blur-md px-4 py-2 rounded-md shadow-[0_4px_30px_rgba(0,0,0,0.2)] border border-white/20 w-auto inline-block">
+              <span className="panel-text relative z-20 text-white font-bold uppercase tracking-[0.1em] lg:tracking-[0.15em] text-[8px] sm:text-[9px] md:text-[10px] font-sans opacity-100 md:opacity-90 md:group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-500 mb-0 md:mb-12 whitespace-nowrap overflow-hidden text-ellipsis max-w-[90%] bg-black/40 backdrop-blur-md px-2 md:px-3 py-1.5 md:py-2 rounded-md shadow-[0_4px_30px_rgba(0,0,0,0.2)] border border-white/20 inline-block text-center">
                 {panel.word}
               </span>
             </div>

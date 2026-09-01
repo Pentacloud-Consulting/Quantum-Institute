@@ -11,81 +11,56 @@ if (typeof window !== "undefined") {
 }
 
 // ----------------------------------------------------------------------
-// DESKTOP COMPONENT (Original)
+// DESKTOP COMPONENT (New Pinned Swap)
 // ----------------------------------------------------------------------
 const DesktopVisionMission = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const circleContainerRef = useRef<HTMLDivElement>(null);
-  const circleRotRef = useRef<HTMLDivElement>(null);
-  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const circleEntranceRef = useRef<HTMLDivElement>(null);
-  const textEntranceRef = useRef<HTMLDivElement>(null);
-  
-  const rotState = useRef({ speed: 1 });
-  const currentRot = useRef(0);
-  const reqRef = useRef<number | null>(null);
+  const visionBlockRef = useRef<HTMLDivElement>(null);
+  const missionBlockRef = useRef<HTMLDivElement>(null);
+  const circlesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    let currentRot = 0;
+    let reqId: number;
     const render = () => {
-      currentRot.current += rotState.current.speed * 0.15; 
-      if (circleRotRef.current) {
-        gsap.set(circleRotRef.current, { rotation: currentRot.current });
-      }
-      reqRef.current = requestAnimationFrame(render);
+      currentRot += 0.15;
+      circlesRef.current.forEach(circle => {
+        if (circle) gsap.set(circle, { rotation: currentRot });
+      });
+      reqId = requestAnimationFrame(render);
     };
-    reqRef.current = requestAnimationFrame(render);
-    return () => {
-      if (reqRef.current) cancelAnimationFrame(reqRef.current);
-    };
+    reqId = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(reqId);
   }, []);
 
   useEffect(() => {
     const mm = gsap.matchMedia(sectionRef);
 
     mm.add("(min-width: 768px)", () => {
-        gsap.set(circleContainerRef.current, { x: "-26vw" });
+      // Initial state
+      gsap.set(visionBlockRef.current, { xPercent: 0, opacity: 1 });
+      gsap.set(missionBlockRef.current, { xPercent: 100, opacity: 1 });
 
-        gsap.set(textRefs.current[0], { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
-        gsap.set(textRefs.current[1], { opacity: 0, y: 40, scale: 0.95, filter: "blur(4px)" });
-
-        const entranceTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            toggleActions: "play reverse play reverse",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=150%", // Reduced scroll distance 
+          scrub: 1, // Smoother scrub
+          pin: true,
+          snap: {
+            snapTo: [0, 1], // Automatically snaps to either Vision (0) or Mission (1)
+            duration: 0.8,
+            ease: "power2.inOut"
           }
-        });
+        }
+      });
 
-        entranceTl.fromTo(circleEntranceRef.current,
-          { x: "-15vw", opacity: 0 },
-          { x: "0vw", opacity: 1, duration: 1.2, ease: "power3.out" },
-          0
-        )
-        .fromTo(textEntranceRef.current,
-          { x: "15vw", opacity: 0 },
-          { x: "0vw", opacity: 1, duration: 1.2, ease: "power3.out" },
-          0.2
-        );
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=100%", 
-            pin: true,
-            scrub: 0.3,
-          }
-        });
-
-        const startTime = 0;
-        
-        tl.to(rotState.current, { speed: -1, duration: 2, ease: "power2.inOut" }, startTime);
-        tl.to(circleContainerRef.current, { x: "26vw", duration: 2, ease: "power2.inOut" }, startTime);
-
-        tl.to(textRefs.current[0], { opacity: 0, y: -40, scale: 0.95, filter: "blur(4px)", duration: 0.8, ease: "power2.inOut" }, startTime)
-          .to(textRefs.current[1], { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.8, ease: "power2.out" }, startTime + 0.5);
-
-        tl.to({}, { duration: 1 }, startTime + 2);
+      // Seamless horizontal wipe with no empty gaps (0 - 100%)
+      tl.to(visionBlockRef.current, { xPercent: -100, ease: "power2.inOut", duration: 1 }, 0);
+      tl.to(missionBlockRef.current, { xPercent: 0, ease: "power2.inOut", duration: 1 }, 0);
+      
+      // Hold (80% - 100%) - no tweens, just timeline gap before pin releases
     });
 
     return () => mm.revert();
@@ -93,123 +68,133 @@ const DesktopVisionMission = () => {
 
   return (
     <div className="w-full bg-[#F5F3EE] hidden md:block">
-      <section ref={sectionRef} className="relative w-full h-[100vh] min-h-[700px] border-b border-zinc-200 overflow-hidden font-sans">
+      <section ref={sectionRef} className="relative w-full h-screen min-h-[700px] border-b border-zinc-200 overflow-hidden font-sans">
       
-      <div className="absolute inset-0 opacity-[0.02] z-0 pointer-events-none mix-blend-multiply">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80" className="w-full h-full object-cover grayscale" alt="" />
-      </div>
+        <div className="absolute inset-0 opacity-[0.02] z-0 pointer-events-none mix-blend-multiply">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80" className="w-full h-full object-cover grayscale" alt="" />
+        </div>
 
-      <div ref={circleEntranceRef} className="absolute inset-0 flex items-start lg:items-center justify-center pt-24 lg:pt-0 z-10 pointer-events-none opacity-0 will-change-transform">
-        <div ref={circleContainerRef} className="relative w-[75vw] md:w-[500px] lg:w-[450px] xl:w-[550px] 2xl:w-[650px] aspect-square rounded-full will-change-transform">
+        {/* --- STAGE: Vision Block --- */}
+        <div ref={visionBlockRef} className="absolute inset-0 flex flex-row items-center justify-center gap-12 lg:gap-24 px-12 lg:px-24 z-10 w-full h-full will-change-transform">
           
-          <div ref={circleRotRef} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
-            <img src="/OG%20IMAGES/q1.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
-            <img src="/OG%20IMAGES/q2.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
-            <img src="/OG%20IMAGES/q9.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
-            <img src="/OG%20IMAGES/q5.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+          <div className="flex-1 max-w-[600px] flex flex-col pointer-events-auto">
+            <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
+              Elevated
+            </h3>
+            <h2 className="text-[#000000] font-black text-5xl md:text-6xl lg:text-7xl xl:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
+              VISIONS
+            </h2>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-[2px] bg-[#D15000]"></div>
+            </div>
             
-            <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
-            <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+            <p className="text-zinc-500 leading-relaxed text-lg mb-6 font-light">
+              Where minds collect & possibilities connect.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
+              </div>
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Collect</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Gather, Collaborate, Intersect</span>
+              </div>
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Possibilities</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Advancement, Breakthroughs, Recovery, Growth</span>
+              </div>
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Connect</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Understand, Co-create, Meet, Accomplish</span>
+              </div>
+            </div>
           </div>
           
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
-            <video 
-              src="/Videos/PROPOSITION Video.mp4" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              disablePictureInPicture
-              disableRemotePlayback
-              className="w-full h-full object-cover scale-110 pointer-events-none" 
-            />
-            <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+          <div className="w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px] relative shrink-0">
+             <div 
+               ref={el => { circlesRef.current[0] = el; }} 
+               className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform"
+             >
+                <img src="/OG%20IMAGES/q1.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q2.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q9.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q5.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+                
+                <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+             </div>
+             
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
+                <video src="/Videos/Meditation.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+                <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+             </div>
           </div>
-          
-        </div>
-      </div>
 
-      <div className="absolute bottom-0 lg:top-0 left-0 w-full h-[55vh] lg:h-full z-20 pointer-events-none">
-        <div ref={textEntranceRef} className="absolute inset-0 w-full h-full opacity-0 will-change-transform">
-        <div 
-          ref={el => { textRefs.current[0] = el; }} 
-          className="absolute right-0 w-full lg:w-[55%] top-[25%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform px-6 sm:px-12 lg:px-16 xl:px-24"
-        >
-          <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
-            Elevated
-          </h3>
-          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
-            VISIONS
-          </h2>
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-[2px] bg-[#D15000]"></div>
-          </div>
-          
-          <p className="text-zinc-500 leading-relaxed text-lg mb-6 font-light">
-            Where minds collect & possibilities connect.
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
-            </div>
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Collect</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Gather, Collaborate, Intersect</span>
-            </div>
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Possibilities</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Advancement, Breakthroughs, Recovery, Growth</span>
-            </div>
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Connect</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Understand, Co-create, Meet, Accomplish</span>
-            </div>
-          </div>
         </div>
 
-        <div 
-          ref={el => { textRefs.current[1] = el; }} 
-          className="absolute left-0 w-full lg:w-[55%] top-[25%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform opacity-0 px-6 sm:px-12 lg:px-16 xl:px-24"
-        >
-          <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
-            Elevated
-          </h3>
-          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
-            MISSIONS
-          </h2>
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-[2px] bg-[#D15000]"></div>
-          </div>
+        {/* --- STAGE: Mission Block --- */}
+        <div ref={missionBlockRef} className="absolute inset-0 flex flex-row items-center justify-center gap-12 lg:gap-24 px-12 lg:px-24 z-10 w-full h-full will-change-transform">
           
-          <p className="text-zinc-500 leading-relaxed text-base lg:text-lg mb-6 font-light max-w-xl">
-            Empower minds through quantum-lensed exploration, fostering a global ecosystem for expanded learning, scientific discovery, and transformative healing.
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
+          <div className="flex-1 max-w-[600px] flex flex-col pointer-events-auto">
+            <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
+              Elevated
+            </h3>
+            <h2 className="text-[#000000] font-black text-5xl md:text-6xl lg:text-7xl xl:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
+              MISSIONS
+            </h2>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-[2px] bg-[#D15000]"></div>
             </div>
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Quantum Toolkit</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Science, Research, Journey</span>
-            </div>
-            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md sm:col-span-2">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Ecosystem</span>
-              <span className="text-zinc-600 text-sm leading-relaxed block">Network, Coherence, Interconnected, Rooted, Natural</span>
+            
+            <p className="text-zinc-500 leading-relaxed text-base lg:text-lg mb-6 font-light">
+              Empower minds through quantum-lensed exploration, fostering a global ecosystem for expanded learning, scientific discovery, and transformative healing.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
+              </div>
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Quantum Toolkit</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Science, Research, Journey</span>
+              </div>
+              <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md col-span-2">
+                <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Ecosystem</span>
+                <span className="text-zinc-600 text-sm leading-relaxed block">Network, Coherence, Interconnected, Rooted, Natural</span>
+              </div>
             </div>
           </div>
-        </div>
-        </div>
 
-      </div>
+          <div className="w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px] relative shrink-0">
+             <div 
+               ref={el => { circlesRef.current[1] = el; }} 
+               className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform"
+             >
+                <img src="/OG%20IMAGES/q3.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q4.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q6.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
+                <img src="/OG%20IMAGES/q8.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+                
+                <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+             </div>
+             
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
+                <video src="/Videos/Yoga.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+                <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+             </div>
+          </div>
+
+        </div>
 
       </section>
     </div>
   );
 };
+
 
 // ----------------------------------------------------------------------
 // MOBILE COMPONENT (New VisionMissionReveal)
