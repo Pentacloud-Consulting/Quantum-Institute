@@ -13,17 +13,17 @@ import Lenis from 'lenis';
 import { useRouter } from 'next/navigation';
 
 const VALUES = [
-  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Peace/Peace -1.webp" },
-  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/Peace/Peace -2.webp" },
-  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/Peace/Peace -3.webp" },
-  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/Peace/Peace -4.webp" },
-  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/Peace/Peace -5.webp" },
-  { id: 6, title: "FUTURE\nIMPACT", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/Peace/Peace -6.webp" },
-  { id: 7, title: "EXPAND\nHORIZONS", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/Peace/Peace -7.webp" },
-  { id: 8, title: "ELEVATE\nCONSCIOUSNES", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/Peace/Peace -1.webp" },
-  { id: 9, title: "GLOBAL\nSYNERGY", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/Peace/Peace -2.webp" },
-  { id: 10, title: "QUANTUM\nMOVEMENT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/Peace/Peace -3.webp" },
-  { id: 11, title: "INFINITE\nPOSSIBILITIES", subtitle: "Where science meets wonder", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/Peace/Peace -4.webp" },
+  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/OG%20IMAGES/q1.png" },
+  { id: 2, title: "INNOVATE\nEDUCATION", subtitle: "Reimagine human experience", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/OG%20IMAGES/q2.png" },
+  { id: 3, title: "DISCOVER\nRESEARCH", subtitle: "Reveal what lies beneath", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/OG%20IMAGES/q3.png" },
+  { id: 4, title: "NURTURE\nEXPLORATION", subtitle: "Encourage wonder through inquiry", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/OG%20IMAGES/q4.png" },
+  { id: 5, title: "AGORA OF\nWISDOM", subtitle: "Where minds collect", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/OG%20IMAGES/q5.png" },
+  { id: 6, title: "FUTURE\nIMPACT", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/OG%20IMAGES/q6.png" },
+  { id: 7, title: "EXPAND\nHORIZONS", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/OG%20IMAGES/q7.png" },
+  { id: 8, title: "ELEVATE\nCONSCIOUSNES", subtitle: "Awaken your true potential", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/OG%20IMAGES/q8.png" },
+  { id: 9, title: "GLOBAL\nSYNERGY", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/OG%20IMAGES/q9.png" },
+  { id: 10, title: "QUANTUM\nMOVEMENT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/OG%20IMAGES/q1.png" },
+  { id: 11, title: "INFINITE\nPOSSIBILITIES", subtitle: "Where science meets wonder", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/OG%20IMAGES/q2.png" },
 ];
 
 const renderTitle = (title: string) => {

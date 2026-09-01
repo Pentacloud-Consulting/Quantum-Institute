@@ -100,7 +100,7 @@ const PeaceView = () => {
                 transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(var(--card-radius))`
               }}
             >
-              <img src={`/Peace/Peace -${(i % 7) + 1}.webp`} className="w-full h-full object-cover transition-transform duration-500 hover:scale-125" alt="" />
+              <img src={`/OG%20IMAGES/q${(i % 9) + 1}.png`} className="w-full h-full object-cover transition-transform duration-500 hover:scale-125" alt="" />
             </div>
           ))}
         </div>

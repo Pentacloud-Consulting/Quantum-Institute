@@ -134,10 +134,10 @@ const About = () => {
             <div className="h-[1px] w-8 bg-[#E05A00]/30"></div>
           </div>
 
-          <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-lg leading-relaxed opacity-0">
+          <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed opacity-0">
             True peace begins within. Our sanctuary is dedicated to harmonizing your soul, mind, and spirit. 
-            Through mindful practices, deep reflection, and natural serenity, we guide you to discover an 
-            unwavering state of profound inner peace.
+            Through mindful practices, and natural serenity, we guide to discover an 
+            unwavering state of inner peace.
           </p>
 
           {/* Icons Grid */}

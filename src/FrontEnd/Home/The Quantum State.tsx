@@ -17,62 +17,62 @@ const TheQuantumState = () => {
     {
       mt: 'mt-[140px]',
       items: [
-        { h: 'h-[180px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%203.webp' },
-        { h: 'h-[220px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%206.webp' }
+        { h: 'h-[180px]', img: '/OG%20IMAGES/q1.png' },
+        { h: 'h-[220px]', img: '/OG%20IMAGES/q2.png' }
       ]
     },
     // Col 2
     {
       mt: 'mt-[60px]',
       items: [
-        { h: 'h-[140px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%205.webp' },
-        { h: 'h-[160px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%207.webp' },
-        { h: 'h-[180px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%209.webp' }
+        { h: 'h-[140px]', img: '/OG%20IMAGES/q3.png' },
+        { h: 'h-[160px]', img: '/OG%20IMAGES/q4.png' },
+        { h: 'h-[180px]', img: '/OG%20IMAGES/q5.png' }
       ]
     },
     // Col 3
     {
       mt: 'mt-[180px]',
       items: [
-        { h: 'h-[320px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%2011.webp' }
+        { h: 'h-[320px]', img: '/OG%20IMAGES/q6.png' }
       ]
     },
     // Col 4
     {
       mt: 'mt-[20px]',
       items: [
-        { h: 'h-[400px]', img: '/Home/QUANTUM%20MOVEMENT/Global%20Exploration%20Initiatives.webp' }
+        { h: 'h-[400px]', img: '/OG%20IMAGES/q7.png' }
       ]
     },
     // Col 5
     {
       mt: 'mt-[40px]',
       items: [
-        { h: 'h-[340px]', img: '/Home/QUANTUM%20MOVEMENT/Quantum%20Healing%20Sanctuaries.webp' }
+        { h: 'h-[340px]', img: '/OG%20IMAGES/q8.png' }
       ]
     },
     // Col 6
     {
       mt: 'mt-[140px]',
       items: [
-        { h: 'h-[360px]', img: '/Home/QUANTUM%20MOVEMENT/Quantum%20Research%20Labs.webp' }
+        { h: 'h-[360px]', img: '/OG%20IMAGES/q9.png' }
       ]
     },
     // Col 7
     {
       mt: 'mt-[80px]',
       items: [
-        { h: 'h-[120px]', img: '/Home/The%20Wellness%20Spectrum/Holistic%20%26%20Integrative%20Wellness.webp' },
-        { h: 'h-[200px]', img: '/Peace/Peace%20-7.webp' },
-        { h: 'h-[160px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%203.webp' }
+        { h: 'h-[120px]', img: '/OG%20IMAGES/q1.png' },
+        { h: 'h-[200px]', img: '/OG%20IMAGES/q2.png' },
+        { h: 'h-[160px]', img: '/OG%20IMAGES/q3.png' }
       ]
     },
     // Col 8
     {
       mt: 'mt-[120px]',
       items: [
-        { h: 'h-[220px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%206.webp' },
-        { h: 'h-[240px]', img: '/Home/Quantum%20Hero/Quantum%20Hero%20-%209.webp' }
+        { h: 'h-[220px]', img: '/OG%20IMAGES/q4.png' },
+        { h: 'h-[240px]', img: '/OG%20IMAGES/q5.png' }
       ]
     }
   ];

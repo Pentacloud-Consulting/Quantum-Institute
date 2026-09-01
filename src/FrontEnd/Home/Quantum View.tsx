@@ -67,13 +67,13 @@ const QuantumView = () => {
   }, []);
 
   const panels = [
-    { word: "Presence", img: "/Peace/Peace -1.webp" },
-    { word: "Harmony", img: "/Peace/Peace -2.webp" },
-    { word: "Flow", img: "/Peace/Peace -3.webp" },
-    { word: "Awakening", img: "/Peace/Peace -4.webp" },
-    { word: "Connection", img: "/Peace/Peace -5.webp" }, // Fallbacks in case "Quantum Hero" files aren't in this project
-    { word: "Evolution", img: "/Peace/Peace -6.webp" },
-    { word: "Transcendence", img: "/Peace/Peace -7.webp" }
+    { word: "Presence", img: "/OG%20IMAGES/q1.png" },
+    { word: "Harmony", img: "/OG%20IMAGES/q2.png" },
+    { word: "Flow", img: "/OG%20IMAGES/q4.png" },
+    { word: "Awakening", img: "/OG%20IMAGES/q5.png" },
+    { word: "Connection", img: "/OG%20IMAGES/q6.png" }, // Fallbacks in case "Quantum Hero" files aren't in this project
+    { word: "Evolution", img: "/OG%20IMAGES/q8.png" },
+    { word: "Transcendence", img: "/OG%20IMAGES/q1.png" }
   ];
 
   return (

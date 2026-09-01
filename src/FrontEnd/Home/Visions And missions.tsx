@@ -103,10 +103,10 @@ const DesktopVisionMission = () => {
         <div ref={circleContainerRef} className="relative w-[75vw] md:w-[500px] lg:w-[450px] xl:w-[550px] 2xl:w-[650px] aspect-square rounded-full will-change-transform">
           
           <div ref={circleRotRef} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
-            <img src="/Peace/Peace -1.webp" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
-            <img src="/Peace/Peace -2.webp" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
-            <img src="/Peace/Peace -3.webp" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
-            <img src="/Peace/Peace -4.webp" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+            <img src="/OG%20IMAGES/q1.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
+            <img src="/OG%20IMAGES/q2.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
+            <img src="/OG%20IMAGES/q9.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
+            <img src="/OG%20IMAGES/q5.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
             
             <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
             <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
@@ -133,37 +133,37 @@ const DesktopVisionMission = () => {
         <div ref={textEntranceRef} className="absolute inset-0 w-full h-full opacity-0 will-change-transform">
         <div 
           ref={el => { textRefs.current[0] = el; }} 
-          className="absolute right-0 w-full lg:w-[55%] top-[50%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform px-6 sm:px-12 lg:px-16 xl:px-24"
+          className="absolute right-0 w-full lg:w-[55%] top-[25%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform px-6 sm:px-12 lg:px-16 xl:px-24"
         >
           <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
             Elevated
           </h3>
-          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-6 drop-shadow-sm">
+          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
             VISIONS
           </h2>
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-4">
             <div className="w-16 h-[2px] bg-[#D15000]"></div>
           </div>
           
-          <p className="text-zinc-500 leading-relaxed text-lg mb-8 font-light">
+          <p className="text-zinc-500 leading-relaxed text-lg mb-6 font-light">
             Where minds collect & possibilities connect.
           </p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Minds</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
             </div>
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Collect</span>
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Collect</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Gather, Collaborate, Intersect</span>
             </div>
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Possibilities</span>
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Possibilities</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Advancement, Breakthroughs, Recovery, Growth</span>
             </div>
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Connect</span>
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Connect</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Understand, Co-create, Meet, Accomplish</span>
             </div>
           </div>
@@ -171,33 +171,33 @@ const DesktopVisionMission = () => {
 
         <div 
           ref={el => { textRefs.current[1] = el; }} 
-          className="absolute left-0 w-full lg:w-[55%] top-[50%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform opacity-0 px-6 sm:px-12 lg:px-16 xl:px-24"
+          className="absolute left-0 w-full lg:w-[55%] top-[25%] -translate-y-1/2 flex flex-col pointer-events-auto will-change-transform opacity-0 px-6 sm:px-12 lg:px-16 xl:px-24"
         >
           <h3 className="text-[#D15000] font-medium text-2xl lg:text-3xl tracking-wide mb-2 flex items-center gap-4">
             Elevated
           </h3>
-          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-6 drop-shadow-sm">
+          <h2 className="text-[#000000] font-black text-5xl sm:text-6xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter uppercase mb-4 drop-shadow-sm">
             MISSIONS
           </h2>
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-4">
             <div className="w-16 h-[2px] bg-[#D15000]"></div>
           </div>
           
-          <p className="text-zinc-500 leading-relaxed text-lg mb-8 font-light max-w-xl">
+          <p className="text-zinc-500 leading-relaxed text-base lg:text-lg mb-6 font-light max-w-xl">
             Empower minds through quantum-lensed exploration, fostering a global ecosystem for expanded learning, scientific discovery, and transformative healing.
           </p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Minds</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Minds</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Scientists, Researchers, Academics, Students, Seekers, Patients</span>
             </div>
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Quantum Toolkit</span>
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Quantum Toolkit</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Science, Research, Journey</span>
             </div>
-            <div className="bg-white rounded-2xl p-5 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md sm:col-span-2">
-              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-2 block">Ecosystem</span>
+            <div className="bg-white rounded-2xl p-4 shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-zinc-100 transition-shadow hover:shadow-md sm:col-span-2">
+              <span className="text-[#D15000] text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block">Ecosystem</span>
               <span className="text-zinc-600 text-sm leading-relaxed block">Network, Coherence, Interconnected, Rooted, Natural</span>
             </div>
           </div>
