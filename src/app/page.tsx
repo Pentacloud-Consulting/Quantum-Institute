@@ -24,7 +24,7 @@ export default function Home() {
         <About />
         <VisionsAndMissions />
         <PeaceView />
-        <QuantumView />
+        {/* <QuantumView /> */}
         <PillarsQI />
         <TheQuantumState />
         <Trust />
