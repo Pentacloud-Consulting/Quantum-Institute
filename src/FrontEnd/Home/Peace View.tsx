@@ -8,7 +8,11 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+import Architecture from './Architecture';
+
 const PeaceView = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const horizontalWrapperRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
@@ -58,13 +62,55 @@ const PeaceView = () => {
           0.6
         );
       }
-    }, sectionRef);
+      if (horizontalWrapperRef.current && containerRef.current) {
+        const horizontalTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "bottom bottom",
+            end: "+=200%",
+            pin: true,
+            scrub: 1,
+            snap: [0, 0.5, 1] // Snap to start, middle (Architecture arrived), and end
+          }
+        });
+
+        horizontalTl.to(horizontalWrapperRef.current, {
+          xPercent: -50,
+          ease: "none",
+          duration: 1
+        })
+        // While pinned (second half of timeline), animate the backgrounds and boxes
+        .to(".architecture-bg-upper", {
+          scale: 1.5,
+          opacity: 0,
+          ease: "power2.inOut",
+          duration: 1
+        }, 1)
+        .to(".architecture-bg-base", {
+          scale: 1.1,
+          ease: "power2.inOut",
+          duration: 1
+        }, 1)
+        .to(".architecture-title", {
+          y: -30,
+          opacity: 0,
+          duration: 0.5
+        }, 1)
+        .to(".architecture-box", {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          ease: "power2.out",
+          duration: 0.6
+        }, 1.4);
+      }
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <>
+    <div ref={containerRef} className="w-full relative overflow-hidden bg-white">
       <style>
         {`
           @keyframes spin-slow {
@@ -87,7 +133,9 @@ const PeaceView = () => {
           }
         `}
       </style>
-      <section ref={sectionRef} className="relative w-full min-h-[600px] sm:min-h-[850px] bg-white overflow-hidden flex flex-col font-sans">
+      <div ref={horizontalWrapperRef} className="flex w-[200vw] items-end">
+        {/* Panel 1: Peace View */}
+        <section ref={sectionRef} className="relative w-[100vw] min-h-[600px] sm:min-h-[850px] bg-white overflow-hidden flex flex-col font-sans shrink-0 pb-16">
       {/* Circle Container */}
       <div ref={circleRef} className="absolute top-[20px] sm:top-[100px] left-1/2 w-[500px] h-[500px] sm:w-[1000px] sm:h-[1000px] z-0 pointer-events-none opacity-0 will-change-transform"
            style={{ transform: 'translateX(-50%)' }}>
@@ -144,8 +192,14 @@ const PeaceView = () => {
         </div>
       </div>
 
-    </section>
-    </>
+        </section>
+
+        {/* Panel 2: Architecture */}
+        <div className="w-[100vw] h-screen shrink-0">
+          <Architecture />
+        </div>
+      </div>
+    </div>
   );
 };
 

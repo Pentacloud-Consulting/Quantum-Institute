@@ -2,35 +2,44 @@ import Navbar from "@/FrontEnd/Components/Navbar";
 import Footer from "@/FrontEnd/Components/Footer";
 import SplashAnimation from "@/FrontEnd/Animations/SplashAnimation";
 
-import Hero from "@/FrontEnd/Home/Hero";
-import About from "@/FrontEnd/Home/About";
-import VisionsAndMissions from "@/FrontEnd/Home/Visions And missions";
-import PeaceView from "@/FrontEnd/Home/Peace View";
-import QuantumView from "@/FrontEnd/Home/Quantum View";
+import Hero_View from "@/FrontEnd/Home/Hero_View";
+import QuantumTrust from "@/FrontEnd/Home/Quantum Trust";
 import PillarsQI from "@/FrontEnd/Home/Pillars QI";
-import TheQuantumState from "@/FrontEnd/Home/The Quantum State";
-import Trust from "@/FrontEnd/Home/Trust";
+import PeaceView from "@/FrontEnd/Home/Peace View";
 import CTA from "@/FrontEnd/Home/CTA";
+import ImagesSection from "@/FrontEnd/Home/Images Section";
+import Visions_And_missions from "@/FrontEnd/Home/Visions_And_missions";
+import ScrollAnimation from "@/FrontEnd/Animations/Scroll Animation";
 
 export default function Home() {
   return (
     <>
       <SplashAnimation />
       <Navbar />
-      <main>
-        <div>
-          <Hero />
-        </div>
-        <About />
-        <VisionsAndMissions />
-        <PeaceView />
-        {/* <QuantumView /> */}
-        <PillarsQI />
-        <TheQuantumState />
-        <Trust />
-        <CTA />
-        <Footer />
-      </main>
+      <ScrollAnimation>
+        <main>
+          <section className="snap-section w-full">
+            <Hero_View />
+          </section>
+          <section className="w-full">
+            <Visions_And_missions />
+          </section>
+          <section className="w-full">
+            <ImagesSection />
+          </section>
+          <section className="w-full">
+            <QuantumTrust />
+          </section>
+          <section className="w-full">
+            <PeaceView />
+          </section>
+          <section className="w-full">
+            <PillarsQI />
+          </section>
+          <CTA />
+        </main>
+      </ScrollAnimation>
+      <Footer />
     </>
   );
 }

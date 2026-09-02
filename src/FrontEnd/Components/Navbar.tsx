@@ -72,12 +72,22 @@ const Navbar = () => {
       </div>
 
       {/* CENTER: LOGO */}
-      <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+      <Link 
+        href="/" 
+        className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:absolute lg:left-1/2 lg:-translate-x-1/2
+          ${isScrolled ? 'translate-y-0' : 'lg:translate-y-2'}
+        `}
+      >
         <img 
           src="/Logo/Quantum%20Institute%20Logo.png" 
           alt="Quantum Institute Logo" 
-          className="h-7 sm:h-8 md:h-10 w-auto object-contain md:scale-150" 
-          style={{ filter: "drop-shadow(0px 0px 8px rgba(255,255,255,0.6)) drop-shadow(0px 2px 4px rgba(0,0,0,0.6))" }}
+          className={`w-auto object-contain transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-center
+            ${isScrolled 
+              ? 'h-9 sm:h-10 md:h-12 md:scale-125' 
+              : 'h-10 sm:h-14 md:h-16 md:scale-150'
+            }
+          `} 
+          style={{ filter: isScrolled ? "none" : "drop-shadow(0px 8px 16px rgba(0,0,0,0.5))" }}
         />
       </Link>
       
