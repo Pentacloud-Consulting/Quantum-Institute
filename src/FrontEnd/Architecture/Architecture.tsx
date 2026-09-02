@@ -1,8 +1,56 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const Architecture = () => {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ 
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=150%",
+          pin: true,
+          scrub: 1,
+        }
+      });
+
+      tl.to(".architecture-bg-upper", {
+        scale: 1.5,
+        opacity: 0,
+        ease: "none"
+      }, 0)
+      .to(".architecture-bg-base", {
+        scale: 1.1,
+        ease: "none"
+      }, 0)
+      .to(".architecture-title", {
+        y: -30,
+        opacity: 0,
+        ease: "none"
+      }, 0)
+      .to(".architecture-box", {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        ease: "none"
+      }, 0.2);
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="w-full h-screen relative flex items-center justify-center overflow-hidden shrink-0 architecture-section">
+    <section ref={containerRef} className="w-full h-screen relative flex items-center justify-center overflow-hidden shrink-0 architecture-section">
       {/* Base Background */}
       <img 
         src="/Home images/qt.jpeg" 

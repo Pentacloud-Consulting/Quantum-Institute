@@ -1,11 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const imagesData = [
   { id: 1, src: "/OG IMAGES/q1.png", alt: "Architecture Detail 1", title: "THE APEX", description: "A towering testament to structural superiority." },
@@ -18,43 +14,10 @@ const imagesData = [
   { id: 8, src: "/OG IMAGES/q8.png", alt: "Architecture Detail 8", title: "OASIS ATRIUM", description: "Lush indoor gardens sustaining natural microclimates." },
 ];
 
+const sharedTransition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] };
+
 const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean, onClick: () => void }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const stRef = useRef<ScrollTrigger | null>(null);
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-    
-    // Disable parallax scroll animation for the large selected image on the left
-    if (isSelected) {
-      const imgEl = cardRef.current.querySelector('.parallax-img');
-      if (imgEl) gsap.set(imgEl, { clearProps: "yPercent" });
-      return;
-    }
-    
-    // Wait for the layout animation to complete before attaching GSAP parallax
-    const timeout = setTimeout(() => {
-      const imgEl = cardRef.current!.querySelector('.parallax-img');
-      const parallaxAmount = window.innerWidth < 768 ? 20 : 30;
-      
-      stRef.current = ScrollTrigger.create({
-        trigger: cardRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-        animation: gsap.fromTo(
-          imgEl,
-          { yPercent: -parallaxAmount },
-          { yPercent: parallaxAmount, ease: "none" }
-        )
-      });
-    }, 800); // Wait for Framer Motion transition
-
-    return () => {
-      clearTimeout(timeout);
-      if (stRef.current) stRef.current.kill();
-    };
-  }, [isSelected]); // Re-create scroll trigger if state changes
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   const baseClasses = "relative w-full overflow-hidden group cursor-pointer shadow-xl bg-black";
   const layoutClasses = isSelected 
@@ -67,14 +30,15 @@ const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean
       ref={cardRef}
       onClick={onClick}
       className={`${baseClasses} ${layoutClasses}`}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={sharedTransition}
     >
       <div className="w-full h-full transform transition-transform duration-700 ease-out group-hover:scale-105">
         <motion.img
           layoutId={`card-image-${img.id}`}
+          transition={sharedTransition}
           src={img.src}
           alt={img.alt}
-          className="parallax-img absolute top-0 left-0 w-full h-full object-cover scale-[1.6] will-change-transform"
+          className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
         />
       </div>
       
@@ -93,6 +57,7 @@ const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean
 
         <motion.h3 
           layoutId={`card-title-${img.id}`}
+          transition={sharedTransition}
           className={`font-serif tracking-widest uppercase mb-2 transform transition-transform duration-500 group-hover:-translate-y-2 ${isSelected ? 'text-4xl md:text-6xl drop-shadow-2xl' : 'text-2xl md:text-3xl'}`}
         >
           {img.title}
@@ -107,14 +72,6 @@ const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean
 
 const ImagesSection = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
-
-  // Clean up stray ScrollTriggers on state change
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 900);
-    return () => clearTimeout(timeout);
-  }, [selectedId]);
 
   const selectedImage = imagesData.find(img => img.id === selectedId);
   const remainingImages = imagesData.filter(img => img.id !== selectedId);
@@ -133,10 +90,10 @@ const ImagesSection = () => {
           </p>
         </div>
 
-        <motion.div layout className="relative w-full">
+        <motion.div layout transition={sharedTransition} className="relative w-full">
           {!selectedId ? (
             // DEFAULT 2x4 GRID
-            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+            <motion.div layout transition={sharedTransition} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
               {imagesData.map((img) => (
                 <ImageCard 
                   key={`grid-${img.id}`} 
@@ -148,7 +105,7 @@ const ImagesSection = () => {
             </motion.div>
           ) : (
             // EXPANDED SPLIT VIEW
-            <motion.div layout className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-start relative w-full">
+            <motion.div layout transition={sharedTransition} className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-start relative w-full">
               {/* LEFT STICKY COLUMN */}
               <div className="w-full md:w-[60%] lg:w-[65%] md:sticky md:top-[120px] z-30 transition-all duration-700">
                 <ImageCard 

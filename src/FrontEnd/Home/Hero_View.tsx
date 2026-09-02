@@ -91,6 +91,7 @@ const Hero_View = () => {
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
   
   // Clone data for shared element architecture
   const [cloneData, setCloneData] = useState<{ rect: { top: number, left: number, width: number, height: number }, item: any } | null>(null);
@@ -481,11 +482,18 @@ const Hero_View = () => {
             </button>
           </div>
 
-          <div className="mt-8 flex justify-center lg:justify-start w-full lg:pl-14">
+          <div className="mt-8 flex justify-center lg:justify-start w-full lg:pl-14 gap-4 flex-wrap">
             <button 
+              onClick={() => router.push('/signup')}
               className="px-6 py-2 md:px-10 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg"
             >
-              BOOK NOW
+              JOIN WISHLIST
+            </button>
+            <button 
+              onClick={() => router.push('/architecture')}
+              className="px-6 py-2 md:px-10 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg"
+            >
+              ARCHITECTURE
             </button>
           </div>
         </div>
