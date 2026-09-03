@@ -15,17 +15,27 @@ const QuantumTrust = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="w-full bg-[#050505] h-auto lg:h-[100dvh] pt-24 pb-12 lg:pt-28 flex flex-col text-white font-sans relative overflow-hidden">
+    <div className="w-full h-auto lg:h-[100dvh] pt-24 pb-12 lg:pt-28 flex flex-col text-white font-sans relative overflow-hidden bg-black">
       
+      {/* Background Image with Blur Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="/Home images/Desert.png" 
+          alt="Desert Background" 
+          className="w-full h-full object-cover blur-xl scale-110 opacity-50" 
+        />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+      </div>
+
       {/* Header section */}
-      <div className="flex justify-between items-center px-4 md:px-12 pb-8 border-b border-white/20">
+      <div className="flex justify-between items-center px-4 md:px-12 pb-8 border-b border-white/20 relative z-10">
         <span className="text-xs md:text-sm tracking-widest text-white/70">/Soul Peace</span>
         <span className="text-xs md:text-sm tracking-widest text-white/70">What we do (and do really well)</span>
       </div>
 
       {/* Accordion List */}
       <LayoutGroup>
-        <div className="flex flex-col w-full flex-1">
+        <div className="flex flex-col w-full flex-1 relative z-10">
           {services.map((item, idx) => {
             const isHovered = hoveredIndex === idx;
 

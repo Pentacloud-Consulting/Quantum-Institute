@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, LayoutGroup } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, LayoutGroup, useScroll, useTransform } from "framer-motion";
 
 const imagesData = [
   { id: 1, src: "/OG IMAGES/q1.png", alt: "Architecture Detail 1", title: "THE APEX", description: "A towering testament to structural superiority." },
@@ -14,12 +14,20 @@ const imagesData = [
   { id: 8, src: "/OG IMAGES/q8.png", alt: "Architecture Detail 8", title: "OASIS ATRIUM", description: "Lush indoor gardens sustaining natural microclimates." },
 ];
 
-const sharedTransition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] };
+const sharedTransition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
 
-const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean, onClick: () => void }) => {
-  const cardRef = React.useRef<HTMLDivElement>(null);
+const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSelected: boolean, hasInteracted: boolean, onClick: () => void }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const baseClasses = "relative w-full overflow-hidden group cursor-pointer shadow-xl bg-black";
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["-12.5%", "12.5%"]);
+
+  const baseClasses = "relative w-full overflow-hidden group cursor-pointer shadow-xl bg-black rounded-3xl";
   const layoutClasses = isSelected 
     ? "h-[60vh] md:h-[80vh]" 
     : "aspect-[3/2]";
@@ -31,14 +39,21 @@ const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean
       onClick={onClick}
       className={`${baseClasses} ${layoutClasses}`}
       transition={sharedTransition}
+      // Disable entrance animation if user has interacted to prevent jumping during layout changes
+      initial={hasInteracted ? false : { opacity: 0, y: 60 }}
+      whileInView={hasInteracted ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
     >
-      <div className="w-full h-full transform transition-transform duration-700 ease-out group-hover:scale-105">
+      <div className="w-full h-full overflow-hidden relative">
         <motion.img
           layoutId={`card-image-${img.id}`}
           transition={sharedTransition}
+          // Only apply parallax translation when not selected
+          style={isSelected ? { y: 0 } : { y }}
           src={img.src}
           alt={img.alt}
-          className="absolute top-0 left-0 w-full h-full object-cover will-change-transform"
+          // Use height 125% for parallax room instead of scale, to allow flawless layoutId projection
+          className={`absolute left-0 w-full object-cover will-change-transform transition-transform duration-700 ease-out group-hover:scale-105 ${isSelected ? 'top-0 h-full' : '-top-[12.5%] h-[125%]'}`}
         />
       </div>
       
@@ -72,9 +87,15 @@ const ImageCard = ({ img, isSelected, onClick }: { img: any, isSelected: boolean
 
 const ImagesSection = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const selectedImage = imagesData.find(img => img.id === selectedId);
   const remainingImages = imagesData.filter(img => img.id !== selectedId);
+
+  const handleSelect = (id: number | null) => {
+    setHasInteracted(true);
+    setSelectedId(id);
+  };
 
   return (
     <LayoutGroup>
@@ -98,8 +119,9 @@ const ImagesSection = () => {
                 <ImageCard 
                   key={`grid-${img.id}`} 
                   img={img} 
-                  isSelected={false} 
-                  onClick={() => setSelectedId(img.id)} 
+                  isSelected={false}
+                  hasInteracted={hasInteracted}
+                  onClick={() => handleSelect(img.id)} 
                 />
               ))}
             </motion.div>
@@ -111,8 +133,9 @@ const ImagesSection = () => {
                 <ImageCard 
                   key={`selected-${selectedImage!.id}`} 
                   img={selectedImage} 
-                  isSelected={true} 
-                  onClick={() => setSelectedId(null)} 
+                  isSelected={true}
+                  hasInteracted={hasInteracted}
+                  onClick={() => handleSelect(null)} 
                 />
               </div>
 
@@ -122,8 +145,9 @@ const ImagesSection = () => {
                   <ImageCard 
                     key={`list-${img.id}`} 
                     img={img} 
-                    isSelected={false} 
-                    onClick={() => setSelectedId(img.id)} 
+                    isSelected={false}
+                    hasInteracted={hasInteracted}
+                    onClick={() => handleSelect(img.id)} 
                   />
                 ))}
               </div>

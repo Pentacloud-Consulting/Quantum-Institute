@@ -447,54 +447,56 @@ const Hero_View = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="flex items-center w-full justify-center lg:justify-start gap-2 lg:gap-4">
-            <button onClick={handlePrev} className="hidden lg:flex w-8 h-8 rounded-full border border-white/30 items-center justify-center hover:bg-white/10 transition-all backdrop-blur-md group cursor-pointer shrink-0 z-30">
-              <ChevronLeft className="w-4 h-4 text-white/70 group-hover:text-white" />
-            </button>
-            
-            <div className="flex gap-3 md:gap-6 overflow-visible pb-4 cards-container will-change-transform items-center relative">
-              {getUpcomingCards().slice(0, 3).map((item, i) => (
-                <div 
-                  key={`card-${item.id}`}
-                  className={`slider-card ${i === 0 ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px]' : i === 1 ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95' : 'absolute left-[calc(100%+0.75rem)] md:left-[calc(100%+1.5rem)] w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-0 scale-95 pointer-events-none'} rounded-[16px] md:rounded-[20px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
-                  onClick={handleNext}
-                  onMouseEnter={(e) => handleCardHover(e, true)}
-                  onMouseLeave={(e) => handleCardHover(e, false)}
-                >
-                  <img 
-                    src={item.img} 
-                    alt={item.title}
-                    className="card-img absolute inset-0 w-full h-full object-cover will-change-transform"
-                  />
-                  <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
-                  
-                  <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20">
-                    <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
-                    <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
-                    <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
+          <div className="flex flex-col w-full lg:w-fit">
+            <div className="flex items-center w-full justify-center lg:justify-center gap-2 lg:gap-4">
+              <button onClick={handlePrev} className="hidden lg:flex w-8 h-8 rounded-full border border-white/30 items-center justify-center hover:bg-white/10 transition-all backdrop-blur-md group cursor-pointer shrink-0 z-30">
+                <ChevronLeft className="w-4 h-4 text-white/70 group-hover:text-white" />
+              </button>
+              
+              <div className="flex gap-3 md:gap-6 overflow-visible pb-4 cards-container will-change-transform items-center relative">
+                {getUpcomingCards().slice(0, 3).map((item, i) => (
+                  <div 
+                    key={`card-${item.id}`}
+                    className={`slider-card ${i === 0 ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px]' : i === 1 ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95' : 'absolute left-[calc(100%+0.75rem)] md:left-[calc(100%+1.5rem)] w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-0 scale-95 pointer-events-none'} rounded-[16px] md:rounded-[20px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
+                    onClick={handleNext}
+                    onMouseEnter={(e) => handleCardHover(e, true)}
+                    onMouseLeave={(e) => handleCardHover(e, false)}
+                  >
+                    <img 
+                      src={item.img} 
+                      alt={item.title}
+                      className="card-img absolute inset-0 w-full h-full object-cover will-change-transform"
+                    />
+                    <div className="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10" />
+                    
+                    <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20">
+                      <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
+                      <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
+                      <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              <button onClick={handleNext} className="hidden lg:flex w-8 h-8 rounded-full border border-white/30 items-center justify-center hover:bg-white/10 transition-all backdrop-blur-md group cursor-pointer shrink-0 z-30">
+                <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white" />
+              </button>
             </div>
 
-            <button onClick={handleNext} className="hidden lg:flex w-8 h-8 rounded-full border border-white/30 items-center justify-center hover:bg-white/10 transition-all backdrop-blur-md group cursor-pointer shrink-0 z-30">
-              <ChevronRight className="w-4 h-4 text-white/70 group-hover:text-white" />
-            </button>
-          </div>
-
-          <div className="mt-8 flex justify-center lg:justify-start w-full lg:pl-14 gap-4 flex-wrap">
-            <button 
-              onClick={() => router.push('/signup')}
-              className="px-6 py-2 md:px-10 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg"
-            >
-              JOIN WISHLIST
-            </button>
-            <button 
-              onClick={() => router.push('/architecture')}
-              className="px-6 py-2 md:px-10 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg"
-            >
-              ARCHITECTURE
-            </button>
+            <div className="mt-4 md:mt-8 flex justify-center w-full gap-4 md:gap-6 flex-wrap lg:flex-nowrap px-4 lg:px-0">
+              <button 
+                onClick={() => router.push('/signup')}
+                className="px-6 py-2 md:px-8 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg whitespace-nowrap text-center"
+              >
+                JOIN WISHLIST
+              </button>
+              <button 
+                onClick={() => router.push('/architecture')}
+                className="px-6 py-2 md:px-8 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg whitespace-nowrap text-center"
+              >
+                ARCHITECTURE
+              </button>
+            </div>
           </div>
         </div>
       </div>

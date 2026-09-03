@@ -81,14 +81,17 @@ const ArchitectureInfo = () => {
             className={`info-section w-full flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}
           >
             {/* Image Container */}
-            <div className="image-wrapper w-full md:w-1/2 flex justify-center opacity-0">
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 group">
+            <div className="image-wrapper w-full md:w-1/2 flex justify-center opacity-0 [perspective:1000px]">
+              <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] ring-1 ring-black/5 group transition-all duration-700 ease-out hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,0,0,0.15)]">
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                {/* Subtle inner glare for a premium glass-like edge */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/50 rounded-[2rem] pointer-events-none mix-blend-overlay" />
+                {/* Very soft lighting effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               </div>
             </div>
 
