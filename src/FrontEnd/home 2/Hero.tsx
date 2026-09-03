@@ -77,12 +77,12 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
 
   return (
     <div ref={containerRef} className="flex flex-col items-start w-full z-20">
-      <div className="w-6 md:w-8 h-[2px] bg-white mb-3 md:mb-6 anim-desc"></div>
-      <p className="text-[10px] sm:text-xs md:text-lg tracking-wide mb-1.5 md:mb-2 anim-desc font-serif italic text-white/80">{displayItem.subtitle}</p>
-      <h1 className="text-3xl md:text-6xl lg:text-[80px] font-black uppercase tracking-tighter mb-2 md:mb-6 flex flex-col drop-shadow-lg">
+      <div className="w-6 md:w-8 h-[2px] bg-white mb-2 md:mb-6 anim-desc"></div>
+      <p className="text-[9px] sm:text-[10px] md:text-lg tracking-wide mb-1 md:mb-2 anim-desc font-serif italic text-white/80">{displayItem.subtitle}</p>
+      <h1 className="text-2xl sm:text-3xl md:text-6xl lg:text-[80px] font-black uppercase tracking-tighter mb-2 md:mb-6 flex flex-col drop-shadow-lg">
         {renderTitle(displayItem.title)}
       </h1>
-      <p className="text-gray-200 text-[10px] sm:text-xs md:text-base max-w-sm md:max-w-md leading-relaxed mb-4 md:mb-10 anim-desc drop-shadow-md">
+      <p className="text-gray-200 text-[9px] sm:text-[10px] md:text-base max-w-sm md:max-w-md leading-relaxed mb-4 md:mb-10 anim-desc drop-shadow-md">
         {displayItem.desc}
       </p>
       
@@ -91,7 +91,7 @@ const TextContent = ({ activeItem }: { activeItem: any }) => {
           onClick={() => router.push('/signup')}
           whileHover={{ scale: 1.05, backgroundColor: "rgba(209,80,0,0.9)", borderColor: "rgba(209,80,0,1)" }}
           whileTap={{ scale: 0.95 }}
-          className="px-4 py-2 md:px-8 md:py-4 rounded-full border border-white/30 text-[9px] md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
+          className="px-3 py-1.5 md:px-8 md:py-4 rounded-full border border-white/30 text-[8px] md:text-sm font-semibold tracking-widest uppercase bg-black/20 backdrop-blur-sm transition-colors duration-300 cursor-pointer"
         >
           JOIN WAITLIST
         </motion.button>
@@ -398,7 +398,7 @@ const Hero = () => {
 
 
 
-      <div className="relative z-30 w-full h-full flex flex-col justify-center px-6 md:px-12 lg:flex-row lg:items-center pb-24 md:pb-20">
+      <div className="relative z-30 w-full h-full flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:flex-row lg:items-center pb-16 md:pb-20">
         
         <div className="lg:w-[55%] flex flex-col items-start pr-0 lg:pr-10 pt-8 md:pt-20 lg:pt-24 hero-text-content will-change-transform">
           {VALUES[textIndex] && <TextContent activeItem={VALUES[textIndex]} />}
@@ -413,7 +413,7 @@ const Hero = () => {
             {getUpcomingCards().map((item) => (
               <div 
                 key={`card-${item.id}`}
-                className="slider-card relative w-32 h-48 sm:w-48 sm:h-72 md:w-52 md:h-[380px] rounded-2xl md:rounded-[28px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                className="slider-card relative w-24 h-36 sm:w-32 sm:h-48 md:w-52 md:h-[380px] rounded-xl md:rounded-[28px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
                 onClick={handleNext}
                 onMouseEnter={(e) => handleCardHover(e, true)}
                 onMouseLeave={(e) => handleCardHover(e, false)}
@@ -436,16 +436,16 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 py-4 md:py-8 flex items-center justify-between z-50 pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full px-4 md:px-12 py-3 md:py-8 flex items-center justify-between z-50 pointer-events-none">
         
         <div className="flex-1 hidden md:block"></div>
 
-        <div className="flex items-center justify-center gap-3 md:gap-4 pointer-events-auto flex-1">
-          <button onClick={handlePrev} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
-            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
+        <div className="flex items-center justify-center gap-2 md:gap-4 pointer-events-auto flex-1">
+          <button onClick={handlePrev} className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
+            <ChevronLeft className="w-3 h-3 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
           </button>
-          <button onClick={handleNext} className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
-            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
+          <button onClick={handleNext} className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-md group cursor-pointer">
+            <ChevronRight className="w-3 h-3 md:w-5 md:h-5 text-white/70 group-hover:text-white pointer-events-none" />
           </button>
         </div>
 
@@ -457,7 +457,7 @@ const Hero = () => {
               animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
               exit={{ y: -20, opacity: 0, filter: 'blur(4px)' }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif"
+              className="text-2xl md:text-5xl lg:text-7xl font-light tracking-tighter opacity-80 font-serif"
             >
               {String((textIndex % VALUES.length) + 1).padStart(2, '0')}
             </motion.div>

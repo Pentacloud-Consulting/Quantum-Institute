@@ -61,8 +61,13 @@ const Architecture = () => {
       {/* Upper Background that will fade out */}
       <img 
         src="/Home images/wall .png" 
-        alt="Architecture Upper" 
-        className="architecture-bg-upper w-full h-full object-cover absolute inset-0 transform origin-center z-0" 
+        alt="Architecture Upper Desktop" 
+        className="architecture-bg-upper hidden md:block w-full h-full object-cover absolute inset-0 transform origin-center z-0" 
+      />
+      <img 
+        src="/Home images/wall 2.png" 
+        alt="Architecture Upper Mobile" 
+        className="architecture-bg-upper block md:hidden w-full h-full object-cover absolute inset-0 transform origin-center z-0" 
       />
       
       <div className="absolute inset-0 bg-black/20 z-0"></div>
@@ -72,46 +77,55 @@ const Architecture = () => {
       </div>
 
       {/* Floating Boxes Container */}
-      <div className="absolute top-[12%] left-0 w-full flex flex-wrap justify-center items-start gap-8 md:gap-24 lg:gap-32 px-4 z-20">
+      <div className="absolute top-[35%] md:top-[12%] left-0 w-full flex flex-nowrap justify-center items-start gap-2 sm:gap-6 md:gap-24 lg:gap-32 px-2 z-20">
         {/* Floating Box 1 */}
-        <div className="architecture-box w-48 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl shadow-2xl opacity-0 translate-y-12">
-           <div className="w-full aspect-square mb-3 rounded-lg overflow-hidden">
+        <div 
+          onClick={() => document.getElementById('agora')?.scrollIntoView({ behavior: 'smooth' })}
+          className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
+        >
+           <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/AGORÀ.png" alt="AGORÀ" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-sm md:text-base font-semibold font-sans tracking-wide text-center uppercase">AGORÀ</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">AGORÀ</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-              <div className="w-[1px] h-16 md:h-32 lg:h-48 bg-white/40"></div>
-              <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
+              <div className="w-[1px] h-12 md:h-32 lg:h-48 bg-white/40"></div>
+              <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
            </div>
         </div>
 
         {/* Floating Box 2 */}
-        <div className="architecture-box w-48 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl shadow-2xl opacity-0 translate-y-12">
-           <div className="w-full aspect-square mb-3 rounded-lg overflow-hidden">
+        <div 
+          onClick={() => document.getElementById('canyon')?.scrollIntoView({ behavior: 'smooth' })}
+          className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
+        >
+           <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/CANYON.png" alt="CANYON" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-sm md:text-base font-semibold font-sans tracking-wide text-center uppercase">CANYON</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">CANYON</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-              <div className="w-[1px] h-12 md:h-24 lg:h-32 bg-white/40"></div>
-              <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
+              <div className="w-[1px] h-8 md:h-24 lg:h-32 bg-white/40"></div>
+              <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
            </div>
         </div>
 
         {/* Floating Box 3 */}
-        <div className="architecture-box w-48 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl shadow-2xl opacity-0 translate-y-12">
-           <div className="w-full aspect-square mb-3 rounded-lg overflow-hidden">
+        <div 
+          onClick={() => document.getElementById('elysium')?.scrollIntoView({ behavior: 'smooth' })}
+          className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
+        >
+           <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/ELYSIUM.png" alt="ELYSIUM" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-sm md:text-base font-semibold font-sans tracking-wide text-center uppercase">ELYSIUM</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">ELYSIUM</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-              <div className="w-[1px] h-16 md:h-32 lg:h-40 bg-white/40"></div>
-              <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
+              <div className="w-[1px] h-12 md:h-32 lg:h-40 bg-white/40"></div>
+              <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
            </div>
         </div>
       </div>

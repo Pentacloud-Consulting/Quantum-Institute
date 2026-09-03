@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { motion, LayoutGroup, useScroll, useTransform } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, LayoutGroup, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 const imagesData = [
   {
@@ -75,10 +75,10 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
 
   const y = useTransform(scrollYProgress, [0, 1], ["-12.5%", "12.5%"]);
 
-  const baseClasses = "relative w-full overflow-hidden group cursor-pointer shadow-xl bg-black rounded-3xl";
+  const baseClasses = "relative w-full overflow-hidden group cursor-pointer shadow-lg md:shadow-xl bg-black rounded-2xl md:rounded-3xl";
   const layoutClasses = isSelected 
-    ? "h-[60vh] md:h-[80vh]" 
-    : "aspect-[3/2]";
+    ? "h-[50vh] md:h-[80vh]" 
+    : "aspect-square md:aspect-[3/2]";
 
   return (
     <motion.div
@@ -107,12 +107,12 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
       
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
       
-      <div className="absolute inset-0 z-20 flex flex-col items-start justify-end text-left p-6 md:p-8 text-white">
+      <div className="absolute inset-0 z-20 flex flex-col items-start justify-end text-left p-3 sm:p-5 md:p-8 text-white">
         
         {/* Close Indicator for Selected Image */}
         {isSelected && (
-          <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="text-white bg-black/50 px-5 py-2 rounded-full text-xs font-sans uppercase tracking-widest backdrop-blur-md border border-white/20">
+          <div className="absolute top-4 right-4 md:top-8 md:right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <span className="text-white bg-black/50 px-3 py-1.5 md:px-5 md:py-2 rounded-full text-[10px] md:text-xs font-sans uppercase tracking-widest backdrop-blur-md border border-white/20">
               Close
             </span>
           </div>
@@ -121,11 +121,11 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
         <motion.h3 
           layoutId={`card-title-${img.id}`}
           transition={sharedTransition}
-          className={`font-serif tracking-widest uppercase mb-3 transform transition-transform duration-500 group-hover:-translate-y-1 ${isSelected ? 'text-4xl md:text-6xl drop-shadow-2xl' : 'text-xl md:text-2xl'}`}
+          className={`font-serif tracking-widest uppercase mb-1.5 md:mb-3 transform transition-transform duration-500 group-hover:-translate-y-1 ${isSelected ? 'text-2xl md:text-6xl drop-shadow-2xl' : 'text-[10px] sm:text-sm md:text-2xl leading-tight'}`}
         >
           {img.title}
         </motion.h3>
-        <p className={`text-sm md:text-base font-sans text-white/85 max-w-md leading-relaxed transition-all duration-500 delay-75 ${isSelected ? 'opacity-100 translate-y-0 drop-shadow-lg' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+        <p className={`text-[10px] md:text-base font-sans text-white/85 max-w-md leading-relaxed transition-all duration-500 delay-75 ${isSelected ? 'opacity-100 translate-y-0 drop-shadow-lg' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
           {img.description}
         </p>
       </div>
@@ -136,6 +136,14 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
 const ImagesSection = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const selectedImage = imagesData.find(img => img.id === selectedId);
   const remainingImages = imagesData.filter(img => img.id !== selectedId);
@@ -147,22 +155,77 @@ const ImagesSection = () => {
 
   return (
     <LayoutGroup>
-      <section className="w-full bg-white py-16 md:py-24 px-4 md:px-8 relative min-h-screen">
+      <section className="w-full bg-white py-10 md:py-24 px-3 sm:px-4 md:px-8 relative md:min-h-screen">
       <div className="w-full">
         {/* Title area fades out when an image is expanded for cleaner view */}
-        <div className={`text-center transition-all duration-700 ${selectedId ? 'opacity-0 h-0 overflow-hidden mb-0' : 'opacity-100 mb-12 md:mb-16'}`}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1e1e1e] tracking-tight">
+        <div className={`text-center transition-all duration-700 ${selectedId && !isMobile ? 'opacity-0 h-0 overflow-hidden mb-0' : 'opacity-100 mb-8 md:mb-16'}`}>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#1e1e1e] tracking-tight">
             Soul Peace
           </h2>
-          <p className="text-[#1e1e1e]/60 mt-4 font-sans text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#1e1e1e]/60 mt-3 font-sans text-xs md:text-base max-w-2xl mx-auto leading-relaxed px-2">
             Discover a sanctuary designed for inner tranquility. Our spaces are meticulously crafted to nurture the soul, foster deep reflection, and provide a lasting sense of spiritual harmony.
           </p>
         </div>
 
+        {/* ─── MOBILE POPUP OVERLAY ─── */}
+        <AnimatePresence>
+          {isMobile && selectedId && selectedImage && (
+            <motion.div
+              key="mobile-popup"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-end justify-center"
+              onClick={() => handleSelect(null)}
+            >
+              <motion.div
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: '100%', opacity: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full max-h-[92vh] bg-white rounded-t-3xl overflow-hidden flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close button */}
+                <button
+                  onClick={() => handleSelect(null)}
+                  className="absolute top-4 right-4 z-50 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/20"
+                >
+                  <span className="text-white text-lg leading-none">✕</span>
+                </button>
+
+                {/* Image */}
+                <div className="relative w-full h-[55vw] max-h-[55vh] overflow-hidden flex-shrink-0">
+                  <img
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
+
+                {/* Text content */}
+                <div className="flex flex-col p-6 pb-10 gap-3 overflow-y-auto">
+                  <div className="w-8 h-[2px] bg-[#E05A00]" />
+                  <h3 className="font-serif text-2xl uppercase tracking-widest text-[#1e1e1e] leading-tight">
+                    {selectedImage.title}
+                  </h3>
+                  <p className="text-[#1e1e1e]/70 text-sm font-sans leading-relaxed">
+                    {selectedImage.description}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ─── DESKTOP / TABLET LAYOUT ─── */}
         <motion.div layout transition={sharedTransition} className="relative w-full">
-          {!selectedId ? (
-            // DEFAULT 2x4 GRID
-            <motion.div layout transition={sharedTransition} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+          {/* Always show grid on mobile; split-view only on desktop */}
+          {(!selectedId || isMobile) ? (
+            // DEFAULT 2x4 GRID — 2 columns on all screen sizes
+            <motion.div layout transition={sharedTransition} className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-8 lg:gap-10">
               {imagesData.map((img) => (
                 <ImageCard 
                   key={`grid-${img.id}`} 
@@ -174,7 +237,7 @@ const ImagesSection = () => {
               ))}
             </motion.div>
           ) : (
-            // EXPANDED SPLIT VIEW
+            // EXPANDED SPLIT VIEW (desktop only)
             <motion.div layout transition={sharedTransition} className="flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-start relative w-full">
               {/* LEFT STICKY COLUMN */}
               <div className="w-full md:w-[60%] lg:w-[65%] md:sticky md:top-[120px] z-30 transition-all duration-700">
@@ -209,3 +272,4 @@ const ImagesSection = () => {
 };
 
 export default ImagesSection;
+

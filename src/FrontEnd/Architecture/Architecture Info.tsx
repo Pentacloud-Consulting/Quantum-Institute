@@ -37,34 +37,38 @@ const ArchitectureInfo = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('.info-section');
-      
-      sections.forEach((section: any, i) => {
-        const textWrapper = section.querySelector('.text-wrapper');
-        const imageWrapper = section.querySelector('.image-wrapper');
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        const sections = gsap.utils.toArray('.info-section');
         
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-            end: "bottom 30%",
-            toggleActions: "play reverse play reverse",
-          }
+        sections.forEach((section: any, i) => {
+          const textWrapper = section.querySelector('.text-wrapper');
+          const imageWrapper = section.querySelector('.image-wrapper');
+          
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 70%",
+              end: "bottom 30%",
+              toggleActions: "play reverse play reverse",
+            }
+          });
+
+          // Alternate incoming directions
+          const isEven = i % 2 === 0;
+
+          tl.fromTo(imageWrapper, 
+            { x: isEven ? -100 : 100, opacity: 0, scale: 0.9 },
+            { x: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" },
+            0
+          )
+          .fromTo(textWrapper,
+            { x: isEven ? 100 : -100, opacity: 0 },
+            { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
+            0.2
+          );
         });
-
-        // Alternate incoming directions
-        const isEven = i % 2 === 0;
-
-        tl.fromTo(imageWrapper, 
-          { x: isEven ? -100 : 100, opacity: 0, scale: 0.9 },
-          { x: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" },
-          0
-        )
-        .fromTo(textWrapper,
-          { x: isEven ? 100 : -100, opacity: 0 },
-          { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
-          0.2
-        );
       });
 
     }, containerRef);
@@ -73,15 +77,16 @@ const ArchitectureInfo = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full bg-[#faf9f8] py-24 flex flex-col items-center">
-      <div className="w-full max-w-[1400px] px-6 md:px-12 mx-auto flex flex-col gap-24 md:gap-40">
+    <div ref={containerRef} className="w-full bg-[#faf9f8] py-12 md:py-24 flex flex-col items-center">
+      <div className="w-full max-w-[1400px] px-6 md:px-12 mx-auto flex flex-col gap-16 md:gap-40">
         {architectureData.map((item, index) => (
           <div 
             key={item.id} 
-            className={`info-section w-full flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}
+            id={item.id}
+            className={`info-section w-full flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-6 md:gap-24`}
           >
             {/* Image Container */}
-            <div className="image-wrapper w-full md:w-1/2 flex justify-center opacity-0 [perspective:1000px]">
+            <div className="image-wrapper w-full md:w-1/2 flex justify-center md:opacity-0 [perspective:1000px]">
               <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.08)] ring-1 ring-black/5 group transition-all duration-700 ease-out hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,0,0,0.15)]">
                 <img 
                   src={item.image} 
@@ -96,18 +101,18 @@ const ArchitectureInfo = () => {
             </div>
 
             {/* Text Container */}
-            <div className="text-wrapper w-full md:w-1/2 flex flex-col opacity-0">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-[2px] bg-[#D15000]"></div>
-                <span className="text-[#D15000] tracking-[0.2em] text-xs font-bold uppercase">Space {String(index + 1).padStart(2, '0')}</span>
+            <div className="text-wrapper w-full md:w-1/2 flex flex-col md:opacity-0">
+              <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-6">
+                <div className="w-8 md:w-12 h-[2px] bg-[#D15000]"></div>
+                <span className="text-[#D15000] tracking-[0.2em] text-[10px] md:text-xs font-bold uppercase">Space {String(index + 1).padStart(2, '0')}</span>
               </div>
-              <h2 className="text-4xl md:text-6xl font-serif text-black tracking-tight mb-4 drop-shadow-sm">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-black tracking-tight mb-3 md:mb-4 drop-shadow-sm">
                 {item.title}
               </h2>
-              <h4 className="text-lg md:text-xl text-black/80 font-light italic mb-8 border-l-2 border-black/20 pl-4">
+              <h4 className="text-sm md:text-xl text-black/80 font-light italic mb-4 md:mb-8 border-l-2 border-black/20 pl-4">
                 {item.subtitle}
               </h4>
-              <p className="text-black/70 text-sm md:text-base leading-relaxed max-w-lg font-sans">
+              <p className="text-black/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-sans">
                 {item.description}
               </p>
             </div>

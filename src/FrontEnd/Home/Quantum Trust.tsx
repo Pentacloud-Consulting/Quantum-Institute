@@ -14,6 +14,7 @@ const smoothTransition: any = { duration: 0.7, ease: [0.16, 1, 0.3, 1] };
 const QuantumTrust = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<number | null>(null);
 
   return (
     <div className="w-full h-auto lg:h-[100dvh] pt-24 pb-12 lg:pt-28 flex flex-col text-white font-sans relative overflow-hidden bg-black">
@@ -34,9 +35,69 @@ const QuantumTrust = () => {
         <span className="text-xs md:text-sm tracking-widest text-white/70">What we do (and do really well)</span>
       </div>
 
-      {/* Accordion List */}
+      {/* ─── MOBILE CARD LIST (hidden on md+) ─── */}
+      <div className="flex md:hidden flex-col flex-1 relative z-10 px-4 pt-6 pb-6 gap-4 overflow-y-auto">
+        {services.map((item, idx) => {
+          const isOpen = mobileExpanded === idx;
+          return (
+            <motion.div
+              key={item.id}
+              layout
+              transition={smoothTransition}
+              onClick={() => setMobileExpanded(isOpen ? null : idx)}
+              className="relative w-full overflow-hidden rounded-2xl cursor-pointer border border-white/10 shadow-lg"
+              style={{ minHeight: 100 }}
+            >
+              {/* Background image */}
+              <div className="absolute inset-0 z-0">
+                <img src={item.img} className="w-full h-full object-cover" alt={item.title1} />
+                <div className={`absolute inset-0 transition-all duration-700 ${isOpen ? 'bg-black/70' : 'bg-black/50'}`} />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 p-5 flex flex-col">
+                {/* Header row */}
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] tracking-[0.3em] text-white/50 mb-1">/{item.id}</span>
+                    <h3 className="text-xl font-serif font-medium tracking-tight leading-tight">
+                      {item.title1} <span className="text-[#E05A00]">{item.title2}</span>
+                    </h3>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center shrink-0 ml-4"
+                  >
+                    <span className="text-white text-xl leading-none font-light">+</span>
+                  </motion.div>
+                </div>
+
+                {/* Expandable description */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-4 pt-4 border-t border-white/20">
+                        <p className="text-white/75 text-sm leading-relaxed">{item.subtitle}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* ─── DESKTOP ACCORDION (hidden on mobile) ─── */}
       <LayoutGroup>
-        <div className="flex flex-col w-full flex-1 relative z-10">
+        <div className="hidden md:flex flex-col w-full flex-1 relative z-10">
           {services.map((item, idx) => {
             const isHovered = hoveredIndex === idx;
             const isExpanded = expandedIndex === idx;
@@ -75,34 +136,29 @@ const QuantumTrust = () => {
                 </AnimatePresence>
 
                 {/* Background giant faded number */}
-                <div className={`absolute left-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
+                <div className={`absolute left-[4%] top-1/2 -translate-y-1/2 text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
                   {parseInt(item.id)}
                 </div>
-                <div className={`absolute right-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
+                <div className={`absolute right-[4%] top-1/2 -translate-y-1/2 text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
                   {parseInt(item.id)}
                 </div>
 
                 {/* Top corner labels */}
-                <div className="absolute left-4 md:left-8 top-4 md:top-4 text-xs tracking-widest text-white/50 z-10 transition-colors group-hover:text-white">
+                <div className="absolute left-8 top-4 text-xs tracking-widest text-white/50 z-10 transition-colors group-hover:text-white">
                   /{item.id}
                 </div>
-                <div className="absolute right-4 md:right-8 top-4 md:top-4 text-xs tracking-widest text-white/50 z-10 transition-colors group-hover:text-white">
+                <div className="absolute right-8 top-4 text-xs tracking-widest text-white/50 z-10 transition-colors group-hover:text-white">
                   {isExpanded ? '/Close' : '/See more'}
                 </div>
 
                 <motion.div 
                   layout 
                   transition={smoothTransition}
-                  className="relative z-10 flex flex-col items-center justify-center w-full py-6 md:py-8 lg:py-0"
+                  className="relative z-10 flex flex-col items-center justify-center w-full py-8 lg:py-0"
                 >
-                  
-                  {/* Title and splitting logic */}
-                  <motion.div layout transition={smoothTransition} className="flex items-center justify-center w-full max-w-[95vw] md:max-w-[90vw] mx-auto pointer-events-none">
-                    <motion.span 
-                      layout 
-                      transition={smoothTransition}
-                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg"
-                    >
+                  {/* Title splitting */}
+                  <motion.div layout transition={smoothTransition} className="flex items-center justify-center w-full max-w-[90vw] mx-auto pointer-events-none">
+                    <motion.span layout transition={smoothTransition} className="text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg">
                       {item.title1}
                     </motion.span>
                     
@@ -116,25 +172,17 @@ const QuantumTrust = () => {
                       transition={smoothTransition}
                       className="flex justify-center overflow-hidden shrink-0 pointer-events-auto"
                     >
-                      <div className="px-2 sm:px-4 md:px-6">
-                        <img 
-                          src={item.img} 
-                          alt={item.title1} 
-                          className="h-8 sm:h-12 md:h-14 lg:h-16 xl:h-20 w-12 sm:w-16 md:w-20 lg:w-28 xl:w-32 object-cover rounded-xl shadow-2xl" 
-                        />
+                      <div className="px-6">
+                        <img src={item.img} alt={item.title1} className="h-14 lg:h-16 xl:h-20 w-20 lg:w-28 xl:w-32 object-cover rounded-xl shadow-2xl" />
                       </div>
                     </motion.div>
 
-                    <motion.span 
-                      layout 
-                      transition={smoothTransition}
-                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg"
-                    >
+                    <motion.span layout transition={smoothTransition} className="text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg">
                       {item.title2}
                     </motion.span>
                   </motion.div>
 
-                  {/* Subtitle and Action Button (Revealed on hover or expand) */}
+                  {/* Subtitle */}
                   <motion.div
                     layout
                     initial={{ height: 0, opacity: 0 }}
@@ -145,11 +193,10 @@ const QuantumTrust = () => {
                     transition={smoothTransition}
                     className="flex flex-col items-center justify-center overflow-hidden w-full"
                   >
-                    <motion.p layout transition={smoothTransition} className="pt-4 md:pt-6 pb-2 text-white/80 text-[10px] sm:text-[11px] md:text-xs tracking-wide text-center max-w-sm md:max-w-xl uppercase px-4 drop-shadow-md">
+                    <motion.p layout transition={smoothTransition} className="pt-6 pb-2 text-white/80 text-xs tracking-wide text-center max-w-xl uppercase px-4 drop-shadow-md">
                       {item.subtitle}
                     </motion.p>
                   </motion.div>
-
                 </motion.div>
               </motion.div>
             );

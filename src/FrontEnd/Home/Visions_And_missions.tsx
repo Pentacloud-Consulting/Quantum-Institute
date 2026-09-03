@@ -307,9 +307,9 @@ const MobileVisionMission = () => {
                   {/* Thin orange border frame */}
                   <div className="absolute inset-0 border border-[#E05A00] opacity-40 z-0 rounded-3xl"></div>
                   
-                  {/* The Videos */}
-                  <motion.video 
-                    src="/Videos/Meditation.mp4"
+                  {/* The Video */}
+                  <video 
+                    src="/Videos/Footer Video.mp4"
                     autoPlay
                     loop
                     muted
@@ -317,22 +317,6 @@ const MobileVisionMission = () => {
                     disablePictureInPicture
                     disableRemotePlayback
                     className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none rounded-2xl"
-                    initial={false}
-                    animate={{ opacity: step === 1 ? 1 : 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                  <motion.video 
-                    src="/Videos/Yoga.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    disablePictureInPicture
-                    disableRemotePlayback
-                    className="absolute inset-2 z-10 object-cover w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none rounded-2xl"
-                    initial={false}
-                    animate={{ opacity: step === 2 ? 1 : 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
                   />
                 </motion.div>
              </div>

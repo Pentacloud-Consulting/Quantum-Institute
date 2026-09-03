@@ -108,13 +108,8 @@ const Hero_View = () => {
   });
 
 
-
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.active-bg-img', 
-        { scale: 1.2 },
-        { scale: 1, duration: 1.5, ease: "power3.out" }
-      );
       gsap.fromTo('.slider-card',
         { x: 100, opacity: 0 },
         { 
@@ -131,6 +126,20 @@ const Hero_View = () => {
     }, heroPinRef);
     return () => ctx.revert();
   }, []);
+
+  // Background animation specifically for mobile crossfade
+  useLayoutEffect(() => {
+    if (window.innerWidth >= 768) return;
+    
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.active-bg-container',
+        { opacity: 0, scale: 1.05 },
+        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" }
+      );
+    }, heroPinRef);
+    
+    return () => ctx.revert();
+  }, [activeIndex]);
 
   useLayoutEffect(() => {
     if (!cloneData && !reverseCloneData) {
@@ -150,6 +159,14 @@ const Hero_View = () => {
   const handleNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
+
+    if (window.innerWidth < 768) {
+      setPrevIndex(activeIndex);
+      setActiveIndex((prev) => (prev + 1) % VALUES.length);
+      setTextIndex((prev) => (prev + 1) % VALUES.length);
+      setTimeout(() => setIsAnimating(false), 1500); // Wait for bg crossfade
+      return;
+    }
     
     const container = document.querySelector('.cards-container') as HTMLElement;
     const cards = document.querySelectorAll('.slider-card');
@@ -213,8 +230,9 @@ const Hero_View = () => {
       const moveDistance = firstCard.offsetWidth + gap;
 
       const secondCard = cards[1] as HTMLElement;
-      const targetScale = secondCard ? firstCard.offsetWidth / secondCard.offsetWidth : 1.222;
-      const xOffset = secondCard ? (firstCard.offsetWidth - secondCard.offsetWidth) / 2 : 16;
+      const secondCardWidth = secondCard?.offsetWidth || 0;
+      const targetScale = secondCardWidth > 0 ? firstCard.offsetWidth / secondCardWidth : 1.222;
+      const xOffset = secondCardWidth > 0 ? (firstCard.offsetWidth - secondCardWidth) / 2 : 16;
 
       gsap.to(container, {
         x: -moveDistance,
@@ -257,6 +275,15 @@ const Hero_View = () => {
   const handlePrev = () => {
     if (isAnimating) return;
     setIsAnimating(true);
+
+    if (window.innerWidth < 768) {
+      setPrevIndex(activeIndex);
+      const newIdx = (activeIndex - 1 + VALUES.length) % VALUES.length;
+      setActiveIndex(newIdx);
+      setTextIndex(newIdx);
+      setTimeout(() => setIsAnimating(false), 1500); // Wait for bg crossfade
+      return;
+    }
     
     const container = document.querySelector('.cards-container') as HTMLElement;
     const cards = document.querySelectorAll('.slider-card');
@@ -312,8 +339,9 @@ const Hero_View = () => {
       const moveDistance = newFirstCard.offsetWidth + gap;
       
       const newSecondCard = newCards[1] as HTMLElement;
-      const startScale = newSecondCard ? newFirstCard.offsetWidth / newSecondCard.offsetWidth : 1.222;
-      const xOffset = newSecondCard ? (newFirstCard.offsetWidth - newSecondCard.offsetWidth) / 2 : 16;
+      const newSecondCardWidth = newSecondCard?.offsetWidth || 0;
+      const startScale = newSecondCardWidth > 0 ? newFirstCard.offsetWidth / newSecondCardWidth : 1.222;
+      const xOffset = newSecondCardWidth > 0 ? (newFirstCard.offsetWidth - newSecondCardWidth) / 2 : 16;
       
       gsap.fromTo(currentContainer, 
         { x: -moveDistance }, 
@@ -381,14 +409,14 @@ const Hero_View = () => {
     }
   }, [reverseCloneData]);
 
-  // Auto-scroll disabled per user request
-  // useEffect(() => {
-  //   if (isHovered || isAnimating) return;
-  //   const interval = setInterval(() => {
-  //     handleNextRef.current();
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [isHovered, isAnimating]);
+  // Auto-scroll functionality restored
+  useEffect(() => {
+    if (isHovered || isAnimating) return;
+    const interval = setInterval(() => {
+      handleNextRef.current();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHovered, isAnimating]);
 
   const handleCardHover = (e: React.MouseEvent, isEnter: boolean) => {
     const target = e.currentTarget;
@@ -423,7 +451,7 @@ const Hero_View = () => {
       {VALUES[activeIndex] && (
         <div 
           key={`bg-${VALUES[activeIndex].id}`}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 active-bg-container"
         >
           <img src={VALUES[activeIndex].img} className="active-bg-img w-full h-full object-cover scale-[1.01] will-change-transform" alt="" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
@@ -454,7 +482,7 @@ const Hero_View = () => {
                 <ChevronLeft className="w-4 h-4 text-white/70 group-hover:text-white" />
               </button>
               
-              <div className="flex gap-3 md:gap-6 overflow-visible pb-4 cards-container will-change-transform items-center relative">
+              <div className="hidden md:flex gap-3 md:gap-6 overflow-visible pb-4 cards-container will-change-transform items-center relative">
                 {getUpcomingCards().slice(0, 3).map((item, i) => (
                   <div 
                     key={`card-${item.id}`}
@@ -462,7 +490,7 @@ const Hero_View = () => {
                       i === 0 
                         ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px] opacity-100' 
                         : i === 1 
-                        ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95' 
+                        ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95 hidden md:block' 
                         : 'absolute left-[calc(100%+0.75rem)] md:left-[calc(100%+1.5rem)] w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-0 scale-95 pointer-events-none'
                     } rounded-[16px] md:rounded-[20px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
                     onClick={handleNext}
