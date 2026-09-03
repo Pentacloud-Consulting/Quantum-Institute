@@ -168,7 +168,7 @@ const Visions_And_missions = () => {
              </div>
              
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] lg:border-[8px] border-white shadow-2xl z-10">
-                <video src="/Videos/Meditation.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+                <video src="/Videos/Footer Video.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
                 <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay pointer-events-none"></div>
              </div>
           </div>
