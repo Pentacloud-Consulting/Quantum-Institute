@@ -381,13 +381,14 @@ const Hero_View = () => {
     }
   }, [reverseCloneData]);
 
-  useEffect(() => {
-    if (isHovered || isAnimating) return;
-    const interval = setInterval(() => {
-      handleNextRef.current();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHovered, isAnimating]);
+  // Auto-scroll disabled per user request
+  // useEffect(() => {
+  //   if (isHovered || isAnimating) return;
+  //   const interval = setInterval(() => {
+  //     handleNextRef.current();
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [isHovered, isAnimating]);
 
   const handleCardHover = (e: React.MouseEvent, isEnter: boolean) => {
     const target = e.currentTarget;
@@ -488,7 +489,7 @@ const Hero_View = () => {
                 onClick={() => router.push('/signup')}
                 className="px-6 py-2 md:px-8 md:py-3 rounded-full border-[1.5px] border-white/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase bg-white/10 hover:bg-white/20 backdrop-blur-md transition-all duration-300 cursor-pointer text-white shadow-lg whitespace-nowrap text-center"
               >
-                JOIN WISHLIST
+                JOIN WaitLIST
               </button>
               <button 
                 onClick={() => router.push('/architecture')}

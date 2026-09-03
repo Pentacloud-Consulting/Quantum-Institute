@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, LayoutGroup } from 'framer-motion';
+import { motion, LayoutGroup, AnimatePresence } from 'framer-motion';
 
 const services = [
   { id: '01', title1: 'Quantum', title2: 'Healing', subtitle: 'Advanced therapeutic programs integrating bio-frequency and holistic practices for complete restoration.', img: '/OG IMAGES/q1.png' },
@@ -13,6 +13,7 @@ const smoothTransition: any = { duration: 0.7, ease: [0.16, 1, 0.3, 1] };
 
 const QuantumTrust = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
     <div className="w-full h-auto lg:h-[100dvh] pt-24 pb-12 lg:pt-28 flex flex-col text-white font-sans relative overflow-hidden bg-black">
@@ -38,23 +39,46 @@ const QuantumTrust = () => {
         <div className="flex flex-col w-full flex-1 relative z-10">
           {services.map((item, idx) => {
             const isHovered = hoveredIndex === idx;
+            const isExpanded = expandedIndex === idx;
 
             return (
               <motion.div 
                 key={item.id}
                 layout
                 transition={smoothTransition}
-                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseEnter={() => {
+                  setHoveredIndex(idx);
+                  if (expandedIndex !== null && expandedIndex !== idx) {
+                    setExpandedIndex(null);
+                  }
+                }}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="relative w-full border-b border-white/20 group cursor-pointer flex flex-col justify-center"
-                animate={{ flexGrow: isHovered ? 1.5 : 1 }}
+                onClick={() => setExpandedIndex(isExpanded ? null : idx)}
+                className="relative w-full border-b border-white/20 group cursor-pointer flex flex-col justify-center overflow-hidden"
+                animate={{ flexGrow: isExpanded ? 2.5 : isHovered ? 1.5 : 1 }}
               >
                 
+                {/* Expanded Background Image Layer */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="absolute inset-0 z-0 pointer-events-none"
+                    >
+                      <img src={item.img} className="w-full h-full object-cover" alt="" />
+                      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {/* Background giant faded number */}
-                <div className="absolute left-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold text-white/[0.02] pointer-events-none select-none z-0 leading-none">
+                <div className={`absolute left-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
                   {parseInt(item.id)}
                 </div>
-                <div className="absolute right-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold text-white/[0.02] pointer-events-none select-none z-0 leading-none">
+                <div className={`absolute right-[4%] top-1/2 -translate-y-1/2 text-[15vh] md:text-[20vh] font-bold pointer-events-none select-none z-0 leading-none transition-colors duration-700 ${isExpanded ? 'text-white/5' : 'text-white/[0.02]'}`}>
                   {parseInt(item.id)}
                 </div>
 
@@ -63,7 +87,7 @@ const QuantumTrust = () => {
                   /{item.id}
                 </div>
                 <div className="absolute right-4 md:right-8 top-4 md:top-4 text-xs tracking-widest text-white/50 z-10 transition-colors group-hover:text-white">
-                  /See more
+                  {isExpanded ? '/Close' : '/See more'}
                 </div>
 
                 <motion.div 
@@ -73,11 +97,11 @@ const QuantumTrust = () => {
                 >
                   
                   {/* Title and splitting logic */}
-                  <motion.div layout transition={smoothTransition} className="flex items-center justify-center w-full max-w-[95vw] md:max-w-[90vw] mx-auto">
+                  <motion.div layout transition={smoothTransition} className="flex items-center justify-center w-full max-w-[95vw] md:max-w-[90vw] mx-auto pointer-events-none">
                     <motion.span 
                       layout 
                       transition={smoothTransition}
-                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap"
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg"
                     >
                       {item.title1}
                     </motion.span>
@@ -86,11 +110,11 @@ const QuantumTrust = () => {
                       layout
                       initial={{ width: 0, opacity: 0 }}
                       animate={{ 
-                        width: isHovered ? 'auto' : 0, 
-                        opacity: isHovered ? 1 : 0 
+                        width: (isHovered && !isExpanded) ? 'auto' : 0, 
+                        opacity: (isHovered && !isExpanded) ? 1 : 0 
                       }}
                       transition={smoothTransition}
-                      className="flex justify-center overflow-hidden shrink-0"
+                      className="flex justify-center overflow-hidden shrink-0 pointer-events-auto"
                     >
                       <div className="px-2 sm:px-4 md:px-6">
                         <img 
@@ -104,24 +128,24 @@ const QuantumTrust = () => {
                     <motion.span 
                       layout 
                       transition={smoothTransition}
-                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap"
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg"
                     >
                       {item.title2}
                     </motion.span>
                   </motion.div>
 
-                  {/* Subtitle and Action Button (Revealed on hover) */}
+                  {/* Subtitle and Action Button (Revealed on hover or expand) */}
                   <motion.div
                     layout
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ 
-                      height: isHovered ? 'auto' : 0, 
-                      opacity: isHovered ? 1 : 0 
+                      height: (isHovered || isExpanded) ? 'auto' : 0, 
+                      opacity: (isHovered || isExpanded) ? 1 : 0 
                     }}
                     transition={smoothTransition}
                     className="flex flex-col items-center justify-center overflow-hidden w-full"
                   >
-                    <motion.p layout transition={smoothTransition} className="pt-4 md:pt-6 pb-2 text-white/60 text-[10px] sm:text-[11px] md:text-xs tracking-wide text-center max-w-sm md:max-w-xl uppercase px-4">
+                    <motion.p layout transition={smoothTransition} className="pt-4 md:pt-6 pb-2 text-white/80 text-[10px] sm:text-[11px] md:text-xs tracking-wide text-center max-w-sm md:max-w-xl uppercase px-4 drop-shadow-md">
                       {item.subtitle}
                     </motion.p>
                   </motion.div>
