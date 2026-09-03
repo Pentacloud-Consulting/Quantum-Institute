@@ -4,14 +4,62 @@ import React, { useState, useRef } from "react";
 import { motion, LayoutGroup, useScroll, useTransform } from "framer-motion";
 
 const imagesData = [
-  { id: 1, src: "/OG IMAGES/q1.png", alt: "Architecture Detail 1", title: "THE APEX", description: "A towering testament to structural superiority." },
-  { id: 2, src: "/OG IMAGES/q2.png", alt: "Architecture Detail 2", title: "QUANTUM CORE", description: "Energy distribution network seamlessly integrated." },
-  { id: 3, src: "/OG IMAGES/q3.png", alt: "Architecture Detail 3", title: "SOLAR VEIL", description: "Photovoltaic glass providing ambient lighting." },
-  { id: 4, src: "/OG IMAGES/q4.png", alt: "Architecture Detail 4", title: "CANYON WALK", description: "Natural pathways mimicking ancient landscapes." },
-  { id: 5, src: "/OG IMAGES/q5.png", alt: "Architecture Detail 5", title: "THE AGORÀ", description: "Central gathering space for community resonance." },
-  { id: 6, src: "/OG IMAGES/q6.png", alt: "Architecture Detail 6", title: "ELYSIUM ARCH", description: "Vaulted ceilings engineered for acoustic perfection." },
-  { id: 7, src: "/OG IMAGES/q7.png", alt: "Architecture Detail 7", title: "ZENITH POINT", description: "Highest observation deck offering panoramic views." },
-  { id: 8, src: "/OG IMAGES/q8.png", alt: "Architecture Detail 8", title: "OASIS ATRIUM", description: "Lush indoor gardens sustaining natural microclimates." },
+  {
+    id: 1,
+    src: "/Home/The Wellness Spectrum/Holistic & Integrative Wellness.webp",
+    alt: "Holistic & Integrative Wellness",
+    title: "HOLISTIC WELLNESS",
+    description: "Embrace a complete path to healing where body, mind, and spirit unite. Our integrative approach weaves ancient wisdom with modern science. Every practice is designed to restore wholeness from within."
+  },
+  {
+    id: 2,
+    src: "/Home/The Wellness Spectrum/Meditation, Breathwork & Movement.webp",
+    alt: "Meditation, Breathwork & Movement",
+    title: "BREATH & MOVEMENT",
+    description: "Unlock the profound stillness that lives beneath the noise of everyday life. Through guided breathwork and mindful movement, the body awakens. Each session deepens your connection to the present moment."
+  },
+  {
+    id: 3,
+    src: "/Home/Quantum Hero/Quantum Hero - 3.webp",
+    alt: "Quantum Institute Architecture",
+    title: "SACRED ARCHITECTURE",
+    description: "Spaces crafted to inspire quiet reverence and inner calm. Every curve and corridor is engineered to align with natural energy flows. Step inside and feel the environment hold you in peace."
+  },
+  {
+    id: 4,
+    src: "/Home/Quantum Hero/Quantum Hero - 5.webp",
+    alt: "Quantum Institute Sanctuary",
+    title: "THE SANCTUARY",
+    description: "A timeless refuge where silence becomes its own form of medicine. Immerse yourself in an atmosphere designed for profound rest and renewal. Here, the world slows down and stillness becomes home."
+  },
+  {
+    id: 5,
+    src: "/Home/Quantum Hero/Quantum Hero - 6.webp",
+    alt: "Quantum Institute Exterior",
+    title: "DESERT RESONANCE",
+    description: "Born from the desert landscape, this space carries the earth's quiet power. The surrounding environment amplifies clarity, focus, and grounded presence. Nature itself becomes a teacher and a healer."
+  },
+  {
+    id: 6,
+    src: "/Home/Quantum Hero/Quantum Hero - 10.webp",
+    alt: "Quantum Healing Environment",
+    title: "HEALING LIGHT",
+    description: "Light is channeled intentionally to guide the body toward restoration. Each illuminated space creates an atmosphere of warmth, safety, and clarity. Bathe in an environment that heals as much as it inspires."
+  },
+  {
+    id: 7,
+    src: "/Home/Quantum Hero/Quantum Hero - 11.webp",
+    alt: "Quantum Institute Interior",
+    title: "INNER OASIS",
+    description: "A flowing interior world where water, air, and living nature converge. This immersive environment dissolves tension and invites deep restoration. Every detail exists to soften the edges of the restless mind."
+  },
+  {
+    id: 8,
+    src: "/Peace/Peace -7.webp",
+    alt: "Soul Peace",
+    title: "SOUL PEACE",
+    description: "The highest aspiration — a life lived in alignment with your truest self. Soul Peace is not a destination but a practice, cultivated daily in every breath. We create the conditions; you rediscover the stillness within."
+  },
 ];
 
 const sharedTransition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const };
@@ -57,9 +105,9 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
         />
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/70 opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 opacity-80 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
       
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6 text-white">
+      <div className="absolute inset-0 z-20 flex flex-col items-start justify-end text-left p-6 md:p-8 text-white">
         
         {/* Close Indicator for Selected Image */}
         {isSelected && (
@@ -73,11 +121,11 @@ const ImageCard = ({ img, isSelected, hasInteracted, onClick }: { img: any, isSe
         <motion.h3 
           layoutId={`card-title-${img.id}`}
           transition={sharedTransition}
-          className={`font-serif tracking-widest uppercase mb-2 transform transition-transform duration-500 group-hover:-translate-y-2 ${isSelected ? 'text-4xl md:text-6xl drop-shadow-2xl' : 'text-2xl md:text-3xl'}`}
+          className={`font-serif tracking-widest uppercase mb-3 transform transition-transform duration-500 group-hover:-translate-y-1 ${isSelected ? 'text-4xl md:text-6xl drop-shadow-2xl' : 'text-xl md:text-2xl'}`}
         >
           {img.title}
         </motion.h3>
-        <p className={`text-sm md:text-base font-sans text-white/90 max-w-sm transition-all duration-500 delay-75 ${isSelected ? 'opacity-100 translate-y-0 drop-shadow-lg' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+        <p className={`text-sm md:text-base font-sans text-white/85 max-w-md leading-relaxed transition-all duration-500 delay-75 ${isSelected ? 'opacity-100 translate-y-0 drop-shadow-lg' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
           {img.description}
         </p>
       </div>

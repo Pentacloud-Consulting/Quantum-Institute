@@ -458,7 +458,13 @@ const Hero_View = () => {
                 {getUpcomingCards().slice(0, 3).map((item, i) => (
                   <div 
                     key={`card-${item.id}`}
-                    className={`slider-card ${i === 0 ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px]' : i === 1 ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95' : 'absolute left-[calc(100%+0.75rem)] md:left-[calc(100%+1.5rem)] w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-0 scale-95 pointer-events-none'} rounded-[16px] md:rounded-[20px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
+                    className={`slider-card transition-[width,height,opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      i === 0 
+                        ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px] opacity-100' 
+                        : i === 1 
+                        ? 'relative w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-70 scale-95' 
+                        : 'absolute left-[calc(100%+0.75rem)] md:left-[calc(100%+1.5rem)] w-24 h-40 sm:w-28 sm:h-48 md:w-32 md:h-[220px] lg:w-36 lg:h-[240px] opacity-0 scale-95 pointer-events-none'
+                    } rounded-[16px] md:rounded-[20px] border border-white/10 overflow-hidden shrink-0 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.6)]`}
                     onClick={handleNext}
                     onMouseEnter={(e) => handleCardHover(e, true)}
                     onMouseLeave={(e) => handleCardHover(e, false)}
@@ -473,7 +479,7 @@ const Hero_View = () => {
                     <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20">
                       <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
                       <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
-                      <h3 className="text-xs md:text-base font-bold uppercase tracking-wide leading-tight whitespace-pre-line">{item.title}</h3>
+                      <h3 className={`transition-[font-size] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] font-bold uppercase tracking-wide leading-tight whitespace-pre-line ${i === 0 ? 'text-xs md:text-base' : 'text-[9px] md:text-xs'}`}>{item.title}</h3>
                     </div>
                   </div>
                 ))}
