@@ -13,17 +13,14 @@ import Lenis from 'lenis';
 import { useRouter } from 'next/navigation';
 
 const VALUES = [
-  { id: 1, title: "MASTER\nHEALING", subtitle: "Take charge of your well-being", desc: "Master your Healing. Take charge of your well-being with intention and insight. We transcend science to promote a quantum understanding.", img: "/Home/Quantum%20Hero/Quantum%20Hero%20-%2010.webp" },
-  { id: 2, title: "ACCESS\nPOINT", subtitle: "Architectural Render", desc: "Innovate your Education. Reimagine how learning shapes the human experience through expanded learning and purposeful foundation.", img: "/OG%20IMAGES/q2.png" },
-  { id: 3, title: "EXTERIOR\nVIEW", subtitle: "Architectural Render", desc: "Discover your Research. Advance your inquiry with clarity and discipline. Challenge norms to uncover deeper understanding.", img: "/OG%20IMAGES/q3.png" },
-  { id: 4, title: "THE\nAGORÀ", subtitle: "Interior View in Meditation Arrangement", desc: "Nurture your Exploration. Navigate new ideas with focus and curiosity. Push boundaries to reveal untapped potential.", img: "/OG%20IMAGES/q4.png" },
-  { id: 5, title: "THE\nELYSIUM", subtitle: "Interior View for Healing and Relaxation", desc: "Welcome to the Quantum Institute. We break the boundaries of what can be achieved through the natural application of theoretical sciences.", img: "/OG%20IMAGES/q5.png" },
-  { id: 6, title: "ARCHITECTURAL\nRENDER", subtitle: "Building a better tomorrow", desc: "Drive sustainable change. Focus on holistic progress that honors both ancient wisdom and modern scientific breakthroughs.", img: "/OG%20IMAGES/q6.png" },
-  { id: 7, title: "DESERT\nENVIRONMENT", subtitle: "Journey beyond the known", desc: "Step into the unknown. Broaden your perspective and engage with groundbreaking ideas in an ever-evolving ecosystem.", img: "/OG%20IMAGES/q7.png" },
-  { id: 8, title: "INTERIOR\nCANYON", subtitle: "Interior View of the Canyon", desc: "Tap into deeper states of awareness. Harmonize your internal state with the external world to achieve profound balance.", img: "/OG%20IMAGES/q8.png" },
-  { id: 9, title: "THE\nOASIS", subtitle: "Uniting distinct disciplines", desc: "Forge connections across fields. When distinct minds collaborate, the potential for true innovation becomes limitless.", img: "/OG%20IMAGES/q9.png" },
-  { id: 10, title: "ACCESS\nPOINT", subtitle: "Transforming the future", desc: "Join the paradigm shift. Participate in a movement dedicated to bridging the gap between holistic health and scientific rigor.", img: "/OG%20IMAGES/q1.png" },
-  { id: 11, title: "ACCESS\nPOINT", subtitle: "Architectural Render", desc: "Discover the endless possibilities when we push past the boundaries of conventional understanding.", img: "/OG%20IMAGES/q2.png" },
+  { id: 1, title: "DESERT\nSANCTUARY", subtitle: "Vastness of the Quantum", desc: "Step into the limitless expanse of the quantum desert. Experience profound stillness and grounding in nature's most expansive landscapes, where the horizon meets your deepest inner peace.", img: "/OG IMAGES/q7.png" },
+  { id: 2, title: "SILENT\nDUNES", subtitle: "Echoes of Eternity", desc: "Discover tranquility amidst the silent dunes. Let the timeless environment of the desert strip away distractions, leaving you centered, focused, and deeply connected to your inner truth.", img: "/OG IMAGES/q9.png" },
+  { id: 3, title: "THE\nDOME", subtitle: "Sacred Geometry", desc: "Experience profound energetic alignment within the Quantum Dome. Architectural mastery and sacred geometry combine to create an environment that naturally elevates your frequency and focus.", img: "/Home/Quantum Hero/Quantum Hero - 3.webp" },
+  { id: 4, title: "INNER\nSANCTUM", subtitle: "Harmonic Resonance", desc: "Retreat into a space designed for deep introspection. The domed architecture captures and amplifies harmonic frequencies, creating the ultimate environment for restorative meditation.", img: "/Home/Quantum Hero/Quantum Hero - 4.webp" },
+  { id: 5, title: "HEALING\nSPHERE", subtitle: "Immersive Restoration", desc: "Bathe in the restorative energy of the Healing Sphere. A sanctuary of light, sound, and structure engineered to bring your mind, body, and spirit into perfect, harmonious balance.", img: "/Home/Quantum Hero/Quantum Hero - 10.webp" },
+  { id: 6, title: "SOUL\nPEACE", subtitle: "Tranquil Reflection", desc: "Discover the ultimate state of serenity. Soul Peace offers an immersive journey into stillness, guiding you toward a lasting state of harmony and profound spiritual awakening.", img: "/Peace/Peace -4.webp" },
+  { id: 7, title: "AURA OF\nSTILLNESS", subtitle: "Silent Awakening", desc: "Embrace the aura of stillness. Through intentional design and mindful practice, experience a powerful awakening that silences the mind and rejuvenates the spirit.", img: "/Peace/Peace -5.webp" },
+  { id: 8, title: "ETERNAL\nHARMONY", subtitle: "The Path Within", desc: "Walk the path of eternal harmony. Return to your true essence in an environment dedicated solely to cultivating deep, unshakeable inner peace and lasting emotional balance.", img: "/Peace/Peace -6.webp" },
 ];
 
 const renderTitle = (title: string) => {
@@ -486,7 +483,7 @@ const Hero_View = () => {
                 {getUpcomingCards().slice(0, 3).map((item, i) => (
                   <div 
                     key={`card-${item.id}`}
-                    className={`slider-card transition-[width,height,opacity,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    className={`slider-card ${
                       i === 0 
                         ? 'relative w-28 h-48 sm:w-36 sm:h-60 md:w-40 md:h-[280px] lg:w-44 lg:h-[300px] opacity-100' 
                         : i === 1 
@@ -507,7 +504,7 @@ const Hero_View = () => {
                     <div className="absolute bottom-0 left-0 p-4 md:p-5 z-20">
                       <div className="w-4 md:w-6 h-[2px] bg-[#E05A00] mb-2 md:mb-3"></div>
                       <p className="text-[8px] md:text-[10px] font-serif italic text-white/80 tracking-wide mb-1">{item.subtitle}</p>
-                      <h3 className={`transition-[font-size] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] font-bold uppercase tracking-wide leading-tight whitespace-pre-line ${i === 0 ? 'text-xs md:text-base' : 'text-[9px] md:text-xs'}`}>{item.title}</h3>
+                      <h3 className={`font-bold uppercase tracking-wide leading-tight whitespace-pre-line ${i === 0 ? 'text-xs md:text-base' : 'text-[9px] md:text-xs'}`}>{item.title}</h3>
                     </div>
                   </div>
                 ))}
