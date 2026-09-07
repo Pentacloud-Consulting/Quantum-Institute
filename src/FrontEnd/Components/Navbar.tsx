@@ -23,9 +23,35 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={`fixed top-0 left-0 w-full px-6 md:px-12 flex items-center justify-between z-[100] transition-all duration-300 ${
-        isScrolled ? "py-4 bg-black/40 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]" : "pt-8 pb-6 bg-transparent"
+        isScrolled ? "py-4" : "pt-8 pb-6"
       }`}
     >
+      {/* Dynamic Solid Background with Smooth SVG Trapezoid & Drop Shadow */}
+      <div 
+        className={`absolute inset-0 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-[-1]
+          ${isScrolled ? 'drop-shadow-[0_8px_16px_rgba(0,0,0,0.05)]' : 'drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)]'}
+        `}
+      >
+        <div className="w-full h-full bg-[#f4f1eb]" />
+        
+        <svg 
+          width="250" 
+          height="32" 
+          viewBox="0 0 250 32" 
+          className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-1px)]"
+        >
+          <motion.path 
+            fill="#f4f1eb"
+            initial={false}
+            animate={{
+              d: isScrolled 
+                ? "M 0 0 L 250 0 L 250 0 Q 250 0 250 0 L 0 0 Q 0 0 0 0 Z"
+                : "M 0 0 L 250 0 L 230 25 Q 225 32 215 32 L 35 32 Q 25 32 20 25 Z"
+            }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
+        </svg>
+      </div>
       {/* LEFT: H.E.R.E Pill */}
       <div className="hidden lg:flex items-center">
         <motion.nav 
@@ -71,77 +97,43 @@ const Navbar = () => {
         </motion.nav>
       </div>
 
+
+
       {/* CENTER: LOGO */}
       <Link 
         href="/" 
-        className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:absolute lg:left-1/2 lg:-translate-x-1/2
-          ${isScrolled ? 'translate-y-0' : 'lg:translate-y-2'}
+        className={`flex items-center gap-3 hover:opacity-90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:absolute lg:left-1/2 lg:-translate-x-[54%] z-10
+          ${isScrolled ? 'translate-y-0' : 'translate-y-2 lg:translate-y-5'}
         `}
       >
         <img 
-          src="/Logo/Quantum%20Institute%20Logo.png" 
+          src="/Logo/q%20logo.png" 
           alt="Quantum Institute Logo" 
           className={`w-auto object-contain transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-center
             ${isScrolled 
-              ? 'h-9 sm:h-10 md:h-12 md:scale-125' 
-              : 'h-10 sm:h-14 md:h-16 md:scale-150'
+              ? 'h-10 sm:h-12 md:h-14' 
+              : 'h-14 sm:h-18 md:h-24'
             }
           `} 
-          style={{ filter: isScrolled ? "none" : "drop-shadow(0px 8px 16px rgba(0,0,0,0.5))" }}
+          style={{ filter: isScrolled ? "none" : "drop-shadow(0px 8px 16px rgba(0,0,0,0.3))" }}
         />
       </Link>
       
-      {/* RIGHT: Dynamic Scroll Pill */}
+      {/* RIGHT: Call to Action Pill */}
       <div className="hidden lg:flex items-center">
-        <motion.div 
-          layout
-          className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200 text-black rounded-full p-1.5 shadow-md h-10"
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        >
-          <AnimatePresence mode="popLayout">
-            {isScrolled && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, width: 0, scale: 0 }}
-                animate={{ opacity: 1, width: 'auto', scale: 1 }}
-                exit={{ opacity: 0, width: 0, scale: 0 }}
-                className="flex items-center pl-1 pr-3 overflow-hidden origin-left"
-              >
-                <img 
-                  src="/Logo/Quantum%20Institute%20Logo%20-%20Icon.png" 
-                  alt="Quantum Institute Icon" 
-                  className="w-6 h-6 object-cover rounded-full"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div className="flex items-center gap-5 px-3 text-[13px] font-semibold whitespace-nowrap">
-             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Pricing</a>
-             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Road Map</a>
-             <a href="#" className="text-black hover:text-[#E05A00] transition-colors">Blog</a>
-          </div>
-
-          <AnimatePresence mode="popLayout">
-            {isScrolled && (
-              <motion.button
-                layout
-                onClick={() => router.push('/signup')}
-                initial={{ opacity: 0, scale: 0, width: 0 }}
-                animate={{ opacity: 1, scale: 1, width: 'auto' }}
-                exit={{ opacity: 0, scale: 0, width: 0 }}
-                className="bg-black text-white text-[13px] font-semibold px-4 py-1 rounded-full whitespace-nowrap ml-2 hover:bg-gray-800 transition-colors origin-right cursor-pointer"
-              >
-                Join waitlist
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </motion.div>
+        <div className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200 rounded-full p-1 shadow-md h-10">
+          <button
+            onClick={() => router.push('/signup')}
+            className="bg-black text-white text-[13px] font-semibold px-4 h-full rounded-full whitespace-nowrap hover:bg-gray-800 transition-colors cursor-pointer flex items-center justify-center"
+          >
+            Join waitlist
+          </button>
+        </div>
       </div>
 
       {/* MOBILE MENU TOGGLE */}
       <div className="lg:hidden flex items-center">
-         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
+         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-black p-2 hover:bg-black/5 rounded-full transition-colors">
             {isMobileMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
          </button>
       </div>
@@ -164,15 +156,6 @@ const Navbar = () => {
                 <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Exploration</a>
              </div>
              
-             <div className="w-full h-[1px] bg-white/10 my-2"></div>
-             
-             <div className="flex flex-col gap-4 text-white">
-                <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold mb-1">Navigation</p>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Pricing</a>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Road Map</a>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Blog</a>
-             </div>
-
              <div className="mt-4 flex flex-col">
                 <button 
                   onClick={() => { setIsMobileMenuOpen(false); router.push('/signup'); }}

@@ -3,109 +3,146 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
+// 🚨 GEOMETRIC VECTOR ANIMATION. EXACTLY 8 STRAIGHT SIDES PER OCTAGON. EXACTLY 8 SHARP CORNERS. BUILD THE OCTAGON BY DRAWING ITS 8 SIDES. NEVER CREATE A CIRCLE. NEVER CREATE A ROUND RING. NEVER MORPH INTO A CIRCLE. NEVER USE CURVED EDGES. NEVER USE CIRCULAR EXPANSION. NEVER SMOOTH THE CORNERS.
+
 const SplashAnimation = () => {
   const [isFinished, setIsFinished] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<SVGSVGElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const octagonsRef = useRef<(SVGPathElement | null)[]>([]);
+  const textWrapperRef = useRef<HTMLDivElement>(null);
+  const textInnerRef = useRef<HTMLDivElement>(null);
+  const mainWrapperRef = useRef<HTMLDivElement>(null);
 
-  // Generate Octagon points
-  const getOctagonPoints = (cx: number, cy: number, r: number) => {
-    let points = [];
+  // Generate perfect straight-edged Octagon path
+  const getOctagonPath = (cx: number, cy: number, r: number) => {
+    let d = "";
+    const startAngle = -5 * Math.PI / 8; // Top-Left vertex
     for (let i = 0; i < 8; i++) {
-      const angle = (Math.PI / 4) * i - (Math.PI / 8); 
+      const angle = startAngle + i * (Math.PI / 4);
       const x = cx + r * Math.cos(angle);
       const y = cy + r * Math.sin(angle);
-      points.push(`${x},${y}`);
+      if (i === 0) {
+        d += `M ${x},${y} `;
+      } else {
+        d += `L ${x},${y} `;
+      }
     }
-    return points.join(' ');
+    d += "Z";
+    return d;
   };
 
-  const radii = [20, 38, 56, 74, 92]; // Concentric rings
+  const numOctagons = 12; // Exactly matches the reference image layers
+  const textDarkBrown = "#3b2210"; 
+  const textGrayBlue = "#767b82"; 
 
   useEffect(() => {
-    // Prevent scrolling while splash is active
     document.body.style.overflow = 'hidden';
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          setIsFinished(true);
-          document.body.style.overflow = '';
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            duration: 0.6,
+            delay: 1.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+              setIsFinished(true);
+              document.body.style.overflow = '';
+            }
+          });
         }
       });
 
       // 0. Initial Setup
-      gsap.set(".octa-ring", { strokeDasharray: 1000, strokeDashoffset: 1000, opacity: 0 });
-      gsap.set(".center-dot", { scale: 0, opacity: 0 });
-      gsap.set(".wordmark", { opacity: 0, y: 20, letterSpacing: "12px", filter: "blur(8px)" });
-      gsap.set(".dubai-text", { opacity: 0, y: 10, filter: "blur(4px)" });
-      gsap.set("#displace", { attr: { scale: 0 } });
-      gsap.set("#blur", { attr: { stdDeviation: 0 } });
+      gsap.set(markRef.current, { x: 0, rotation: 0, transformOrigin: "50% 50%" });
+      
+      gsap.set(markRef.current, { x: 0, rotation: 0, transformOrigin: "50% 50%" });
+      octagonsRef.current.forEach((oct, i) => {
+        if (!oct) return;
+        const reverseI = (numOctagons - 1) - i;
+        const scale = Math.pow(0.92, reverseI);
+        
+        // Ensure NO consecutive octagons are ever aligned. 
+        // We create a strong vortex by accumulating 18.5 degrees per layer.
+        const finalRotation = i * 18.5; 
+        const initialRotation = finalRotation - 8; // Small twist offset for the drawing phase
 
-      // 1. Center dot ignites and pulses
-      tl.to(".center-dot", { scale: 1, opacity: 1, duration: 0.3, ease: "power2.out" })
-        .to(".center-dot", { scale: 1.2, opacity: 0.8, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, "-=0.1");
+        gsap.set(oct, { 
+          opacity: 1, 
+          scale: scale,
+          rotation: initialRotation, // Never aligned with the previous octagon
+          strokeDasharray: 735,
+          strokeDashoffset: 735,
+          transformOrigin: "50% 50%" 
+        });
+      });
+      
+      gsap.set(textWrapperRef.current, { 
+        x: 0, 
+        opacity: 0,
+        clipPath: "inset(0 100% 0 0)"
+      });
+      gsap.set(textInnerRef.current, { x: -30 });
+      gsap.set('.institute-text', { opacity: 0, y: -10 }); 
 
-      // 2. Rings trace outward
-      tl.to(".octa-ring", {
-        strokeDashoffset: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power2.inOut"
-      }, "-=0.6");
-
-      // 3. Mark pulses once
-      tl.to(markRef.current, {
-        scale: 1.05,
-        filter: "drop-shadow(0px 0px 20px rgba(209, 80, 0, 0.6))",
-        duration: 0.4,
-        ease: "sine.inOut"
-      }, "-=0.2")
-      .to(markRef.current, {
-        scale: 1,
-        filter: "drop-shadow(0px 0px 0px rgba(209, 80, 0, 0))",
-        duration: 0.4,
-        ease: "sine.inOut"
+      // 2. sequentially draw 8 sides, THEN rotate
+      let currentTime = 0.3; 
+      
+      octagonsRef.current.forEach((oct, i) => {
+        if (!oct) return;
+        const finalRotation = i * 18.5; 
+        
+        // dot -> 8 straight lines are drawn -> octagon is completed
+        tl.to(oct, {
+          strokeDashoffset: 0,
+          duration: 0.25,
+          ease: "none"
+        }, currentTime);
+        
+        currentTime += 0.25; 
+        
+        // apply a small controlled rotation to that completed octagon
+        tl.to(oct, {
+          rotation: finalRotation,
+          duration: 0.2,
+          ease: "power2.out"
+        }, currentTime);
       });
 
-      // 4. Crossfade: SVG fades out, Real Logo fades in
+      // 3. Wait for emblem to lock completely 
+      currentTime += 0.3;
+
+      // 4. QUANTUM emerges from center and travels right, while emblem moves left
       tl.to(markRef.current, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.8,
-        ease: "power2.inOut"
-      }, "-=0.2")
-      .to(textRef.current, {
+        x: -110, // Reduced from -160 to bring emblem closer to text
+        duration: 1.4,
+        ease: "power3.inOut"
+      }, currentTime);
+
+      tl.to(textWrapperRef.current, {
         opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "power2.out"
-      }, "<0.2");
+        clipPath: "inset(0 0% 0 0)",
+        x: 0, // Reduced from 20 to bring text closer to emblem
+        duration: 1.4,
+        ease: "power3.inOut"
+      }, currentTime);
 
-      // 5. Pause for a breath with the real logo
-      tl.to({}, { duration: 0.8 });
+      tl.to(textInnerRef.current, {
+        x: 0,
+        duration: 1.4,
+        ease: "power3.inOut"
+      }, currentTime);
 
-      // 6. Dissolve into golden sand
-      tl.to("#displace", { attr: { scale: 150 }, duration: 1.2, ease: "power2.in" })
-        .to("#blur", { attr: { stdDeviation: 4 }, duration: 1.2, ease: "power2.in" }, "<")
-        .to(textRef.current, { 
-          opacity: 0, 
-          y: -60, 
-          scale: 1.05,
-          duration: 1.2, 
-          ease: "power2.in" 
-        }, "<0.1");
-
-      // 7. Black background fades out seamlessly
-      tl.to(bgRef.current, {
-        opacity: 0,
+      // 5. INSTITUTE appears directly underneath
+      tl.to('.institute-text', {
+        opacity: 1,
+        y: 0,
         duration: 0.8,
-        ease: "power2.inOut"
-      }, "-=0.4");
+        ease: "power2.out"
+      }, currentTime + 0.6);
 
     }, containerRef);
 
@@ -120,73 +157,94 @@ const SplashAnimation = () => {
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[99999] flex flex-col items-center justify-center pointer-events-none"
+      className="fixed inset-0 z-[99999] flex flex-col items-center justify-center pointer-events-none bg-white" 
     >
-      {/* Pure black background */}
-      <div 
-        ref={bgRef}
-        className="absolute inset-0 w-full h-full bg-[#000000] z-10 will-change-transform"
-      />
-
-      {/* Main Content Wrapper */}
-      <div className="relative z-30 flex flex-col items-center justify-center transform scale-[0.8] sm:scale-100">
+      <div ref={mainWrapperRef} className="relative z-30 flex items-center justify-center w-full max-w-4xl">
         
-        {/* SVG Geometric Mark with Wind/Sand Filter */}
+        {/* SVG Geometric Mark - ZERO circles allowed in the vortex, strict straight edges */}
         <svg 
           ref={markRef}
-          viewBox="0 0 200 200" 
-          className="absolute w-48 h-48 md:w-64 md:h-64 overflow-visible will-change-transform"
+          width="260" 
+          height="260" 
+          viewBox="0 0 260 260" 
+          className="absolute w-56 h-56 md:w-64 md:h-64 overflow-visible"
         >
-          <defs>
-            {/* Ambient gradients for rings */}
-            <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#D15000" stopOpacity="1" />
-              <stop offset="100%" stopColor="#D15000" stopOpacity="0.2" />
-            </linearGradient>
-          </defs>
-
-          <g>
-            {/* Center Amber Point */}
-            <circle cx="100" cy="100" r="3" fill="#D15000" className="center-dot shadow-[0_0_15px_#D15000]" />
-            
-            {/* Concentric Octagons */}
-            {radii.map((r, i) => (
-              <polygon
-                key={i}
-                points={getOctagonPoints(100, 100, r)}
-                fill="none"
-                stroke="url(#ring-grad)"
-                strokeWidth={1.5 - (i * 0.2)} 
-                className="octa-ring"
-                pathLength="1000" 
-              />
-            ))}
+          <g transform="translate(130, 130)">
+            {[...Array(numOctagons)].map((_, i) => {
+              // Now i=0 is the innermost (bright orange), numOctagons-1 is the outermost (light peach)
+              // This ensures the DOM order naturally paints outer on top or inner on top (doesn't matter since strokes don't fill)
+              // But logically it matches the animation order.
+              
+              const reverseI = (numOctagons - 1) - i; // map to old logic for colors/scales
+              
+              let strokeColor = "";
+              let strokeWidth = 4; // Bold orange lines (2x thicker)
+              
+              if (reverseI === 0) {
+                strokeColor = "#f4d8b8"; // Outermost distinct light peach
+                strokeWidth = 1.5; // Thinner peach outer lines
+              } else if (reverseI === 1) {
+                strokeColor = "#f6a039"; // Transitional orange
+                strokeWidth = 2.5; 
+              } else if (reverseI === 2) {
+                strokeColor = "#ff7f00"; // Bright orange
+                strokeWidth = 4; // Bold
+              } else {
+                // Deeper orange/red for the inner vortex
+                const ratio = (reverseI - 2) / (numOctagons - 3);
+                const r = Math.round(255 - (ratio * 25)); // 255 to 230
+                const g = Math.round(100 - (ratio * 50)); // 100 to 50
+                const b = 0;
+                strokeColor = `rgb(${r}, ${g}, ${b})`;
+                strokeWidth = 4; // Bold
+              }
+              
+              return (
+                <path
+                  key={i}
+                  ref={el => { octagonsRef.current[i] = el; }}
+                  d={getOctagonPath(0, 0, 120)} 
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeWidth={strokeWidth} 
+                  strokeLinejoin="miter" // STRICT SHARP CORNERS ONLY
+                  strokeLinecap="square" // NO ROUNDED EDGES
+                  className="will-change-transform"
+                  // Transform (scale/rotation) and stroke drawing are handled by GSAP
+                />
+              );
+            })}
           </g>
         </svg>
 
-        {/* Real Logo Image that fades in */}
-        <div ref={textRef} className="opacity-0 flex flex-col items-center will-change-transform z-20">
-          {/* We apply the dissolve filter to a wrapper so it works on the image too */}
-          <div className="filter-[url(#sand-dissolve)] flex flex-col items-center">
-            <img 
-              src="/Logo/Quantum%20Institute%20Logo.png" 
-              alt="Quantum Institute Logo"
-              className="w-auto h-24 sm:h-32 md:h-40 object-contain drop-shadow-[0_0_20px_rgba(209,80,0,0.3)]"
-            />
+        {/* Typography */}
+        <div 
+          ref={textWrapperRef} 
+          className="absolute left-1/2 flex flex-col justify-center whitespace-nowrap pl-6 md:pl-10"
+        >
+          <div ref={textInnerRef} className="flex flex-col">
+            <span 
+              className="font-sans font-semibold tracking-normal leading-none" 
+              style={{ 
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                color: textDarkBrown,
+                fontFamily: 'Optima, "Segoe UI", "Helvetica Neue", sans-serif' 
+              }}
+            >
+              QUANTUM
+            </span>
+            <span 
+              className="institute-text font-sans font-medium tracking-[0.02em] leading-none"
+              style={{ 
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                color: textGrayBlue,
+                fontFamily: 'Optima, "Segoe UI", "Helvetica Neue", sans-serif' 
+              }}
+            >
+              INSTITUTE
+            </span>
           </div>
         </div>
-
-        {/* Hidden SVG just to hold the sand filter for the image */}
-        <svg width="0" height="0" className="absolute">
-          <defs>
-            <filter id="sand-dissolve" x="-50%" y="-50%" width="200%" height="200%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
-              <feOffset dx="0" dy="-20" in="noise" result="shiftedNoise" />
-              <feDisplacementMap in="SourceGraphic" in2="shiftedNoise" scale="0" xChannelSelector="R" yChannelSelector="G" id="displace" />
-              <feGaussianBlur stdDeviation="0" id="blur" />
-            </filter>
-          </defs>
-        </svg>
 
       </div>
     </div>
@@ -194,3 +252,6 @@ const SplashAnimation = () => {
 };
 
 export default SplashAnimation;
+
+// 🚨 GEOMETRIC VECTOR ANIMATION. EXACTLY 8 STRAIGHT SIDES PER OCTAGON. EXACTLY 8 SHARP CORNERS. BUILD THE OCTAGON BY DRAWING ITS 8 SIDES. NEVER CREATE A CIRCLE. NEVER CREATE A ROUND RING. NEVER MORPH INTO A CIRCLE. NEVER USE CURVED EDGES. NEVER USE CIRCULAR EXPANSION. NEVER SMOOTH THE CORNERS.
+// CRITICAL GEOMETRY RULE: Every octagon must be rotated by a different angle from the previous octagon. The rotation must accumulate layer by layer. Never align the top, bottom, left, or right vertices of consecutive octagons. The purpose is to create a strong spiral/vortex geometry. Image 2 is the exact target structure. Image 1 is INCORRECT and must NOT be reproduced.

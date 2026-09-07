@@ -72,8 +72,8 @@ const Architecture = () => {
       
       <div className="absolute inset-0 bg-black/20 z-0"></div>
       
-      <div className="relative z-10 text-white text-center architecture-title">
-        <h2 className="text-5xl md:text-7xl font-serif tracking-tight drop-shadow-lg">Architecture</h2>
+      <div className="relative z-10 text-white text-center architecture-title px-4 w-full">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif tracking-tight drop-shadow-lg">Quantum Institute Architecture</h2>
       </div>
 
       {/* Floating Boxes Container */}
@@ -84,7 +84,7 @@ const Architecture = () => {
           className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
         >
            <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
-              <img src="/Home images/AGORÀ.png" alt="AGORÀ" className="w-full h-full object-cover" />
+              <img src="/Home images/AGORA.png" alt="AGORA" className="w-full h-full object-cover" />
            </div>
            <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">AGORÀ</h4>
            

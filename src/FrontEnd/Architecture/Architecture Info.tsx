@@ -11,10 +11,10 @@ if (typeof window !== "undefined") {
 const architectureData = [
   {
     id: "agora",
-    title: "AGORÀ",
+    title: "AGORA",
     subtitle: "The Center of Collective Consciousness",
     description: "A monumental space designed to foster unity and open discourse. The Agorà harnesses natural light and sweeping curves to create an environment where minds converge, facilitating deep meditation, collective healing, and profound shared experiences.",
-    image: "/Home images/AGORÀ.png",
+    image: "/Home images/AGORA.png",
   },
   {
     id: "canyon",
