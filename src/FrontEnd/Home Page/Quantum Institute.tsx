@@ -32,7 +32,7 @@ const RotatingCircle = () => {
         <div className="absolute inset-0 rounded-full border border-[#f8fafc]/50 z-20 m-1.5 md:m-2 pointer-events-none"></div>
       </div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[4px] md:border-[6px] border-[#f8fafc] shadow-2xl z-10">
-        <video src="/Videos/Footer Video.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+        <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
         <div className="absolute inset-0 bg-[#ea580c]/10 mix-blend-overlay pointer-events-none"></div>
       </div>
     </div>

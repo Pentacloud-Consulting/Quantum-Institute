@@ -41,7 +41,7 @@ const Footer = () => {
       
       {/* Background Video */}
       <video 
-        src="/Videos/Footer Video.mp4" 
+        src="/Videos/qt-inside-view.mp4" 
         autoPlay 
         loop 
         muted 
