@@ -6,14 +6,14 @@ import { Check } from 'lucide-react';
 
 // Reusable components
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <label className="block text-[11px] font-bold tracking-[0.15em] text-gray-600 uppercase mb-2">
+  <label className="block text-[11px] font-heading font-bold tracking-[0.18em] text-gray-600 uppercase mb-2">
     {children}
   </label>
 );
 
 const Input = ({ ...props }) => (
   <input 
-    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:border-[#E05A00] focus:ring-1 focus:ring-[#E05A00] transition-all"
+    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm font-ui text-black placeholder:text-gray-400 focus:outline-none focus:border-[#E05A00] focus:ring-1 focus:ring-[#E05A00] transition-all"
     {...props}
   />
 );
@@ -49,7 +49,7 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
         onClick={() => setIsOpen(!isOpen)}
         className="w-full bg-white border border-black/10 rounded-lg px-4 py-3.5 text-[14px] text-black cursor-pointer flex justify-between items-center hover:border-black/20 shadow-sm transition-colors"
       >
-        <span className={selected.length ? "text-black" : "text-gray-400"}>
+        <span className={selected.length ? "text-black font-ui text-[14px]" : "text-gray-400 font-ui text-[14px]"}>
           {getDisplayText()}
         </span>
         <svg className={`w-4 h-4 text-gray-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ const CustomSelect = ({ options, placeholder, multiple = false }: { options: {la
                 <div 
                   key={opt.value}
                   onClick={() => handleSelect(opt.value)}
-                  className={`px-4 py-3 text-[14px] flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#E05A00]/10 text-[#E05A00] font-medium' : 'text-gray-600 hover:bg-black/5 hover:text-black'}`}
+                  className={`px-4 py-3 text-[14px] font-ui flex items-center gap-3 cursor-pointer transition-colors ${isSelected && !multiple ? 'bg-[#E05A00]/10 text-[#E05A00] font-medium' : 'text-gray-600 hover:bg-black/5 hover:text-black'}`}
                 >
                   {multiple && (
                     <div className={`w-[16px] h-[16px] rounded-[3px] border ${isSelected ? 'border-[#E05A00] bg-[#E05A00]' : 'border-black/20 bg-transparent'} flex items-center justify-center shrink-0`}>
@@ -102,7 +102,7 @@ const Checkbox = ({ label, name }: { label: string, name: string }) => (
       <input type="checkbox" name={name} value={label} className="absolute opacity-0 w-full h-full cursor-pointer peer" />
       <Check className="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
     </div>
-    <span className="text-[14px] text-gray-300 group-hover:text-white transition-colors">{label}</span>
+    <span className="text-[14px] font-body text-gray-300 group-hover:text-white transition-colors">{label}</span>
   </label>
 );
 
@@ -112,7 +112,7 @@ const Radio = ({ label, name }: { label: string, name: string }) => (
       <input type="radio" name={name} value={label} className="absolute opacity-0 w-full h-full cursor-pointer peer" />
       <div className="w-[10px] h-[10px] rounded-full bg-white opacity-0 peer-checked:opacity-100 transition-opacity" />
     </div>
-    <span className="text-[14px] text-gray-300 group-hover:text-white transition-colors">{label}</span>
+    <span className="text-[14px] font-body text-gray-300 group-hover:text-white transition-colors">{label}</span>
   </label>
 );
 
@@ -132,8 +132,8 @@ export default function JoinTheWaitlist() {
         className="w-full max-w-4xl bg-white border border-black/5 rounded-2xl p-6 sm:p-8 shadow-xl relative z-10"
       >
         <div className="mb-6 text-center">
-          <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-4 text-black">Join the Waitlist</h1>
-          <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed">
+          <h1 className="text-3xl md:text-4xl font-display font-normal tracking-[0.04em] mb-4 text-black">Join the Waitlist</h1>
+          <p className="text-sm font-body text-gray-500 max-w-md mx-auto leading-relaxed">
             Become part of the Quantum Movement. Provide your details below to request early access and help shape tomorrow.
           </p>
         </div>
@@ -150,8 +150,8 @@ export default function JoinTheWaitlist() {
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#E05A00]/10 flex items-center justify-center text-[#E05A00] text-sm font-bold shrink-0">1</div>
-                  <h2 className="text-xl font-medium tracking-wide text-black">Basic Information</h2>
+                  <div className="w-8 h-8 rounded-full bg-[#E05A00]/10 flex items-center justify-center text-[#E05A00] text-sm font-heading font-bold shrink-0">1</div>
+                  <h2 className="text-xl font-heading font-medium tracking-wide text-black">Basic Information</h2>
                   <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
                 
@@ -205,7 +205,7 @@ export default function JoinTheWaitlist() {
                   <button 
                     type="button" 
                     onClick={() => setStep(2)}
-                    className="px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center gap-3"
+                    className="px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-[13px] font-heading font-bold tracking-[0.15em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center gap-3"
                   >
                     Next Step
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -225,7 +225,7 @@ export default function JoinTheWaitlist() {
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-8 h-8 rounded-full bg-[#E05A00]/10 flex items-center justify-center text-[#E05A00] text-sm font-bold shrink-0">2</div>
-                  <h2 className="text-xl font-medium tracking-wide text-black">Background & Intent</h2>
+                  <h2 className="text-xl font-heading font-medium tracking-wide text-black">Background & Intent</h2>
                   <div className="flex-1 h-px bg-black/10 ml-4" />
                 </div>
 
@@ -286,18 +286,18 @@ export default function JoinTheWaitlist() {
                     <button 
                       type="button" 
                       onClick={() => setStep(1)}
-                      className="px-8 py-4 bg-black/5 hover:bg-black/10 text-black text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all"
+                      className="px-8 py-4 bg-black/5 hover:bg-black/10 text-black text-[13px] font-heading font-medium tracking-[0.15em] uppercase rounded-full transition-all"
                     >
                       Back
                     </button>
                     <button 
                       type="button" 
-                      className="flex-1 md:flex-none px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-sm font-bold tracking-[0.1em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center justify-center gap-3"
+                      className="flex-1 md:flex-none px-12 py-4 bg-[#E05A00] hover:bg-[#C04800] text-white text-[13px] font-heading font-bold tracking-[0.15em] uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(209,80,0,0.3)] hover:shadow-[0_0_30px_rgba(209,80,0,0.5)] flex items-center justify-center gap-3"
                     >
                       Submit Application
                     </button>
                   </div>
-                  <p className="text-[11px] text-gray-500 mt-5 text-center max-w-md leading-relaxed">
+                  <p className="text-[11px] font-body text-gray-500 mt-5 text-center max-w-md leading-relaxed">
                     By submitting this form, you agree to our Privacy Policy and Terms of Service. We will review your application and get in touch with you soon.
                   </p>
                 </div>

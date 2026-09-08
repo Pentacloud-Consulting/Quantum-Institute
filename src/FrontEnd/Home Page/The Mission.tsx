@@ -9,18 +9,18 @@ const VennAnimation = () => {
       
       {/* Text Labels pointing towards the core */}
       <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
-        <span className="text-[#ea580c] font-bold tracking-widest text-xs md:text-sm font-serif bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">EDUCATION</span>
+        <span className="text-[#ea580c] font-heading font-bold tracking-widest text-xs md:text-sm bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">EDUCATION</span>
         <div className="w-[1px] h-12 md:h-16 bg-gradient-to-b from-[#ea580c] to-transparent mt-2 opacity-60"></div>
       </div>
 
       <div className="absolute bottom-12 left-4 md:left-8 flex flex-col items-center z-30">
         <div className="w-[1px] h-12 md:h-16 bg-gradient-to-t from-[#ea580c] to-transparent mb-2 opacity-60"></div>
-        <span className="text-[#ea580c] font-bold tracking-widest text-xs md:text-sm font-serif bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">HEALING</span>
+        <span className="text-[#ea580c] font-heading font-bold tracking-widest text-xs md:text-sm bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">HEALING</span>
       </div>
 
       <div className="absolute bottom-12 right-4 md:right-8 flex flex-col items-center z-30">
         <div className="w-[1px] h-12 md:h-16 bg-gradient-to-t from-[#ea580c] to-transparent mb-2 opacity-60"></div>
-        <span className="text-[#ea580c] font-bold tracking-widest text-xs md:text-sm font-serif bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">RESEARCH</span>
+        <span className="text-[#ea580c] font-heading font-bold tracking-widest text-xs md:text-sm bg-white/50 px-2 py-1 rounded-full backdrop-blur-sm">RESEARCH</span>
       </div>
 
       {/* 3D Gyroscope / Astrolabe */}
@@ -61,7 +61,7 @@ const VennAnimation = () => {
           {/* Core Physical Orb */}
           <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-[#ea580c] to-white shadow-[inset_-5px_-5px_15px_rgba(154,52,18,0.8)] opacity-90" />
           
-          <span className="relative text-white font-bold tracking-widest text-[9px] md:text-xs z-20 drop-shadow-md">EXPLORATION</span>
+          <span className="relative text-white font-heading font-bold tracking-widest text-[9px] md:text-xs z-20 drop-shadow-md">EXPLORATION</span>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@ const TheMission = () => {
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl text-[#ea580c] font-normal tracking-widest uppercase"
+            className="text-4xl md:text-5xl text-[#ea580c] font-display font-normal tracking-[0.12em] uppercase"
           >
             The Mission
           </motion.h2>
@@ -271,7 +271,7 @@ const TheMission = () => {
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-3xl text-[#334155] leading-relaxed italic"
+            className="text-xl md:text-3xl text-[#334155] leading-relaxed font-display italic tracking-wide"
           >
             The Quantum Institute’s mission is to: Empower minds through exploration, fostering a global ecosystem for learning, scientific discovery, and healing.
           </motion.p>
@@ -284,7 +284,7 @@ const TheMission = () => {
               initial={{ opacity: 0, x: -20 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose"
+              className="text-base md:text-lg text-[#475569] leading-loose font-body"
             >
               The Quantum Institute is a timeless space where ancient wisdom meets modern research to reshape the human experience. This is a bold and imaginative approach to architecture and spatial design. It is an avant-garde re-imagining of what a sanctuary for elevating body, mind and spirit can be, while continuing to foster the dynamic exchange of knowledge and wisdom.
             </motion.p>
@@ -292,7 +292,7 @@ const TheMission = () => {
               initial={{ opacity: 0, x: -20 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8, delay: 0.2 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose"
+              className="text-base md:text-lg text-[#475569] leading-loose font-body"
             >
               In an age of urgency - ecological, intellectual, and spiritual - the Quantum Institute stands as an icon of hope and possibility. It is an invitation to imagine a future where architecture is not just sustainable, but soulful; not just efficient, but elevating. Where buildings do not merely shelter, but awaken.
             </motion.p>
@@ -314,7 +314,7 @@ const TheMission = () => {
               transition={{ duration: 0.8 }}
               className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-left">
+              <p className="text-base md:text-lg text-[#475569] leading-loose text-left font-body">
                 It is a rare architectural challenge: to conceive a place that not only responds to climate, culture, and context, but also aspires to stir the human soul. The Quantum Institute is conceived not as an inert structure, but as a living environment; one that adapts, breathes, and resonates with the rhythms of nature and the pursuits of thought.
               </p>
             </motion.div>
@@ -324,7 +324,7 @@ const TheMission = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-left">
+              <p className="text-base md:text-lg text-[#475569] leading-loose text-left font-body">
                 It draws equally from the silent intelligence of vernacular forms and the precision of scientific insight, bridging the past and future in a language of materials, light, and space. Here, learning is not limited to classrooms, but embedded in the architecture itself. Paths of movement, transitions between climate zones, and encounters with elemental phenomena - cool breezes, dappled light, the scent of local vegetation - become opportunities for reflection and growth. The built form does not instruct, but inspires.
               </p>
             </motion.div>

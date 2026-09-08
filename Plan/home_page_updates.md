@@ -1,6 +1,6 @@
 # Home Page Updates Summary
 
-This document summarizes the recent design and functional updates applied to the components within the `src/FrontEnd/Home Page` directory.
+This document summarizes the recent design and functional updates applied to the components within the `src/FrontEnd/Home Page` and `src/FrontEnd/Animations` directories.
 
 ## 1. The Mission Component (`The Mission.tsx`)
 The `ArchSketchAnimation` component underwent a complete structural and aesthetic overhaul, transitioning from a 2D line-drawing sketch to a vibrant, immersive 3D scene.
@@ -25,3 +25,7 @@ The `ArchSketchAnimation` component underwent a complete structural and aestheti
   * The outer ring is composed of four distinct quarter-circle images (`q1.png`, `q2.png`, `q9.png`, `q5.png`).
   * The center of the circle features a masked, autoplaying video (`Footer Video.mp4`) overlaid with a subtle orange blend mode for visual cohesion.
 * **Typography & Layout:** Utilizes a clean 3-column layout at the bottom to present the institute's core mission statements around the central rotating media element, with staggered fade-in animations.
+
+## 3. Splash Animation Component (`SplashAnimation.tsx`)
+* **Bug Fix (FOUC):** Resolved a Flash of Unstyled Content where the static logo (orange outline and text) was briefly visible for a fraction of a second before the GSAP animation initialized.
+* **Implementation:** Hardcoded initial hidden states (`opacity: 0`, `strokeDasharray`, `clipPath`, and translation styles) directly into the static React styles/CSS classes. This ensures the component mounts completely invisibly, allowing GSAP to seamlessly take over the drawing animation without any rough graphical glitches upon page reload.

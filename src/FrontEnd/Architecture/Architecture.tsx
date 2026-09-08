@@ -73,7 +73,7 @@ const Architecture = () => {
       <div className="absolute inset-0 bg-black/20 z-0"></div>
       
       <div className="relative z-10 text-white text-center architecture-title px-4 w-full">
-        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif tracking-tight drop-shadow-lg">Quantum Institute Architecture</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-normal tracking-[0.06em] drop-shadow-lg">Quantum Institute Architecture</h2>
       </div>
 
       {/* Floating Boxes Container */}
@@ -86,7 +86,7 @@ const Architecture = () => {
            <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/AGORA.png" alt="AGORA" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">AGORÀ</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">AGORÀ</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
@@ -103,7 +103,7 @@ const Architecture = () => {
            <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/CANYON.png" alt="CANYON" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">CANYON</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">CANYON</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
@@ -120,7 +120,7 @@ const Architecture = () => {
            <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
               <img src="/Home images/ELYSIUM.png" alt="ELYSIUM" className="w-full h-full object-cover" />
            </div>
-           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-semibold font-sans tracking-wide text-center uppercase">ELYSIUM</h4>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">ELYSIUM</h4>
            
            {/* Indicating Dot */}
            <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">

@@ -75,13 +75,13 @@ const Hero = () => {
       
       {/* Initial Title */}
       <div className="relative z-10 text-white text-center architecture-title px-4 w-full">
-        <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-serif tracking-wide drop-shadow-xl">The Quantum Institute</h1>
+        <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-normal tracking-[0.08em] drop-shadow-xl">The Quantum Institute</h1>
       </div>
 
       {/* Content that appears on scroll */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-start opacity-0 architecture-scrolled-content pointer-events-none pt-[25vh] will-change-transform transform-gpu">
         
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif text-[#dcc7a1] max-w-4xl leading-relaxed drop-shadow-md text-center pointer-events-auto">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-normal text-[#dcc7a1] max-w-4xl leading-relaxed drop-shadow-md text-center pointer-events-auto tracking-[0.05em]">
           Where Minds Collect and<br className="hidden md:block"/> Possibilities Connect
         </h2>
 
@@ -89,13 +89,13 @@ const Hero = () => {
         <div className="absolute bottom-[8vh] flex flex-col sm:flex-row items-center justify-center gap-6 w-full px-4 pointer-events-auto">
           <Link 
             href="/signup" 
-            className="px-8 py-3 rounded-full border border-white/60 text-white text-sm font-semibold tracking-wider hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md bg-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] hover:-translate-y-1 w-full sm:w-auto text-center"
+            className="px-8 py-3 rounded-full border border-white/60 text-white text-[13px] font-heading font-medium tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md bg-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] hover:-translate-y-1 w-full sm:w-auto text-center"
           >
             Join WaitList
           </Link>
           <Link 
             href="/architecture" 
-            className="px-8 py-3 rounded-full border border-white/60 text-white text-sm font-semibold tracking-wider hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md bg-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] hover:-translate-y-1 w-full sm:w-auto text-center"
+            className="px-8 py-3 rounded-full border border-white/60 text-white text-[13px] font-heading font-medium tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md bg-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] hover:-translate-y-1 w-full sm:w-auto text-center"
           >
             Architecture
           </Link>

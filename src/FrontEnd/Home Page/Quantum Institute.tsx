@@ -77,7 +77,7 @@ const QuantumInstitute = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#ea580c] font-semibold"
+            className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#ea580c] font-heading font-medium"
           >
             The Quantum Institute
           </motion.h2>
@@ -133,10 +133,10 @@ const QuantumInstitute = () => {
                 className="absolute inset-0 flex-col justify-center"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
-                <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-serif text-[#1e293b] font-light tracking-wide">
-                  The Quantum Institute’s vision is to <span className="text-[#ea580c] font-medium italic">bridge science and spirituality</span> with the goal of elevating our human experience. 
+                 <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
+                  The Quantum Institute's vision is to <span className="text-[#ea580c] font-normal italic">bridge science and spirituality</span> with the goal of elevating our human experience. 
                 </p>
-                <p className="text-base md:text-lg leading-[1.8] font-serif text-[#64748b] mt-6 md:mt-8">
+                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8">
                   Quantum science has emerged as the means for exploring many unanswered questions about our world. Standing on the pillars of Healing, Education, Research and Exploration, the Quantum Institute is designed to inspire a profound sense of belonging for all those seeking knowledge and wisdom: scientists, students, inventors, practitioners, educators and those in search of healing.
                 </p>
               </motion.div>
@@ -147,10 +147,10 @@ const QuantumInstitute = () => {
                 className="absolute inset-0 flex-col justify-center"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
-                <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-serif text-[#1e293b] font-light tracking-wide">
-                  By empowering minds to connect, explore, and embark on journeys, we will weave the fabric of <span className="text-[#ea580c] font-medium italic">understanding ourselves</span>.
+                <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
+                  By empowering minds to connect, explore, and embark on journeys, we will weave the fabric of <span className="text-[#ea580c] font-normal italic">understanding ourselves</span>.
                 </p>
-                <p className="text-base md:text-lg leading-[1.8] font-serif text-[#64748b] mt-6 md:mt-8">
+                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8">
                   The Institute’s transcendental architecture, inspired by the sacred mathematics of geometry, identifies this fertile oasis of knowledge and well-being as a beacon for a new Golden Age, uniting cultures and minds across the world. A new renaissance unfolds where innovation and spirit evolve in tandem, guiding us toward a more conscious, connected, and elevated future.
                 </p>
               </motion.div>
@@ -183,7 +183,7 @@ const QuantumInstitute = () => {
                 transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <p className="text-sm md:text-base xl:text-lg font-serif italic text-[#1e293b] leading-relaxed">
+                 <p className="text-sm md:text-base xl:text-lg font-display italic text-[#1e293b] leading-relaxed">
                   "We will break the boundaries of what can be achieved through the natural application of theoretical sciences."
                 </p>
               </motion.div>
@@ -195,7 +195,7 @@ const QuantumInstitute = () => {
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <p className="text-sm md:text-base xl:text-lg font-serif italic text-[#1e293b] leading-relaxed">
+                <p className="text-sm md:text-base xl:text-lg font-display italic text-[#1e293b] leading-relaxed">
                   "We will promote a quantum understanding of the human experience in order to unlock new frontiers."
                 </p>
               </motion.div>
@@ -217,7 +217,7 @@ const QuantumInstitute = () => {
                 transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                <p className="text-sm md:text-base xl:text-lg font-serif italic text-[#1e293b] leading-relaxed">
+                <p className="text-sm md:text-base xl:text-lg font-display italic text-[#1e293b] leading-relaxed">
                   "We will revolutionize our understanding of health, merging rigorous research with ancient wisdom, to co-create new pathways to well-being."
                 </p>
               </motion.div>
@@ -230,10 +230,10 @@ const QuantumInstitute = () => {
                 viewport={{ once: true, margin: "-50px" }}
               >
                 <div className="pt-4 lg:pt-6 border-t border-[#ea580c]/20 inline-block lg:block">
-                  <span className="block text-lg md:text-xl xl:text-2xl font-serif text-[#ea580c] mb-2 drop-shadow-sm">
+                  <span className="block text-lg md:text-xl xl:text-2xl font-display text-[#ea580c] mb-2 drop-shadow-sm">
                     Welcome to the Quantum Institute,<br className="hidden xl:block"/>the agorà of wisdom.
                   </span>
-                  <span className="block text-[10px] md:text-xs font-sans tracking-[0.15em] text-[#64748b] uppercase">
+                  <span className="block text-[10px] md:text-xs font-heading font-medium tracking-[0.2em] text-[#64748b] uppercase">
                     Where minds collect and possibilities connect
                   </span>
                 </div>

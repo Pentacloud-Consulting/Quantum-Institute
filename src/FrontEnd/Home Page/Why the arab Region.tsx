@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const WhyArabRegion = () => {
   return (
-    <section className="w-full bg-white text-[#1e293b] pb-16 md:pb-24 pt-4 md:pt-8 px-6 md:px-12 font-serif overflow-hidden">
+    <section className="w-full bg-white text-[#1e293b] pb-16 md:pb-24 pt-4 md:pt-8 px-6 md:px-12 font-body overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-16 md:gap-24 text-sm md:text-base text-[#334155] leading-relaxed">
         
         {/* Section 1 */}
@@ -17,9 +17,9 @@ const WhyArabRegion = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="clearfix group/section"
         >
-          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-4 font-normal group-hover/section:translate-x-2 transition-transform duration-500">1. Recovering Ancient Wisdom</h2>
+          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-4 font-heading font-medium tracking-wide group-hover/section:translate-x-2 transition-transform duration-500">1. Recovering Ancient Wisdom</h2>
           
-          <div className="float-left w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mr-6 mb-4 relative aspect-[4/3] rounded-md overflow-hidden shadow-sm">
+          <div className="float-left w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mr-6 mb-4 relative aspect-[16/9] rounded-md overflow-hidden shadow-sm">
             <Image 
               src="/Qunatum images/Islamic Golden Age.png" 
               alt="Islamic Golden Age" 
@@ -46,7 +46,7 @@ const WhyArabRegion = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="clearfix group/section"
         >
-          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-4 font-normal group-hover/section:translate-x-2 transition-transform duration-500">2. Cultural Heritage</h2>
+          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-4 font-heading font-medium tracking-wide group-hover/section:translate-x-2 transition-transform duration-500">2. Cultural Heritage</h2>
           
           <div className="float-right w-full sm:w-1/2 md:w-1/3 lg:w-1/4 ml-6 mb-4 relative aspect-square flex justify-center items-center overflow-hidden">
             <Image 
@@ -75,11 +75,11 @@ const WhyArabRegion = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="clearfix group/section"
         >
-          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-6 font-normal group-hover/section:translate-x-2 transition-transform duration-500">3. Between Sand and Shore: A Land of Contrasts</h2>
+          <h2 className="text-2xl md:text-3xl text-[#ea580c] mb-6 font-heading font-medium tracking-wide group-hover/section:translate-x-2 transition-transform duration-500">3. Between Sand and Shore: A Land of Contrasts</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start mb-6">
             {/* Column 1 */}
-            <div className="relative w-full aspect-[16/9] rounded-md overflow-hidden shadow-sm cursor-pointer">
+            <div className="relative w-full h-96 rounded-md overflow-hidden shadow-sm cursor-pointer">
               <Image 
                 src="/Qunatum images/Arabia’s natural landscape.png" 
                 alt="Desert landscape" 
@@ -92,13 +92,13 @@ const WhyArabRegion = () => {
             {/* Column 2 */}
             <div className="flex flex-col gap-8">
               <div className="hover:text-[#1e293b] hover:translate-x-1 transition-all duration-300">
-                <h4 className="text-[#ea580c] text-sm md:text-base font-normal mb-1">Contextual Diversity</h4>
+                <h4 className="text-[#ea580c] text-sm md:text-base font-heading font-medium mb-1 tracking-wide">Contextual Diversity</h4>
                 <p>
                   The unique geographical location is placed between two powerful natural forces: the sea and the desert. On one side lies the Arabian Gulf - a vast, open body of water that connects the region to the wider world. On the other, the endless sands of the desert stretch across the horizon, shaped by harsh conditions: searing heat, scorching winds, high humidity, and frequent dust storms during the long summer season.
                 </p>
               </div>
               <div className="hover:text-[#1e293b] hover:translate-x-1 transition-all duration-300">
-                <h4 className="text-[#ea580c] text-sm md:text-base font-normal mb-1">Cultural Diversity</h4>
+                <h4 className="text-[#ea580c] text-sm md:text-base font-heading font-medium mb-1 tracking-wide">Cultural Diversity</h4>
                 <p>
                   Complementing this natural richness is the region's vibrant multicultural fabric. Cities like Abu Dhabi, Dubai, Riyadh, Sharjah, Jeddah, Muscat and others thrive as global crossroads, where a mosaic of cultures, traditions, and perspectives coexist. This diversity fuels a dynamic atmosphere of creativity, collaboration, and cross-cultural exchange - turning the region into not just a geographic intersection, but a cultural one as well.
                 </p>

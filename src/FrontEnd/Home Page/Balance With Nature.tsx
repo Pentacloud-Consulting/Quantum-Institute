@@ -57,7 +57,7 @@ const BalanceWithNature = () => {
           viewport={{ once: true }}
           className="absolute top-12 md:top-24 left-6 md:left-12 z-20 pointer-events-none"
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-[#ea580c] tracking-wider uppercase drop-shadow-sm">
+          <h2 className="text-3xl md:text-5xl font-display font-normal text-[#ea580c] tracking-[0.1em] uppercase drop-shadow-sm">
             IN BALANCE WITH NATURE
           </h2>
         </motion.div>
@@ -67,10 +67,10 @@ const BalanceWithNature = () => {
             <div key={index} className="w-screen h-full flex flex-col md:flex-row items-center justify-center p-6 md:p-24 pt-24 md:pt-40 gap-8 md:gap-16">
               
               <div className="w-full md:w-1/2 flex flex-col gap-6 z-10 max-w-2xl px-4 md:px-0">
-                <h3 className="text-xl md:text-3xl font-serif text-[#ea580c] leading-tight">
+                <h3 className="text-xl md:text-3xl font-heading font-medium text-[#ea580c] leading-tight tracking-wide">
                   {item.subtitle}
                 </h3>
-                <p className="text-sm md:text-lg text-[#334155] leading-relaxed">
+                <p className="text-sm md:text-lg text-[#334155] leading-relaxed font-body">
                   {item.text}
                 </p>
               </div>

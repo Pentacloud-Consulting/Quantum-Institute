@@ -104,15 +104,15 @@ const ArchitectureInfo = () => {
             <div className="text-wrapper w-full md:w-1/2 flex flex-col md:opacity-0">
               <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-6">
                 <div className="w-8 md:w-12 h-[2px] bg-[#D15000]"></div>
-                <span className="text-[#D15000] tracking-[0.2em] text-[10px] md:text-xs font-bold uppercase">Space {String(index + 1).padStart(2, '0')}</span>
+                <span className="text-[#D15000] tracking-[0.25em] text-[10px] md:text-xs font-heading font-bold uppercase">Space {String(index + 1).padStart(2, '0')}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-black tracking-tight mb-3 md:mb-4 drop-shadow-sm">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-normal text-black tracking-[0.04em] mb-3 md:mb-4 drop-shadow-sm">
                 {item.title}
               </h2>
-              <h4 className="text-sm md:text-xl text-black/80 font-light italic mb-4 md:mb-8 border-l-2 border-black/20 pl-4">
+              <h4 className="text-sm md:text-lg text-black/80 font-heading font-light italic mb-4 md:mb-8 border-l-2 border-black/20 pl-4 tracking-wide">
                 {item.subtitle}
               </h4>
-              <p className="text-black/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-sans">
+              <p className="text-black/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-body">
                 {item.description}
               </p>
             </div>
