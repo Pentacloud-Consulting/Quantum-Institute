@@ -171,32 +171,27 @@ const SplashAnimation = () => {
         >
           <g transform="translate(130, 130)">
             {[...Array(numOctagons)].map((_, i) => {
-              // Now i=0 is the innermost (bright orange), numOctagons-1 is the outermost (light peach)
-              // This ensures the DOM order naturally paints outer on top or inner on top (doesn't matter since strokes don't fill)
-              // But logically it matches the animation order.
-              
-              const reverseI = (numOctagons - 1) - i; // map to old logic for colors/scales
+              const reverseI = (numOctagons - 1) - i; 
               
               let strokeColor = "";
-              let strokeWidth = 4; // Bold orange lines (2x thicker)
+              let strokeWidth = 4; 
               
               if (reverseI === 0) {
-                strokeColor = "#f4d8b8"; // Outermost distinct light peach
-                strokeWidth = 1.5; // Thinner peach outer lines
+                strokeColor = "#f4d8b8"; 
+                strokeWidth = 1.5; 
               } else if (reverseI === 1) {
-                strokeColor = "#f6a039"; // Transitional orange
+                strokeColor = "#f6a039"; 
                 strokeWidth = 2.5; 
               } else if (reverseI === 2) {
-                strokeColor = "#ff7f00"; // Bright orange
-                strokeWidth = 4; // Bold
+                strokeColor = "#ff7f00"; 
+                strokeWidth = 4; 
               } else {
-                // Deeper orange/red for the inner vortex
                 const ratio = (reverseI - 2) / (numOctagons - 3);
-                const r = Math.round(255 - (ratio * 25)); // 255 to 230
-                const g = Math.round(100 - (ratio * 50)); // 100 to 50
+                const r = Math.round(255 - (ratio * 25)); 
+                const g = Math.round(100 - (ratio * 50)); 
                 const b = 0;
                 strokeColor = `rgb(${r}, ${g}, ${b})`;
-                strokeWidth = 4; // Bold
+                strokeWidth = 4; 
               }
               
               return (
@@ -207,10 +202,10 @@ const SplashAnimation = () => {
                   fill="none"
                   stroke={strokeColor}
                   strokeWidth={strokeWidth} 
-                  strokeLinejoin="miter" // STRICT SHARP CORNERS ONLY
-                  strokeLinecap="square" // NO ROUNDED EDGES
+                  strokeLinejoin="miter" 
+                  strokeLinecap="square" 
                   className="will-change-transform"
-                  // Transform (scale/rotation) and stroke drawing are handled by GSAP
+                  style={{ opacity: 0, strokeDasharray: 735, strokeDashoffset: 735 }}
                 />
               );
             })}
@@ -220,9 +215,10 @@ const SplashAnimation = () => {
         {/* Typography */}
         <div 
           ref={textWrapperRef} 
-          className="absolute left-1/2 flex flex-col justify-center whitespace-nowrap pl-6 md:pl-10"
+          className="absolute left-1/2 flex flex-col justify-center whitespace-nowrap pl-6 md:pl-10 opacity-0"
+          style={{ clipPath: "inset(0 100% 0 0)" }}
         >
-          <div ref={textInnerRef} className="flex flex-col">
+          <div ref={textInnerRef} className="flex flex-col transform -translate-x-[30px]">
             <span 
               className="font-sans font-semibold tracking-normal leading-none" 
               style={{ 
@@ -234,7 +230,7 @@ const SplashAnimation = () => {
               QUANTUM
             </span>
             <span 
-              className="institute-text font-sans font-medium tracking-[0.02em] leading-none"
+              className="institute-text font-sans font-medium tracking-[0.02em] leading-none opacity-0 -translate-y-[10px]"
               style={{ 
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
                 color: textGrayBlue,
