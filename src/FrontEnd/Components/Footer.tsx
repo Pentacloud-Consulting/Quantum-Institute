@@ -37,7 +37,7 @@ const HexagonLogo = () => (
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-12 pb-6 px-4 md:pt-24 md:pb-8 md:px-12 lg:px-20 font-sans border-t border-white/5 relative z-20 overflow-hidden">
+    <footer className="w-full pt-12 pb-6 px-4 md:pt-24 md:pb-8 md:px-12 lg:px-20 font-body border-t border-white/5 relative z-20 overflow-hidden">
       
       {/* Background Video */}
       <video 
@@ -83,7 +83,7 @@ const Footer = () => {
             
             {/* Explore */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">EXPLORE</h4>
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">EXPLORE</h4>
               <ul className="flex flex-col gap-3 md:gap-5">
                 {['Vision', 'Brand & Identity', 'Pillars', 'Research', 'Impact'].map(link => (
                   <li key={link}>
@@ -95,7 +95,7 @@ const Footer = () => {
 
             {/* Resources */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">RESOURCES</h4>
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">RESOURCES</h4>
               <ul className="flex flex-col gap-3 md:gap-5">
                 {['Projects', 'Publications', 'Events', 'Careers', 'FAQs'].map(link => (
                   <li key={link}>
@@ -107,7 +107,7 @@ const Footer = () => {
 
             {/* Connect */}
             <div className="flex flex-col mt-4 md:mt-0 col-span-2 md:col-span-1">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">CONNECT</h4>
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">CONNECT</h4>
               <ul className="flex flex-row md:flex-col flex-wrap gap-x-6 gap-y-3 md:gap-5">
                 {['Contact Us', 'Partners', 'Community', 'Support', 'Newsroom'].map(link => (
                   <li key={link}>
@@ -121,7 +121,7 @@ const Footer = () => {
 
           {/* Subscribe */}
           <div className="lg:col-span-3 flex flex-col mt-4 md:mt-0">
-            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">SUBSCRIBE</h4>
+            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">SUBSCRIBE</h4>
             <p className="text-white/60 text-xs md:text-[13px] leading-relaxed mb-4 md:mb-6">
               Stay updated with our latest<br/> research, events &amp; insights.
             </p>

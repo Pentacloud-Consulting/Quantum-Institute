@@ -204,10 +204,10 @@ const QuantumInstitute = () => {
                 className="absolute inset-0 md:w-[50%] md:h-full flex-col justify-center md:pr-8 lg:pr-16 pointer-events-auto z-10"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
-                 <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
+                 <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide text-justify">
                   The Quantum Institute's vision is to <span className="text-[#ea580c] font-normal italic">bridge science and spirituality</span> with the goal of elevating our human experience. 
                 </p>
-                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8">
+                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8 text-justify">
                   Quantum science has emerged as the means for exploring many unanswered questions about our world. Standing on the pillars of Healing, Education, Research and Exploration, the Quantum Institute is designed to inspire a profound sense of belonging for all those seeking knowledge and wisdom: scientists, students, inventors, practitioners, educators and those in search of healing.
                 </p>
               </motion.div>
@@ -218,10 +218,10 @@ const QuantumInstitute = () => {
                 className="absolute inset-0 md:left-auto md:right-0 md:w-[50%] md:h-full flex-col justify-center md:pl-8 lg:pl-16 pointer-events-auto z-10"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
-                <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
+                <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide text-justify">
                   By empowering minds to connect, explore, and embark on journeys, we will weave the fabric of <span className="text-[#ea580c] font-normal italic">understanding ourselves</span>.
                 </p>
-                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8">
+                <p className="text-base md:text-lg leading-[1.8] font-display text-[#64748b] mt-6 md:mt-8 text-justify">
                   The Institute’s transcendental architecture, inspired by the sacred mathematics of geometry, identifies this fertile oasis of knowledge and well-being as a beacon for a new Golden Age, uniting cultures and minds across the world. A new renaissance unfolds where innovation and spirit evolve in tandem, guiding us toward a more conscious, connected, and elevated future.
                 </p>
               </motion.div>
@@ -233,7 +233,7 @@ const QuantumInstitute = () => {
       </div>
 
       {/* Section 2: Quote / Mission block (Center Circle Layout) */}
-      <div className="relative z-10 max-w-[90rem] mx-auto px-4 md:px-8 py-10 md:py-16 bg-white overflow-hidden">
+      <div className="relative z-10 max-w-[90rem] mx-auto px-4 md:px-8 pt-10 md:pt-16 pb-4 md:pb-8 bg-white overflow-hidden">
         
         {/* Container */}
         <div className="relative w-full bg-[#f8fafc]/80 backdrop-blur-md border border-[#e2e8f0] rounded-3xl shadow-[0_10px_40px_-10px_rgba(234,88,12,0.1)] py-12 px-6 lg:px-12">

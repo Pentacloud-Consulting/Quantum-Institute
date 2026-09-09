@@ -70,7 +70,7 @@ const BalanceWithNature = () => {
                 <h3 className="text-xl md:text-3xl font-heading font-medium text-[#ea580c] leading-tight tracking-wide">
                   {item.subtitle}
                 </h3>
-                <p className="text-sm md:text-lg text-[#334155] leading-relaxed font-body">
+                <p className="text-sm md:text-lg text-[#334155] leading-relaxed font-body text-justify">
                   {item.text}
                 </p>
               </div>

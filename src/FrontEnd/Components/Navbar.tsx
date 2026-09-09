@@ -70,7 +70,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="text-[14px] font-medium tracking-[0.3em] whitespace-nowrap"
+                className="text-[14px] font-heading font-medium tracking-[0.3em] whitespace-nowrap"
               >
                 H.E.R.E
               </motion.div>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-5 text-[15px] font-medium tracking-wide whitespace-nowrap"
+                className="flex items-center gap-5 text-[15px] font-heading font-medium tracking-wide whitespace-nowrap"
               >
                 <Link href="/healing" className="text-black hover:text-[#E05A00] font-semibold transition-colors">Healing</Link>
                 <span className="text-gray-300 font-light">|</span>
@@ -124,7 +124,7 @@ const Navbar = () => {
         <div className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200 rounded-full p-1 shadow-md h-10">
           <button
             onClick={() => router.push('/signup')}
-            className="bg-black text-white text-[13px] font-semibold px-4 h-full rounded-full whitespace-nowrap hover:bg-gray-800 transition-colors cursor-pointer flex items-center justify-center"
+            className="bg-black text-white text-[13px] font-heading font-semibold px-4 h-full rounded-full whitespace-nowrap hover:bg-gray-800 transition-colors cursor-pointer flex items-center justify-center"
           >
             Join waitlist
           </button>
@@ -149,17 +149,17 @@ const Navbar = () => {
             className="absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-2xl border-b border-white/10 flex flex-col px-6 py-8 gap-6 z-[99] lg:hidden shadow-2xl"
           >
              <div className="flex flex-col gap-4 text-white">
-                <p className="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold mb-1">H.E.R.E Pillars</p>
-                <Link href="/healing" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-light hover:text-[#E05A00] transition-colors">Healing</Link>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Education</a>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Research</a>
-                <a href="#" className="text-xl font-light hover:text-[#E05A00] transition-colors">Exploration</a>
+                <p className="text-[10px] text-gray-500 font-heading tracking-[0.2em] uppercase font-bold mb-1">H.E.R.E Pillars</p>
+                <Link href="/healing" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-heading font-light hover:text-[#E05A00] transition-colors">Healing</Link>
+                <a href="#" className="text-xl font-heading font-light hover:text-[#E05A00] transition-colors">Education</a>
+                <a href="#" className="text-xl font-heading font-light hover:text-[#E05A00] transition-colors">Research</a>
+                <a href="#" className="text-xl font-heading font-light hover:text-[#E05A00] transition-colors">Exploration</a>
              </div>
              
              <div className="mt-4 flex flex-col">
                 <button 
                   onClick={() => { setIsMobileMenuOpen(false); router.push('/signup'); }}
-                  className="w-full bg-[#E05A00] text-white font-bold tracking-widest uppercase text-sm py-4 rounded-full hover:bg-[#ff6600] transition-colors shadow-lg shadow-[#E05A00]/20"
+                  className="w-full bg-[#E05A00] text-white font-heading font-bold tracking-widest uppercase text-sm py-4 rounded-full hover:bg-[#ff6600] transition-colors shadow-lg shadow-[#E05A00]/20"
                 >
                   Join Waitlist
                 </button>

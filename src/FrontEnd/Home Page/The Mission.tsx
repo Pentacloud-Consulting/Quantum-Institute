@@ -254,7 +254,7 @@ const ArchSketchAnimation = () => {
 
 const TheMission = () => {
   return (
-    <section className="w-full bg-slate-50 text-[#1e293b] py-24 px-6 md:px-12 font-serif overflow-hidden">
+    <section className="w-full bg-slate-50 text-[#1e293b] pt-12 pb-24 md:pt-12 md:pb-24 px-6 md:px-12 font-serif overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-12 lg:gap-16">
         
         {/* Intro */}
@@ -284,7 +284,7 @@ const TheMission = () => {
               initial={{ opacity: 0, x: -20 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose font-body"
+              className="text-base md:text-lg text-[#475569] leading-loose font-body text-justify"
             >
               The Quantum Institute is a timeless space where ancient wisdom meets modern research to reshape the human experience. This is a bold and imaginative approach to architecture and spatial design. It is an avant-garde re-imagining of what a sanctuary for elevating body, mind and spirit can be, while continuing to foster the dynamic exchange of knowledge and wisdom.
             </motion.p>
@@ -292,7 +292,7 @@ const TheMission = () => {
               initial={{ opacity: 0, x: -20 }} 
               whileInView={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8, delay: 0.2 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose font-body"
+              className="text-base md:text-lg text-[#475569] leading-loose font-body text-justify"
             >
               In an age of urgency - ecological, intellectual, and spiritual - the Quantum Institute stands as an icon of hope and possibility. It is an invitation to imagine a future where architecture is not just sustainable, but soulful; not just efficient, but elevating. Where buildings do not merely shelter, but awaken.
             </motion.p>
@@ -314,7 +314,7 @@ const TheMission = () => {
               transition={{ duration: 0.8 }}
               className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-left font-body">
+              <p className="text-base md:text-lg text-[#475569] leading-loose text-justify font-body">
                 It is a rare architectural challenge: to conceive a place that not only responds to climate, culture, and context, but also aspires to stir the human soul. The Quantum Institute is conceived not as an inert structure, but as a living environment; one that adapts, breathes, and resonates with the rhythms of nature and the pursuits of thought.
               </p>
             </motion.div>
@@ -324,7 +324,7 @@ const TheMission = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-left font-body">
+              <p className="text-base md:text-lg text-[#475569] leading-loose text-justify font-body">
                 It draws equally from the silent intelligence of vernacular forms and the precision of scientific insight, bridging the past and future in a language of materials, light, and space. Here, learning is not limited to classrooms, but embedded in the architecture itself. Paths of movement, transitions between climate zones, and encounters with elemental phenomena - cool breezes, dappled light, the scent of local vegetation - become opportunities for reflection and growth. The built form does not instruct, but inspires.
               </p>
             </motion.div>

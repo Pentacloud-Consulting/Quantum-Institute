@@ -49,9 +49,8 @@ const ArchitectureInfo = () => {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: section,
-              start: "top 70%",
-              end: "bottom 30%",
-              toggleActions: "play reverse play reverse",
+              start: "top 80%",
+              toggleActions: "play none none none",
             }
           });
 
@@ -78,7 +77,7 @@ const ArchitectureInfo = () => {
 
   return (
     <div ref={containerRef} className="w-full bg-[#faf9f8] py-12 md:py-24 flex flex-col items-center">
-      <div className="w-full max-w-[1400px] px-6 md:px-12 mx-auto flex flex-col gap-16 md:gap-40">
+      <div className="w-full max-w-[1400px] px-6 md:px-12 mx-auto flex flex-col gap-12 md:gap-16">
         {architectureData.map((item, index) => (
           <div 
             key={item.id} 
@@ -112,7 +111,7 @@ const ArchitectureInfo = () => {
               <h4 className="text-sm md:text-lg text-black/80 font-heading font-light italic mb-4 md:mb-8 border-l-2 border-black/20 pl-4 tracking-wide">
                 {item.subtitle}
               </h4>
-              <p className="text-black/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-body">
+              <p className="text-black/70 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-body text-justify">
                 {item.description}
               </p>
             </div>
