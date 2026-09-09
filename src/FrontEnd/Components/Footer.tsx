@@ -61,8 +61,8 @@ const Footer = () => {
           
           {/* Logo & Socials */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-8">
-            <div className="flex items-center gap-3 mb-4 md:mb-6">
-              <img src="/Logo/Quantum%20Institute%20Logo.png" alt="Quantum Institute Logo" className="h-8 md:h-12 w-auto object-contain scale-150 origin-left pl-2" />
+            <div className="flex items-center gap-3 mb-4 md:mb-6 bg-[#f4f1eb] rounded-2xl px-4 py-3 w-fit shadow-md">
+              <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="h-8 md:h-12 w-auto object-contain" />
             </div>
             
             <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 max-w-[240px]">
