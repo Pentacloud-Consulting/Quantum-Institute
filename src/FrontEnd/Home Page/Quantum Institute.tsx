@@ -4,37 +4,138 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-const RotatingCircle = () => {
-  const circleRef = useRef<HTMLDivElement>(null);
-  
+const StaggeredCarousel = () => {
+  const col1Images = [
+    "/Qunatum%20images/Aloe%20Vera%20and%20the%20Golden%20spira.png",
+    "/Qunatum%20images/Arabia’s%20natural%20landscape.png",
+    "/Qunatum%20images/atmosphere%20inside%20the%20Canyon.png",
+    "/Qunatum%20images/Canyon%20rock,%20passage%20wall%20skylight.png",
+    "/Qunatum%20images/Desert-dunes%20wind%20sun%20and%20sand.png"
+  ];
+  const col2Images = [
+    "/Qunatum%20images/Desired%20Natural%20Environment.png",
+    "/Qunatum%20images/Heet%20Cave,%20Saudi%20Arabia.png",
+    "/Qunatum%20images/Night%20sky%20stars%20cool%20breeze%20the%20universe.png",
+    "/Qunatum%20images/Oasis%20water%20vegetation%20green%20and%20shade.png",
+    "/Qunatum%20images/Upper%20Antelope%20Canyon%20in%20Arizona,%20USA.png"
+  ];
+
+  return (
+    <div className="w-[280px] h-[350px] lg:w-[320px] lg:h-[400px] xl:w-[380px] xl:h-[480px] relative shrink-0 mx-auto flex gap-4 overflow-hidden rounded-[2rem] border border-[#ea580c]/10 shadow-[0_0_80px_rgba(234,88,12,0.05)] bg-white/50 p-4">
+      
+      {/* Overlays for smooth fading at top and bottom */}
+      <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-[#f8fafc] to-transparent z-20 pointer-events-none rounded-t-[2rem]"></div>
+      <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#f8fafc] to-transparent z-20 pointer-events-none rounded-b-[2rem]"></div>
+
+      {/* Column 1 - Scrolls Up */}
+      <div className="w-1/2 h-full relative">
+        <motion.div 
+          animate={{ y: ["0%", "-50%"] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="flex flex-col absolute w-full will-change-transform"
+        >
+          {/* Set 1 */}
+          <div className="flex flex-col gap-4 pb-4">
+            {col1Images.map((src, i) => (
+              <div key={`col1-orig-${i}`} className="w-full relative rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: i % 2 === 0 ? '4/5' : '1/1' }}>
+                <img src={src} className="absolute inset-0 w-full h-full object-cover" alt="" />
+              </div>
+            ))}
+          </div>
+          {/* Set 2 (Duplicate) */}
+          <div className="flex flex-col gap-4 pb-4">
+            {col1Images.map((src, i) => (
+              <div key={`col1-dup-${i}`} className="w-full relative rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: i % 2 === 0 ? '4/5' : '1/1' }}>
+                <img src={src} className="absolute inset-0 w-full h-full object-cover" alt="" />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Column 2 - Scrolls Down */}
+      <div className="w-1/2 h-full relative">
+        <motion.div 
+          animate={{ y: ["-50%", "0%"] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="flex flex-col absolute w-full will-change-transform"
+        >
+          {/* Set 1 */}
+          <div className="flex flex-col gap-4 pb-4">
+            {col2Images.map((src, i) => (
+              <div key={`col2-orig-${i}`} className="w-full relative rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: i % 2 === 0 ? '1/1' : '4/5' }}>
+                <img src={src} className="absolute inset-0 w-full h-full object-cover" alt="" />
+              </div>
+            ))}
+          </div>
+          {/* Set 2 (Duplicate) */}
+          <div className="flex flex-col gap-4 pb-4">
+            {col2Images.map((src, i) => (
+              <div key={`col2-dup-${i}`} className="w-full relative rounded-2xl overflow-hidden shadow-sm" style={{ aspectRatio: i % 2 === 0 ? '1/1' : '4/5' }}>
+                <img src={src} className="absolute inset-0 w-full h-full object-cover" alt="" />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+    </div>
+  );
+};
+
+const CrossfadingCircle = ({ progress }: { progress: any }) => {
+  const circlesRef = useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
     let reqId: number;
     let currentRot = 0;
     const render = () => {
       currentRot += 0.15;
-      if (circleRef.current) {
-         circleRef.current.style.transform = `rotate(${currentRot}deg)`;
-      }
+      circlesRef.current.forEach(circle => {
+        if (circle) circle.style.transform = `rotate(${currentRot}deg)`;
+      });
       reqId = requestAnimationFrame(render);
     };
     reqId = requestAnimationFrame(render);
     return () => cancelAnimationFrame(reqId);
   }, []);
 
+  const opacity1 = useTransform(progress, [0, 0.45, 0.55], [1, 1, 0]);
+  const opacity2 = useTransform(progress, [0.45, 0.55, 1], [0, 1, 1]);
+
   return (
-    <div className="w-[280px] h-[280px] lg:w-[350px] lg:h-[350px] xl:w-[420px] xl:h-[420px] relative shrink-0 mx-auto">
-      <div ref={circleRef} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
-        <img src="/OG%20IMAGES/q1.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
-        <img src="/OG%20IMAGES/q2.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
-        <img src="/OG%20IMAGES/q9.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
-        <img src="/OG%20IMAGES/q5.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
-        <div className="absolute inset-0 rounded-full border border-[#ea580c]/20 z-20 m-4 md:m-6 pointer-events-none"></div>
-        <div className="absolute inset-0 rounded-full border border-[#f8fafc]/50 z-20 m-1.5 md:m-2 pointer-events-none"></div>
-      </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[4px] md:border-[6px] border-[#f8fafc] shadow-2xl z-10">
-        <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
-        <div className="absolute inset-0 bg-[#ea580c]/10 mix-blend-overlay pointer-events-none"></div>
-      </div>
+    <div className="w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px] relative shrink-0 mx-auto">
+      {/* State 1 */}
+      <motion.div style={{ opacity: opacity1 }} className="absolute inset-0">
+        <div ref={el => { circlesRef.current[0] = el; }} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
+          <img src="/Qunatum%20images/Night%20sky%20stars%20cool%20breeze%20the%20universe.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/Heet%20Cave,%20Saudi%20Arabia.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/atmosphere%20inside%20the%20Canyon.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/Canyon%20rock,%20passage%20wall%20skylight.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+          <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
+          <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
+          <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+        </div>
+      </motion.div>
+
+      {/* State 2 */}
+      <motion.div style={{ opacity: opacity2 }} className="absolute inset-0">
+        <div ref={el => { circlesRef.current[1] = el; }} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
+          <img src="/Qunatum%20images/Oasis%20water%20vegetation%20green%20and%20shade.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/atmosphere%20inside%20the%20Canyon.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/Upper%20Antelope%20Canyon%20in%20Arizona,%20USA.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
+          <img src="/Qunatum%20images/Aloe%20Vera%20and%20the%20Golden%20spira.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
+          <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
+          <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
+          <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+        </div>
+      </motion.div>
     </div>
   );
 };
@@ -47,24 +148,16 @@ const QuantumInstitute = () => {
     offset: ["start start", "end end"]
   });
 
-  // Image transitions based on scroll progress of the container
-  // 0 to 0.4: Image 1 is visible.
-  // 0.4 to 0.6: Crossfade.
-  // 0.6 to 1: Image 2 is visible.
-  const img1Opacity = useTransform(scrollYProgress, [0, 0.45, 0.55], [1, 1, 0]);
-  const img1Scale = useTransform(scrollYProgress, [0, 0.55], [1, 1.05]);
-
-  const img2Opacity = useTransform(scrollYProgress, [0.45, 0.55, 1], [0, 1, 1]);
-  const img2Scale = useTransform(scrollYProgress, [0.45, 1], [1.05, 1]);
-
-  // Text transitions (strict non-overlap)
-  const text1Opacity = useTransform(scrollYProgress, [0, 0.45, 0.5], [1, 1, 0]);
-  const text1Y = useTransform(scrollYProgress, [0, 0.45, 0.5], [0, 0, -30]);
+  // Crossfading timeline aligned with scroll
+  const text1Opacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 1, 0]);
+  const text1X = useTransform(scrollYProgress, [0, 0.4, 0.5], ["0%", "0%", "-20%"]);
   const text1Display = useTransform(scrollYProgress, (v) => v > 0.5 ? "none" : "flex");
 
-  const text2Opacity = useTransform(scrollYProgress, [0.5, 0.55, 1], [0, 1, 1]);
-  const text2Y = useTransform(scrollYProgress, [0.5, 0.55, 1], [30, 0, 0]);
+  const text2Opacity = useTransform(scrollYProgress, [0.5, 0.6, 1], [0, 1, 1]);
+  const text2X = useTransform(scrollYProgress, [0.5, 0.6, 1], ["20%", "0%", "0%"]);
   const text2Display = useTransform(scrollYProgress, (v) => v < 0.5 ? "none" : "flex");
+
+  const circleLeft = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["50%", "50%", "0%", "0%"]);
 
   return (
     <section className="relative w-full bg-white text-[#1e293b]">
@@ -92,45 +185,23 @@ const QuantumInstitute = () => {
 
         {/* Sticky wrapper that stays pinned to viewport */}
         <div className="sticky top-0 h-[100dvh] w-full flex items-center justify-center overflow-hidden z-10">
-          <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center gap-8 lg:gap-24">
+          <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:block h-auto md:h-[65vh] relative">
             
-            {/* Left Side: Images */}
-            <div className="w-full md:w-[50%] h-[40vh] md:h-[65vh] relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl shrink-0">
-              {/* Image 1 */}
-              <motion.div 
-                style={{ opacity: img1Opacity, scale: img1Scale }}
-                className="absolute inset-0 w-full h-full origin-center"
-              >
-                <Image
-                  src="/Home images/AGORA.png"
-                  alt="Quantum Institute Agora"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
-              </motion.div>
-              
-              {/* Image 2 */}
-              <motion.div 
-                style={{ opacity: img2Opacity, scale: img2Scale }}
-                className="absolute inset-0 w-full h-full origin-center"
-              >
-                <Image
-                  src="/Home images/ELYSIUM.png"
-                  alt="Quantum Institute Elysium"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </motion.div>
-            </div>
+            {/* Circle Wrapper (Starts Right, Moves Left) */}
+            <motion.div 
+              style={{ '--circle-left': circleLeft } as any}
+              className="w-full md:w-[50%] h-[40vh] md:h-full relative md:absolute md:top-0 md:[left:var(--circle-left)] flex justify-center items-center z-20 shrink-0"
+            >
+               <CrossfadingCircle progress={scrollYProgress} />
+            </motion.div>
 
-            {/* Right Side: Texts */}
-            <div className="w-full md:w-[50%] relative h-[45vh] md:h-[65vh] flex items-center">
+            {/* Texts Container */}
+            <div className="w-full md:w-full h-[45vh] md:h-full relative flex items-center mt-8 md:mt-0">
               
-              {/* Text Block 1 */}
+              {/* Text Block 1 - Left Side */}
               <motion.div 
-                style={{ opacity: text1Opacity, y: text1Y, display: text1Display }}
-                className="absolute inset-0 flex-col justify-center"
+                style={{ opacity: text1Opacity, x: text1X, display: text1Display }}
+                className="absolute inset-0 md:w-[50%] md:h-full flex-col justify-center md:pr-8 lg:pr-16 pointer-events-auto z-10"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
                  <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
@@ -141,10 +212,10 @@ const QuantumInstitute = () => {
                 </p>
               </motion.div>
 
-              {/* Text Block 2 */}
+              {/* Text Block 2 - Right Side */}
               <motion.div 
-                style={{ opacity: text2Opacity, y: text2Y, display: text2Display }}
-                className="absolute inset-0 flex-col justify-center"
+                style={{ opacity: text2Opacity, x: text2X, display: text2Display }}
+                className="absolute inset-0 md:left-auto md:right-0 md:w-[50%] md:h-full flex-col justify-center md:pl-8 lg:pl-16 pointer-events-auto z-10"
               >
                 <div className="w-12 h-[2px] bg-[#ea580c] mb-6 md:mb-8"></div>
                 <p className="text-xl md:text-3xl leading-[1.6] md:leading-[1.7] font-display font-normal text-[#1e293b] tracking-wide">
@@ -202,9 +273,9 @@ const QuantumInstitute = () => {
 
             </div>
 
-            {/* Center Column: Circle */}
+            {/* Center Column: Carousel */}
             <div className="flex justify-center items-center py-4 lg:py-0 pointer-events-auto">
-               <RotatingCircle />
+               <StaggeredCarousel />
             </div>
 
             {/* Right Column (Points 2 & 4) */}
