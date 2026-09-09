@@ -70,9 +70,10 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="text-[14px] font-heading font-medium tracking-[0.3em] whitespace-nowrap"
+                className="flex items-center gap-3 whitespace-nowrap"
               >
-                H.E.R.E
+                <span className="text-[14px] font-heading font-medium tracking-[0.3em] text-black">H.E.R.E</span>
+                <span className="text-[11px] font-heading font-light tracking-widest text-[#E05A00] uppercase italic relative top-[1px]">For You</span>
               </motion.div>
             ) : (
               <motion.div
