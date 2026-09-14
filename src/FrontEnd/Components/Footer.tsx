@@ -37,7 +37,7 @@ const HexagonLogo = () => (
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-12 pb-6 px-4 md:pt-24 md:pb-8 md:px-12 lg:px-20 font-body border-t border-white/5 relative z-20 overflow-hidden">
+    <footer className="w-full pt-4 pb-3 px-4 md:pt-6 md:pb-4 md:px-12 lg:px-20 font-body border-t border-white/5 relative z-20 overflow-hidden">
       
       {/* Background Video */}
       <video 
@@ -57,12 +57,12 @@ const Footer = () => {
       <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-8 mb-10 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-6 lg:gap-6 mb-4 md:mb-6">
           
           {/* Logo & Info */}
-          <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-8">
-            <div className="flex items-center gap-3 mb-4 md:mb-6 bg-[#f4f1eb] rounded-2xl px-4 py-3 w-fit shadow-md">
-              <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="h-8 md:h-12 w-auto object-contain" />
+          <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-6">
+            <div className="flex items-center gap-3 mb-4 bg-[#f4f1eb] rounded-2xl px-6 py-3.5 w-fit shadow-lg">
+              <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="h-14 md:h-20 w-auto object-contain" />
             </div>
             
             <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-[240px]">
@@ -71,12 +71,12 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-2 md:mt-0">
+          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-1 md:mt-0">
             
             {/* Explore */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">EXPLORE</h4>
-              <ul className="flex flex-col gap-3 md:gap-5">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">EXPLORE</h4>
+              <ul className="flex flex-col gap-1.5 md:gap-2">
                 {['Vision', 'Brand & Identity', 'Pillars', 'Research', 'Impact'].map(link => (
                   <li key={link}>
                     <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
@@ -87,8 +87,8 @@ const Footer = () => {
 
             {/* Resources */}
             <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">RESOURCES</h4>
-              <ul className="flex flex-col gap-3 md:gap-5">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">RESOURCES</h4>
+              <ul className="flex flex-col gap-1.5 md:gap-2">
                 {['Projects', 'Publications', 'Events', 'Careers', 'FAQs'].map(link => (
                   <li key={link}>
                     <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
@@ -98,9 +98,9 @@ const Footer = () => {
             </div>
 
             {/* Connect */}
-            <div className="flex flex-col mt-4 md:mt-0 col-span-2 md:col-span-1">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">CONNECT</h4>
-              <ul className="flex flex-row md:flex-col flex-wrap gap-x-6 gap-y-3 md:gap-5">
+            <div className="flex flex-col mt-2 md:mt-0 col-span-2 md:col-span-1">
+              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">CONNECT</h4>
+              <ul className="flex flex-row md:flex-col flex-wrap gap-x-4 gap-y-1.5 md:gap-2">
                 {['Contact Us', 'Partners', 'Community', 'Support', 'Newsroom'].map(link => (
                   <li key={link}>
                     <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
@@ -112,9 +112,9 @@ const Footer = () => {
           </div>
 
           {/* Subscribe */}
-          <div className="lg:col-span-3 flex flex-col mt-4 md:mt-0">
-            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-4 md:mb-8">SUBSCRIBE</h4>
-            <p className="text-white/60 text-xs md:text-[13px] leading-relaxed mb-4 md:mb-6">
+          <div className="lg:col-span-3 flex flex-col mt-2 md:mt-0">
+            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">SUBSCRIBE</h4>
+            <p className="text-white/60 text-xs md:text-[13px] leading-relaxed mb-2.5 md:mb-3">
               Stay updated with our latest<br/> research, events &amp; insights.
             </p>
             
@@ -122,11 +122,11 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full bg-transparent border border-white/20 rounded-full py-3 md:py-[14px] pl-4 md:pl-6 pr-10 md:pr-12 text-xs md:text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
+                className="w-full bg-transparent border border-white/20 rounded-full py-2 md:py-2.5 pl-4 md:pl-5 pr-10 md:pr-12 text-xs md:text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
                 style={{ transition: "background-color 9999s ease-in-out 0s", WebkitTextFillColor: "#fff" }}
               />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-white/50 hover:text-[#E05A00] transition-colors">
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+              <button className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center text-white/50 hover:text-[#E05A00] transition-colors">
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -134,16 +134,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar with Centered Social Icons */}
-        <div className="w-full pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="w-full pt-3 md:pt-4 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-[9px] md:text-[11px] tracking-wide text-center md:text-left order-2 md:order-1">
             © 2025 Quantum Institute. All rights reserved.
           </p>
 
           {/* Social Icons in Bottom Center */}
           <div className="flex items-center justify-center gap-3 md:gap-4 order-1 md:order-2">
-            {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>].map((icon, i) => (
-              <a key={i} href="#" className="w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
-                {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[12px]">{icon}</span> : icon}
+            {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>].map((icon, i) => (
+              <a key={i} href="#" className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
+                {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[11px]">{icon}</span> : icon}
               </a>
             ))}
           </div>
