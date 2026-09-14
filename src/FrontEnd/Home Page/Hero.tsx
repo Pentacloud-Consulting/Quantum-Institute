@@ -74,7 +74,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-0"></div>
       
       {/* Initial Title */}
-      <div className="relative z-10 text-white text-center architecture-title px-4 w-full">
+      <div className="relative z-10 text-white text-center architecture-title px-4 w-full -mt-16 md:-mt-24">
         <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-normal tracking-[0.08em] drop-shadow-xl">The Quantum Institute</h1>
       </div>
 

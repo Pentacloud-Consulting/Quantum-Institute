@@ -30,6 +30,7 @@ const Architecture = () => {
       }, 0)
       .to(".architecture-bg-base", {
         scale: 1.1,
+        y: 60,
         ease: "none"
       }, 0)
       .to(".architecture-title", {
@@ -78,24 +79,7 @@ const Architecture = () => {
 
       {/* Floating Boxes Container */}
       <div className="absolute top-[35%] md:top-[12%] left-0 w-full flex flex-nowrap justify-center items-start gap-2 sm:gap-6 md:gap-24 lg:gap-32 px-2 z-20">
-        {/* Floating Box 1 */}
-        <div 
-          onClick={() => document.getElementById('agora')?.scrollIntoView({ behavior: 'smooth' })}
-          className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
-        >
-           <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
-              <img src="/Home images/AGORA.png" alt="AGORA" className="w-full h-full object-cover" />
-           </div>
-           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">AGORÀ</h4>
-           
-           {/* Indicating Dot */}
-           <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-              <div className="w-[1px] h-12 md:h-32 lg:h-48 bg-white/40"></div>
-              <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
-           </div>
-        </div>
-
-        {/* Floating Box 2 */}
+        {/* Floating Box 1: CANYON */}
         <div 
           onClick={() => document.getElementById('canyon')?.scrollIntoView({ behavior: 'smooth' })}
           className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
@@ -106,13 +90,30 @@ const Architecture = () => {
            <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">CANYON</h4>
            
            {/* Indicating Dot */}
-           <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-              <div className="w-[1px] h-8 md:h-24 lg:h-32 bg-white/40"></div>
+           <div className="absolute top-full left-[80%] transform -translate-x-1/2 flex flex-col items-center">
+              <div className="w-[1px] h-8 md:h-20 lg:h-32 bg-white/40"></div>
               <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
            </div>
         </div>
 
-        {/* Floating Box 3 */}
+        {/* Floating Box 2: AGORÀ */}
+        <div 
+          onClick={() => document.getElementById('agora')?.scrollIntoView({ behavior: 'smooth' })}
+          className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
+        >
+           <div className="w-full aspect-square mb-2 md:mb-3 rounded-md md:rounded-lg overflow-hidden">
+              <img src="/Home images/AGORA.png" alt="AGORA" className="w-full h-full object-cover" />
+           </div>
+           <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">AGORÀ</h4>
+           
+           {/* Indicating Dot */}
+           <div className="absolute top-full left-[44%] transform -translate-x-1/2 flex flex-col items-center">
+              <div className="w-[1px] h-1 md:h-3 lg:h-4 bg-white/40"></div>
+              <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
+           </div>
+        </div>
+
+        {/* Floating Box 3: ELYSIUM */}
         <div 
           onClick={() => document.getElementById('elysium')?.scrollIntoView({ behavior: 'smooth' })}
           className="architecture-box w-28 sm:w-36 md:w-56 bg-white/10 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-2xl opacity-0 translate-y-12 shrink-0 cursor-pointer hover:bg-white/20 transition-colors"
@@ -123,7 +124,7 @@ const Architecture = () => {
            <h4 className="text-white text-[10px] sm:text-xs md:text-base font-heading font-medium tracking-[0.2em] text-center uppercase">ELYSIUM</h4>
            
            {/* Indicating Dot */}
-           <div className="absolute top-full left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+           <div className="absolute top-full left-[81%] transform -translate-x-1/2 flex flex-col items-center">
               <div className="w-[1px] h-12 md:h-32 lg:h-40 bg-white/40"></div>
               <div className="w-1.5 h-1.5 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.8)] animate-pulse"></div>
            </div>

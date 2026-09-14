@@ -59,23 +59,15 @@ const Footer = () => {
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-8 mb-10 md:mb-20">
           
-          {/* Logo & Socials */}
+          {/* Logo & Info */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-8">
             <div className="flex items-center gap-3 mb-4 md:mb-6 bg-[#f4f1eb] rounded-2xl px-4 py-3 w-fit shadow-md">
               <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="h-8 md:h-12 w-auto object-contain" />
             </div>
             
-            <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-6 md:mb-8 max-w-[240px]">
+            <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-[240px]">
               Where minds collect &amp; <br/> possibilities connect.
             </p>
-            
-            <div className="flex items-center gap-2 md:gap-3">
-              {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]"/>].map((icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
-                  {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[13px]">{icon}</span> : icon}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Links Columns */}
@@ -141,15 +133,24 @@ const Footer = () => {
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="w-full pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-[9px] md:text-[11px] tracking-wide text-center md:text-left">
+        {/* Bottom Bar with Centered Social Icons */}
+        <div className="w-full pt-6 md:pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-white/40 text-[9px] md:text-[11px] tracking-wide text-center md:text-left order-2 md:order-1">
             © 2025 Quantum Institute. All rights reserved.
           </p>
-          <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
+
+          {/* Social Icons in Bottom Center */}
+          <div className="flex items-center justify-center gap-3 md:gap-4 order-1 md:order-2">
+            {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"/>].map((icon, i) => (
+              <a key={i} href="#" className="w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
+                {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[12px]">{icon}</span> : icon}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap order-3">
             <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Privacy Policy</Link>
             <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Terms of Use</Link>
-            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Sitemap</Link>
           </div>
         </div>
 

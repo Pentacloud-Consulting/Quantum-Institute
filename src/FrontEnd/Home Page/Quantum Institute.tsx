@@ -83,59 +83,120 @@ const StaggeredCarousel = () => {
   );
 };
 
-const CrossfadingCircle = ({ progress }: { progress: any }) => {
-  const circlesRef = useRef<(HTMLDivElement | null)[]>([]);
+const ElegantVisualDisplay = ({ progress }: { progress: any }) => {
+  const [activeCard, setActiveCard] = React.useState(0);
+  const portalRotate = useTransform(progress, [0, 1], [0, 45]);
 
-  useEffect(() => {
-    let reqId: number;
-    let currentRot = 0;
-    const render = () => {
-      currentRot += 0.15;
-      circlesRef.current.forEach(circle => {
-        if (circle) circle.style.transform = `rotate(${currentRot}deg)`;
-      });
-      reqId = requestAnimationFrame(render);
-    };
-    reqId = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(reqId);
-  }, []);
+  const cardsData = [
+    {
+      img: "/Qunatum%20images/Night%20sky%20stars%20cool%20breeze%20the%20universe.png",
+      tag: "PILLAR FOCUS",
+      title: "Science & Consciousness Alignment",
+      sub: "Bridging empirical quantum physics with human spiritual experience."
+    },
+    {
+      img: "/Qunatum%20images/Oasis%20water%20vegetation%20green%20and%20shade.png",
+      tag: "HARMONIC ARCHITECTURE",
+      title: "Oasis of Wisdom & Discovery",
+      sub: "Sacred geometry architecture uniting innovation and human spirit."
+    },
+    {
+      img: "/Qunatum%20images/Heet%20Cave,%20Saudi%20Arabia.png",
+      tag: "RESONANCE & HEALING",
+      title: "Subterranean Energy Depths",
+      sub: "Exploring natural subterranean sanctuaries for renewal."
+    }
+  ];
 
-  const opacity1 = useTransform(progress, [0, 0.45, 0.55], [1, 1, 0]);
-  const opacity2 = useTransform(progress, [0.45, 0.55, 1], [0, 1, 1]);
+  // Auto-cycle image every 7 seconds
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % cardsData.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [cardsData.length]);
 
   return (
-    <div className="w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px] relative shrink-0 mx-auto">
-      {/* State 1 */}
-      <motion.div style={{ opacity: opacity1 }} className="absolute inset-0">
-        <div ref={el => { circlesRef.current[0] = el; }} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
-          <img src="/Qunatum%20images/Night%20sky%20stars%20cool%20breeze%20the%20universe.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/Heet%20Cave,%20Saudi%20Arabia.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/atmosphere%20inside%20the%20Canyon.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/Canyon%20rock,%20passage%20wall%20skylight.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
-          <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
-          <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
-          <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
-          <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
-        </div>
+    <div className="w-[320px] h-[340px] lg:w-[460px] lg:h-[460px] xl:w-[520px] xl:h-[520px] relative shrink-0 mx-auto group">
+      
+      {/* 1. QUANTUM GOLDEN-RATIO PORTAL GLOW & SACRED GEOMETRY SVG */}
+      <div className="absolute -inset-4 rounded-[3.5rem] bg-gradient-to-tr from-[#ea580c]/20 via-[#f97316]/10 to-transparent blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      
+      {/* Golden Ratio Rotating SVG Rings */}
+      <motion.div 
+        style={{ rotate: portalRotate }}
+        className="absolute -inset-6 pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity duration-700 flex items-center justify-center"
+      >
+        <svg viewBox="0 0 500 500" className="w-full h-full stroke-[#ea580c]/30 fill-none stroke-[1.2]">
+          <circle cx="250" cy="250" r="230" strokeDasharray="6 6" />
+          <circle cx="250" cy="250" r="210" />
+          <rect x="75" y="75" width="350" height="350" rx="60" strokeDasharray="12 12" />
+        </svg>
       </motion.div>
 
-      {/* State 2 */}
-      <motion.div style={{ opacity: opacity2 }} className="absolute inset-0">
-        <div ref={el => { circlesRef.current[1] = el; }} className="w-full h-full rounded-full overflow-hidden relative shadow-[0_0_80px_rgba(0,0,0,0.06)] border border-[#000000]/5 bg-[#000000] will-change-transform">
-          <img src="/Qunatum%20images/Oasis%20water%20vegetation%20green%20and%20shade.png" className="absolute top-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-br-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/atmosphere%20inside%20the%20Canyon.png" className="absolute top-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-bl-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/Upper%20Antelope%20Canyon%20in%20Arizona,%20USA.png" className="absolute bottom-0 left-0 w-[50.5%] h-[50.5%] object-cover rounded-tr-[40%] opacity-90" alt="" />
-          <img src="/Qunatum%20images/Aloe%20Vera%20and%20the%20Golden%20spira.png" className="absolute bottom-0 right-0 w-[50.5%] h-[50.5%] object-cover rounded-tl-[40%] opacity-90" alt="" />
-          <div className="absolute inset-0 rounded-full border border-[#D15000]/20 z-20 m-6 pointer-events-none"></div>
-          <div className="absolute inset-0 rounded-full border border-[#F5F3EE]/30 z-20 m-2 pointer-events-none"></div>
+      {/* 2. LAYERED ARCHITECTURAL GALLERY STACK & CROSSFADE */}
+      <div className="relative w-full h-full rounded-[2.5rem] p-3 bg-white/70 backdrop-blur-xl border border-[#ea580c]/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col justify-between">
+        
+        {/* Main Photo Deck with Layered Stacking Animation */}
+        <div className="relative w-full h-[78%] rounded-[2rem] overflow-hidden shadow-inner bg-[#090d16]">
+          {cardsData.map((card, idx) => {
+            const isCurrent = activeCard === idx;
+            return (
+              <motion.div
+                key={idx}
+                initial={false}
+                animate={{
+                  opacity: isCurrent ? 1 : 0,
+                  scale: isCurrent ? 1 : 1.05,
+                  y: isCurrent ? 0 : 10,
+                  zIndex: isCurrent ? 10 : 0
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <img 
+                  src={card.img} 
+                  alt={card.title} 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                {/* Floating Content Badge */}
+                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/20 text-white">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] font-heading font-bold tracking-[0.25em] text-[#f97316] uppercase">{card.tag}</span>
+                    <span className="text-[9px] font-heading text-white/50">0{idx + 1} / 03</span>
+                  </div>
+                  <h4 className="text-sm lg:text-base font-heading font-medium text-white">{card.title}</h4>
+                  <p className="text-xs font-display text-white/70 mt-0.5 line-clamp-1">{card.sub}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42%] h-[42%] rounded-full overflow-hidden border-[6px] border-[#F5F3EE] shadow-2xl z-10">
-          <video src="/Videos/qt-inside-view.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover scale-110 pointer-events-none" />
-          <div className="absolute inset-0 bg-[#D15000]/10 mix-blend-overlay pointer-events-none"></div>
+
+        {/* 3. INTERACTIVE CONTROLS & DECK SWITCHER */}
+        <div className="h-[18%] flex items-center justify-between px-3">
+          <div className="flex items-center gap-2">
+            {cardsData.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveCard(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeCard === idx ? 'w-8 bg-[#ea580c]' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Select card ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-1.5 text-[11px] font-heading text-gray-500 font-medium uppercase tracking-wider">
+            <span>Scroll & Tap to Explore</span>
+          </div>
         </div>
-      </motion.div>
+
+      </div>
+
     </div>
   );
 };
@@ -187,12 +248,12 @@ const QuantumInstitute = () => {
         <div className="sticky top-0 h-[100dvh] w-full flex items-center justify-center overflow-hidden z-10">
           <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:block h-auto md:h-[65vh] relative">
             
-            {/* Circle Wrapper (Starts Right, Moves Left) */}
+            {/* Visual Display Wrapper (Starts Right, Moves Left) */}
             <motion.div 
               style={{ '--circle-left': circleLeft } as any}
               className="w-full md:w-[50%] h-[40vh] md:h-full relative md:absolute md:top-0 md:[left:var(--circle-left)] flex justify-center items-center z-20 shrink-0"
             >
-               <CrossfadingCircle progress={scrollYProgress} />
+               <ElegantVisualDisplay progress={scrollYProgress} />
             </motion.div>
 
             {/* Texts Container */}

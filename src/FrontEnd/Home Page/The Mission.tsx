@@ -196,20 +196,20 @@ const ArchSketchAnimation = () => {
         {/* Thick Dotted Airflow Line across mid-depth Ground */}
         <line x1="80" y1="360" x2="960" y2="360" stroke="#ea580c" strokeWidth="4" strokeDasharray="1,14" strokeLinecap="round" />
         
-        {/* Far Left Inward Arrow */}
+        {/* Far Left Outward Arrow */}
         <motion.path 
-          d="M 60 350 L 80 360 L 60 370" 
+          d="M 80 350 L 60 360 L 80 370" 
           fill="none" stroke="#ea580c" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         />
         
-        {/* Far Right Inward Arrow */}
+        {/* Far Right Outward Arrow */}
         <motion.path 
-          d="M 980 350 L 960 360 L 980 370" 
+          d="M 960 350 L 980 360 L 960 370" 
           fill="none" stroke="#ea580c" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1.5 }}
         />
@@ -254,8 +254,8 @@ const ArchSketchAnimation = () => {
 
 const TheMission = () => {
   return (
-    <section className="w-full bg-slate-50 text-[#1e293b] pt-12 pb-24 md:pt-12 md:pb-24 px-6 md:px-12 font-serif overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12 lg:gap-16">
+    <section className="w-full bg-slate-50 text-[#1e293b] pt-12 pb-8 md:pt-12 md:pb-12 px-6 md:px-12 font-serif overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 lg:gap-12">
         
         {/* Intro */}
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto gap-8">
@@ -277,29 +277,50 @@ const TheMission = () => {
           </motion.p>
         </div>
 
-        {/* Section 1 with Venn */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="flex flex-col gap-6 order-2 lg:order-1">
-            <motion.p 
-              initial={{ opacity: 0, x: -20 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.8 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose font-body text-justify"
-            >
+        {/* Section: 3-Column Split Layout with Center Animation */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center py-4">
+          
+          {/* Paragraph 1: Left Side of Animation */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className="lg:col-span-4 bg-gradient-to-b from-[#fbf9f5] to-[#f4efe6] rounded-[2rem] p-8 md:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[#ea580c]/15 h-full flex flex-col justify-between relative overflow-hidden group hover:border-[#ea580c]/30 transition-all duration-500"
+          >
+            {/* Top Peaceful Accent Dot */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#ea580c]/60" />
+              <span className="text-[11px] font-heading font-medium tracking-[0.2em] uppercase text-[#ea580c]">Timeless Space</span>
+            </div>
+            <p className="text-sm md:text-[15px] text-[#475569] leading-relaxed md:leading-loose font-body text-justify">
               The Quantum Institute is a timeless space where ancient wisdom meets modern research to reshape the human experience. This is a bold and imaginative approach to architecture and spatial design. It is an avant-garde re-imagining of what a sanctuary for elevating body, mind and spirit can be, while continuing to foster the dynamic exchange of knowledge and wisdom.
-            </motion.p>
-            <motion.p 
-              initial={{ opacity: 0, x: -20 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.8, delay: 0.2 }} 
-              className="text-base md:text-lg text-[#475569] leading-loose font-body text-justify"
-            >
-              In an age of urgency - ecological, intellectual, and spiritual - the Quantum Institute stands as an icon of hope and possibility. It is an invitation to imagine a future where architecture is not just sustainable, but soulful; not just efficient, but elevating. Where buildings do not merely shelter, but awaken.
-            </motion.p>
-          </div>
-          <div className="order-1 lg:order-2">
+            </p>
+            <div className="w-12 h-[2px] bg-[#ea580c]/30 mt-6 group-hover:w-20 transition-all duration-500" />
+          </motion.div>
+
+          {/* Center Orbital Animation */}
+          <div className="lg:col-span-4 flex justify-center items-center">
             <VennAnimation />
           </div>
+
+          {/* Paragraph 2: Right Side of Animation */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8, delay: 0.2 }} 
+            className="lg:col-span-4 bg-gradient-to-b from-[#fbf9f5] to-[#f4efe6] rounded-[2rem] p-8 md:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[#ea580c]/15 h-full flex flex-col justify-between relative overflow-hidden group hover:border-[#ea580c]/30 transition-all duration-500"
+          >
+            {/* Top Peaceful Accent Dot */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#ea580c]/60" />
+              <span className="text-[11px] font-heading font-medium tracking-[0.2em] uppercase text-[#ea580c]">Soulful Awakening</span>
+            </div>
+            <p className="text-sm md:text-[15px] text-[#475569] leading-relaxed md:leading-loose font-body text-justify">
+              In an age of urgency - ecological, intellectual, and spiritual - the Quantum Institute stands as an icon of hope and possibility. It is an invitation to imagine a future where architecture is not just sustainable, but soulful; not just efficient, but elevating. Where buildings do not merely shelter, but awaken.
+            </p>
+            <div className="w-12 h-[2px] bg-[#ea580c]/30 mt-6 group-hover:w-20 transition-all duration-500" />
+          </motion.div>
+
         </div>
 
         {/* Section 2 with Arch Sketch */}
@@ -307,26 +328,38 @@ const TheMission = () => {
           <div className="w-full">
             <ArchSketchAnimation />
           </div>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
+              className="bg-gradient-to-b from-[#fbf9f5] to-[#f4efe6] rounded-[2rem] p-8 md:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[#ea580c]/15 flex flex-col justify-between relative overflow-hidden group hover:border-[#ea580c]/30 transition-all duration-500"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-justify font-body">
+              {/* Top Peaceful Accent Dot */}
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#ea580c]/60" />
+                <span className="text-[11px] font-heading font-medium tracking-[0.2em] uppercase text-[#ea580c]">LIVING SANCTUARY</span>
+              </div>
+              <p className="text-base md:text-[17px] text-[#475569] leading-relaxed text-justify font-body">
                 It is a rare architectural challenge: to conceive a place that not only responds to climate, culture, and context, but also aspires to stir the human soul. The Quantum Institute is conceived not as an inert structure, but as a living environment; one that adapts, breathes, and resonates with the rhythms of nature and the pursuits of thought.
               </p>
+              <div className="w-12 h-[2px] bg-[#ea580c]/30 mt-6 group-hover:w-20 transition-all duration-500" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-slate-200"
+              className="bg-gradient-to-b from-[#fbf9f5] to-[#f4efe6] rounded-[2rem] p-8 md:p-9 shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-[#ea580c]/15 flex flex-col justify-between relative overflow-hidden group hover:border-[#ea580c]/30 transition-all duration-500"
             >
-              <p className="text-base md:text-lg text-[#475569] leading-loose text-justify font-body">
-                It draws equally from the silent intelligence of vernacular forms and the precision of scientific insight, bridging the past and future in a language of materials, light, and space. Here, learning is not limited to classrooms, but embedded in the architecture itself. Paths of movement, transitions between climate zones, and encounters with elemental phenomena - cool breezes, dappled light, the scent of local vegetation - become opportunities for reflection and growth. The built form does not instruct, but inspires.
+              {/* Top Peaceful Accent Dot */}
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#ea580c]/60" />
+                <span className="text-[11px] font-heading font-medium tracking-[0.2em] uppercase text-[#ea580c]">VERNACULAR INTEGRATION</span>
+              </div>
+              <p className="text-base md:text-[17px] text-[#475569] leading-relaxed text-justify font-body">
+                It draws from the silent intelligence of vernacular forms and scientific precision, bridging past and future through light, materials, and space. Here, learning is embedded directly within the architecture itself—where built environments do not merely instruct, but deeply inspire.
               </p>
+              <div className="w-12 h-[2px] bg-[#ea580c]/30 mt-6 group-hover:w-20 transition-all duration-500" />
             </motion.div>
           </div>
         </div>

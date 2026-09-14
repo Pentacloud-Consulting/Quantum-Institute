@@ -42,8 +42,8 @@ const BalanceWithNature = () => {
     target: containerRef,
   });
 
-  // Moves the inner container horizontally as the user scrolls vertically
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  // Moves the inner container horizontally after an initial scroll hold threshold (0% to 20% hold)
+  const x = useTransform(scrollYProgress, [0, 0.22, 1], ["0%", "0%", "-75%"]);
 
   return (
     <section ref={containerRef} className="relative h-[400vh] bg-white text-[#1e293b]">
