@@ -26,6 +26,21 @@ The `ArchSketchAnimation` component underwent a complete structural and aestheti
   * The center of the circle features a masked, autoplaying video (`Footer Video.mp4`) overlaid with a subtle orange blend mode for visual cohesion.
 * **Typography & Layout:** Utilizes a clean 3-column layout at the bottom to present the institute's core mission statements around the central rotating media element, with staggered fade-in animations.
 
-## 3. Splash Animation Component (`SplashAnimation.tsx`)
-* **Bug Fix (FOUC):** Resolved a Flash of Unstyled Content where the static logo (orange outline and text) was briefly visible for a fraction of a second before the GSAP animation initialized.
-* **Implementation:** Hardcoded initial hidden states (`opacity: 0`, `strokeDasharray`, `clipPath`, and translation styles) directly into the static React styles/CSS classes. This ensures the component mounts completely invisibly, allowing GSAP to seamlessly take over the drawing animation without any rough graphical glitches upon page reload.
+## 3. Architecture Info & Architecture Page (`Architecture Info.tsx` & `Architecture.tsx`)
+* **Peaceful & Clean Visual Revamp:** Redesigned the architectural presentation into a minimal, peaceful layout with subtle card elevation, refined typography, and portrait-oriented media cards.
+* **Content Optimization:** Streamlined text content down to 3 concise, high-impact paragraphs for maximum readability.
+* **Laptop & Mobile Responsiveness:** Scaled down container padding, image sizes, and text hierarchy for optimal viewing across compact laptop screens and mobile devices.
+
+## 4. Footer Component (`Footer.tsx`)
+* **Reference Design Revamp:** Complete visual overhaul matching the serene, luxury community layout:
+  * **"Join Our Community" Top Hero:** Prominent centered title above 4 large circular glassmorphism social icon buttons (Telegram, Facebook, YouTube, Instagram) with interactive smooth hover & color transitions.
+  * **Deep Forest Green Tone (`bg-[#202E23]`):** Styled with a peaceful deep forest green base color, subtly overlaid with the background video (`/Videos/qt-inside-view.mp4`) at 15% opacity.
+  * **Brand & Location Details:** Circular Quantum Institute logo badge alongside institute address & tagline.
+  * **Dual Link Columns & Scroll-to-Top:** Organized navigation links (Homepage, Vision, Pillars, Publications, Events, Careers, etc.) paired with a smooth floating `(↑)` Back to Top button.
+  * **Bottom Bar:** Subtle divider line with Copyright and `Privacy Policy | Terms & Conditions`.
+
+## 5. Navbar Component (`Navbar.tsx`)
+* **Dynamic "Join Waitlist" Button Morphing:**
+  * **Hero & Footer State:** Button automatically collapses into a sleek black-and-white dot (`w-3 h-3` white inner dot in `bg-black` circle) to maintain a minimal, uncluttered view.
+  * **Hover Interaction:** Hovering over the dot smoothly expands it (`framer-motion` spring animation) into the full pill shape showing "Join waitlist".
+  * **Middle Sections State:** Once the user scrolls past the Hero section, the button automatically expands into the full pill button and stays pinned until reaching the Footer area, where it collapses back into a dot.

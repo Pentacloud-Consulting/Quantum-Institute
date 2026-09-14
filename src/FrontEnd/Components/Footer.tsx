@@ -1,8 +1,20 @@
 "use client";
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { ArrowUp, Send } from 'lucide-react';
+
+const FacebookIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
+
+const YoutubeIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+);
 
 const InstagramIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -12,32 +24,13 @@ const InstagramIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const YoutubeIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-  </svg>
-);
-
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-// Nested hexagon SVG for the Logo
-const HexagonLogo = () => (
-  <svg width="40" height="40" viewBox="0 0 100 100" className="text-[#E05A00]">
-    <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" className="stroke-current fill-none stroke-[6]" />
-    <polygon points="50,18 80,32 80,68 50,82 20,68 20,32" className="stroke-current fill-none stroke-[3]" />
-  </svg>
-);
-
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="w-full pt-4 pb-3 px-4 md:pt-6 md:pb-4 md:px-12 lg:px-20 font-body border-t border-white/5 relative z-20 overflow-hidden">
+    <footer className="w-full pt-10 pb-6 px-6 md:px-12 lg:px-16 font-body relative z-20 overflow-hidden text-[#2C1810] border-t border-[#E05A00]/15">
       
       {/* Background Video */}
       <video 
@@ -50,107 +43,109 @@ const Footer = () => {
         disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
-      
-      {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-black/80 z-0"></div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10">
+      {/* Warm Light Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-[#FFF8F3]/90 z-0 backdrop-blur-[2px]"></div>
+
+      <div className="w-full max-w-[1600px] mx-auto relative z-10 flex flex-col justify-between">
         
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-6 lg:gap-6 mb-4 md:mb-6">
+        {/* Top Hero Section: Join Our Community + Big Circular Social Buttons */}
+        <div className="flex flex-col items-center justify-center text-center pt-2 pb-8 md:pb-10">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-semibold tracking-tight mb-6 md:mb-8 text-[#2C1810]">
+            Join Our Community
+          </h2>
+
+          {/* Large Circle Social Cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-2xl mx-auto w-full">
+            
+            {/* Telegram / Connect */}
+            <a href="#" className="group flex flex-col items-center gap-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-full border border-[#E05A00]/25 flex items-center justify-center bg-white/80 shadow-md group-hover:bg-[#E05A00] group-hover:border-[#E05A00] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                <Send className="w-5 h-5 sm:w-6 sm:h-6 text-[#E05A00] group-hover:text-white transition-colors -translate-x-0.5 translate-y-0.5" />
+              </div>
+              <span className="text-xs md:text-xs font-semibold text-[#2C1810]/70 group-hover:text-[#E05A00] transition-colors">
+                Telegram
+              </span>
+            </a>
+
+            {/* Facebook */}
+            <a href="#" className="group flex flex-col items-center gap-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-full border border-[#E05A00]/25 flex items-center justify-center bg-white/80 shadow-md group-hover:bg-[#E05A00] group-hover:border-[#E05A00] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                <FacebookIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#E05A00] group-hover:text-white transition-colors" />
+              </div>
+              <span className="text-xs md:text-xs font-semibold text-[#2C1810]/70 group-hover:text-[#E05A00] transition-colors">
+                Facebook
+              </span>
+            </a>
+
+            {/* YouTube */}
+            <a href="#" className="group flex flex-col items-center gap-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-full border border-[#E05A00]/25 flex items-center justify-center bg-white/80 shadow-md group-hover:bg-[#E05A00] group-hover:border-[#E05A00] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                <YoutubeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-[#E05A00] group-hover:text-white transition-colors" />
+              </div>
+              <span className="text-xs md:text-xs font-semibold text-[#2C1810]/70 group-hover:text-[#E05A00] transition-colors">
+                YouTube
+              </span>
+            </a>
+
+            {/* Instagram */}
+            <a href="#" className="group flex flex-col items-center gap-2">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-full border border-[#E05A00]/25 flex items-center justify-center bg-white/80 shadow-md group-hover:bg-[#E05A00] group-hover:border-[#E05A00] transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#E05A00] group-hover:text-white transition-colors" />
+              </div>
+              <span className="text-xs md:text-xs font-semibold text-[#2C1810]/70 group-hover:text-[#E05A00] transition-colors">
+                Instagram
+              </span>
+            </a>
+
+          </div>
+        </div>
+
+        {/* Middle Section: Divided by thin border */}
+        <div className="w-full pt-6 pb-6 border-t border-[#E05A00]/15 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Logo & Info */}
-          <div className="lg:col-span-4 flex flex-col items-start pr-0 md:pr-6">
-            <div className="flex items-center gap-3 mb-4 bg-[#f4f1eb] rounded-2xl px-6 py-3.5 w-fit shadow-lg">
-              <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="h-14 md:h-20 w-auto object-contain" />
+          {/* Left Column: Brand Logo + Physical Address / Mission Info */}
+          <div className="lg:col-span-5 flex items-center gap-5">
+            <div className="bg-white rounded-full p-4 md:p-5 shadow-md shrink-0 flex items-center justify-center border border-[#E05A00]/20">
+              <img src="/Logo/q%20logo.png" alt="Quantum Institute Logo" className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain" />
             </div>
-            
-            <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-[240px]">
-              Where minds collect &amp; <br/> possibilities connect.
-            </p>
+            <div className="flex flex-col text-[#2C1810]/80 text-xs md:text-sm leading-relaxed">
+              <p className="font-bold text-[#2C1810] text-base md:text-xl mb-1">Quantum Institute</p>
+              <p className="text-[#2C1810]/70 text-xs md:text-sm font-medium">Where minds collect &amp; possibilities connect.</p>
+              <p className="text-[#2C1810]/50 text-xs mt-1.5">Doha, Qatar · Research &amp; Innovation Hub</p>
+            </div>
           </div>
 
-          {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-1 md:mt-0">
-            
-            {/* Explore */}
-            <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">EXPLORE</h4>
-              <ul className="flex flex-col gap-1.5 md:gap-2">
-                {['Vision', 'Brand & Identity', 'Pillars', 'Research', 'Impact'].map(link => (
-                  <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
-                  </li>
-                ))}
-              </ul>
+          {/* Right Area: 2 Link Columns + Join Waitlist Button */}
+          <div className="lg:col-span-7 flex flex-col sm:flex-row items-start justify-between gap-6 lg:pl-4">
+
+            {/* Column 1 */}
+            <div className="flex flex-col gap-2">
+              <Link href="#" className="text-[#2C1810]/75 hover:text-[#E05A00] text-xs md:text-sm font-medium transition-colors">Healing</Link>
+              <Link href="#" className="text-[#2C1810]/75 hover:text-[#E05A00] text-xs md:text-sm font-medium transition-colors">Education</Link>
+              <Link href="#" className="text-[#2C1810]/75 hover:text-[#E05A00] text-xs md:text-sm font-medium transition-colors">Research</Link>
+              <Link href="#" className="text-[#2C1810]/75 hover:text-[#E05A00] text-xs md:text-sm font-medium transition-colors">Exploration</Link>
             </div>
 
-            {/* Resources */}
-            <div className="flex flex-col">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">RESOURCES</h4>
-              <ul className="flex flex-col gap-1.5 md:gap-2">
-                {['Projects', 'Publications', 'Events', 'Careers', 'FAQs'].map(link => (
-                  <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Circular "Join Waitlist" Button */}
+            <Link 
+              href="/signup" 
+              className="w-18 h-18 sm:w-20 sm:h-20 md:w-22 md:h-22 rounded-full border border-[#E05A00]/30 bg-white/80 flex items-center justify-center text-center p-2 text-xs md:text-sm font-semibold text-[#E05A00] hover:bg-[#E05A00] hover:text-white hover:border-[#E05A00] transition-all duration-300 hover:scale-105 shadow-md leading-tight shrink-0 self-start sm:self-center ml-auto sm:ml-0"
+            >
+              Join<br/>Waitlist
+            </Link>
 
-            {/* Connect */}
-            <div className="flex flex-col mt-2 md:mt-0 col-span-2 md:col-span-1">
-              <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">CONNECT</h4>
-              <ul className="flex flex-row md:flex-col flex-wrap gap-x-4 gap-y-1.5 md:gap-2">
-                {['Contact Us', 'Partners', 'Community', 'Support', 'Newsroom'].map(link => (
-                  <li key={link}>
-                    <Link href="#" className="text-white/60 hover:text-[#E05A00] text-xs md:text-[13px] transition-colors">{link}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-
-          {/* Subscribe */}
-          <div className="lg:col-span-3 flex flex-col mt-2 md:mt-0">
-            <h4 className="text-[#E05A00] text-[9px] md:text-[11px] font-heading font-bold tracking-[0.2em] uppercase mb-2 md:mb-3">SUBSCRIBE</h4>
-            <p className="text-white/60 text-xs md:text-[13px] leading-relaxed mb-2.5 md:mb-3">
-              Stay updated with our latest<br/> research, events &amp; insights.
-            </p>
-            
-            <div className="relative w-full">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="w-full bg-transparent border border-white/20 rounded-full py-2 md:py-2.5 pl-4 md:pl-5 pr-10 md:pr-12 text-xs md:text-[13px] text-white placeholder-white/40 focus:outline-none focus:border-[#E05A00]"
-                style={{ transition: "background-color 9999s ease-in-out 0s", WebkitTextFillColor: "#fff" }}
-              />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center text-white/50 hover:text-[#E05A00] transition-colors">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar with Centered Social Icons */}
-        <div className="w-full pt-3 md:pt-4 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-white/40 text-[9px] md:text-[11px] tracking-wide text-center md:text-left order-2 md:order-1">
-            © 2025 Quantum Institute. All rights reserved.
-          </p>
-
-          {/* Social Icons in Bottom Center */}
-          <div className="flex items-center justify-center gap-3 md:gap-4 order-1 md:order-2">
-            {['X', <LinkedinIcon key="li" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>, <YoutubeIcon key="yt" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>, <InstagramIcon key="ig" className="w-[14px] h-[14px] md:w-[15px] md:h-[15px]"/>].map((icon, i) => (
-              <a key={i} href="#" className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-[#E05A00] hover:border-[#E05A00] transition-all duration-300 hover:scale-110">
-                {typeof icon === 'string' ? <span className="font-bold text-[10px] md:text-[11px]">{icon}</span> : icon}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap order-3">
-            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Privacy Policy</Link>
-            <Link href="#" className="text-white/40 hover:text-white text-[9px] md:text-[11px] transition-colors tracking-wide">Terms of Use</Link>
+        {/* Bottom Bar: All rights reserved | Privacy Policy & Terms */}
+        <div className="w-full pt-4 border-t border-[#E05A00]/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] md:text-xs text-[#2C1810]/60">
+          <p>© All rights reserved — Quantum Institute</p>
+          <div className="flex items-center gap-3">
+            <Link href="#" className="hover:text-[#E05A00] transition-colors">Privacy Policy</Link>
+            <span>|</span>
+            <Link href="#" className="hover:text-[#E05A00] transition-colors">Terms &amp; Conditions</Link>
           </div>
         </div>
 

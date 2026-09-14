@@ -3,19 +3,33 @@
 import React, { useState } from 'react';
 import { Hexagon, Menu, X } from 'lucide-react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const Navbar = () => {
   const { scrollY } = useScroll();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavHovered, setIsNavHovered] = useState(false);
+  const [isAtHero, setIsAtHero] = useState(true);
+  const [isAtFooter, setIsAtFooter] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
+  const isHomePage = pathname === '/';
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
+    // Footer section check (when scrolled near the bottom of document)
+    if (typeof window !== "undefined") {
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      setIsAtFooter(latest + windowHeight >= documentHeight - 400);
+    }
   });
+
+  // Button state logic: Collapsed into dot strictly ONLY when at the footer section unless hovered. Otherwise always full Join waitlist pill.
+  const isCollapsedDot = isAtFooter && !isButtonHovered;
 
   return (
     <motion.header 
@@ -157,15 +171,51 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* RIGHT: Call to Action Pill */}
+      {/* RIGHT: Dynamic Call to Action Button (Dot vs Expanded Pill) */}
       <div className="hidden lg:flex items-center z-10">
-        <div className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200 rounded-full p-1 shadow-md h-10">
-          <button
+        <div 
+          onMouseEnter={() => setIsButtonHovered(true)}
+          onMouseLeave={() => setIsButtonHovered(false)}
+          className="flex items-center justify-center cursor-pointer p-1"
+        >
+          <motion.button
             onClick={() => router.push('/signup')}
-            className="bg-black text-white text-[13px] font-heading font-semibold px-4 h-full rounded-full whitespace-nowrap hover:bg-gray-800 transition-colors cursor-pointer flex items-center justify-center"
+            initial={false}
+            animate={{
+              width: isCollapsedDot ? 40 : 136,
+              backgroundColor: isCollapsedDot ? "#ffffff" : "#000000",
+              color: isCollapsedDot ? "#000000" : "#ffffff",
+            }}
+            transition={{
+              duration: 0.35,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="h-10 rounded-full border border-gray-200 shadow-md hover:shadow-lg flex items-center justify-center overflow-hidden whitespace-nowrap cursor-pointer relative"
           >
-            Join waitlist
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              {isCollapsedDot ? (
+                <motion.span
+                  key="dot-view"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-3.5 h-3.5 rounded-full bg-black block"
+                />
+              ) : (
+                <motion.span
+                  key="text-view"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-[13px] font-heading font-semibold tracking-tight block text-center px-4"
+                >
+                  Join waitlist
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
       </div>
 
