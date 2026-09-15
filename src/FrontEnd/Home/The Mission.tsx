@@ -68,6 +68,190 @@ const VennAnimation = () => {
   );
 };
 
+const ArchSketchAnimation = () => {
+  return (
+    <div className="relative w-full max-w-4xl mx-auto aspect-[2/1] min-h-[300px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#e0f2fe] to-[#ffedd5] rounded-3xl shadow-lg border border-orange-200 p-4 md:p-12">
+      <svg viewBox="0 0 1000 500" className="w-full h-full overflow-visible">
+        
+        <defs>
+          <linearGradient id="sunRayGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+          </linearGradient>
+
+          <pattern id="desertTriangles" width="40" height="40" patternUnits="userSpaceOnUse">
+            <polygon points="10,10 15,18 5,18" fill="#fef3c7" opacity="0.7" />
+            <polygon points="30,25 33,30 27,30" fill="#fde68a" opacity="0.6" />
+          </pattern>
+          
+          <pattern id="desertTrianglesTop" width="50" height="50" patternUnits="userSpaceOnUse" patternTransform="skewX(-45)">
+            <polygon points="20,10 25,18 15,18" fill="#fffbeb" opacity="0.8" />
+            <polygon points="40,30 43,35 37,35" fill="#fef3c7" opacity="0.6" />
+          </pattern>
+        </defs>
+
+        {/* Background Subtle Guides */}
+        <line x1="520" y1="30" x2="520" y2="480" stroke="#fdba74" strokeWidth="1" strokeDasharray="10,10" opacity="0.5" />
+        <line x1="50" y1="260" x2="950" y2="260" stroke="#fdba74" strokeWidth="1" strokeDasharray="10,10" opacity="0.5" />
+
+        {/* Sun Path Arc */}
+        <path d="M 280 180 A 300 300 0 0 1 760 180" fill="transparent" stroke="#fb923c" strokeWidth="1.5" strokeDasharray="8,8" opacity="0.8" />
+
+        {/* 3D Base Platform */}
+        <g className="base-model">
+          {/* Base Right Side */}
+          <path d="M 950 380 L 990 340 L 990 380 L 950 420 Z" fill="#ea580c" stroke="#c2410c" strokeWidth="1" strokeLinejoin="round" />
+          {/* Base Front */}
+          <path d="M 50 380 L 420 380 L 500 450 L 580 380 L 950 380 L 950 420 L 580 420 L 500 490 L 420 420 L 50 420 Z" fill="#fdba74" stroke="#c2410c" strokeWidth="1" strokeLinejoin="round" />
+          {/* Base Top (Ground Plane) Left */}
+          <path d="M 50 380 L 90 340 L 460 340 L 420 380 Z" fill="#fed7aa" stroke="#f97316" strokeWidth="1" strokeLinejoin="round" />
+          {/* Base Top (Ground Plane) Right */}
+          <path d="M 580 380 L 620 340 L 990 340 L 950 380 Z" fill="#fed7aa" stroke="#f97316" strokeWidth="1" strokeLinejoin="round" />
+          
+          {/* Pit Left Trough */}
+          <path d="M 420 380 L 500 450 L 540 410 L 460 340 Z" fill="#fdba74" stroke="#ea580c" strokeWidth="1" strokeLinejoin="round" />
+          {/* Pit Right Trough */}
+          <path d="M 500 450 L 580 380 L 620 340 L 540 410 Z" fill="#fb923c" stroke="#ea580c" strokeWidth="1" strokeLinejoin="round" />
+          
+          {/* Water Top */}
+          <path d="M 465 419 L 505 379 L 575 379 L 535 419 Z" fill="#38bdf8" opacity="0.9" />
+          {/* Water Front */}
+          <path d="M 465 419 L 500 450 L 535 419 Z" fill="#0284c7" opacity="0.9" />
+        </g>
+
+        {/* Left Outer Building */}
+        <motion.g 
+          initial={{ opacity: 0, y: 15 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <path d="M 270 285 L 300 380 L 340 340 L 310 245 Z" fill="#b45309" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 130 320 L 170 280 L 310 245 L 270 285 Z" fill="#fcd34d" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 130 320 L 170 280 L 310 245 L 270 285 Z" fill="url(#desertTrianglesTop)" />
+          <path d="M 120 380 L 130 320 L 270 285 L 300 380 Z" fill="#f59e0b" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 120 380 L 130 320 L 270 285 L 300 380 Z" fill="url(#desertTriangles)" />
+        </motion.g>
+
+        {/* Left Inner Building */}
+        <motion.g 
+          initial={{ opacity: 0, y: 15 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+        >
+          <path d="M 450 240 L 420 380 L 460 340 L 490 200 Z" fill="#b45309" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 300 278 L 450 240 L 490 200 L 340 238 Z" fill="#fcd34d" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 300 278 L 450 240 L 490 200 L 340 238 Z" fill="url(#desertTrianglesTop)" />
+          <path d="M 330 380 L 300 278 L 450 240 L 420 380 Z" fill="#f59e0b" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 330 380 L 300 278 L 450 240 L 420 380 Z" fill="url(#desertTriangles)" />
+        </motion.g>
+
+        {/* Right Inner Building */}
+        <motion.g 
+          initial={{ opacity: 0, y: 15 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
+        >
+          <path d="M 700 278 L 670 380 L 710 340 L 740 238 Z" fill="#b45309" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 550 240 L 700 278 L 740 238 L 590 200 Z" fill="#fcd34d" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 550 240 L 700 278 L 740 238 L 590 200 Z" fill="url(#desertTrianglesTop)" />
+          <path d="M 580 380 L 550 240 L 700 278 L 670 380 Z" fill="#f59e0b" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 580 380 L 550 240 L 700 278 L 670 380 Z" fill="url(#desertTriangles)" />
+        </motion.g>
+
+        {/* Right Outer Building */}
+        <motion.g 
+          initial={{ opacity: 0, y: 15 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+        >
+          <path d="M 870 320 L 880 380 L 920 340 L 910 280 Z" fill="#b45309" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 730 285 L 870 320 L 910 280 L 770 245 Z" fill="#fcd34d" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 730 285 L 870 320 L 910 280 L 770 245 Z" fill="url(#desertTrianglesTop)" />
+          <path d="M 700 380 L 730 285 L 870 320 L 880 380 Z" fill="#f59e0b" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" />
+          <path d="M 700 380 L 730 285 L 870 320 L 880 380 Z" fill="url(#desertTriangles)" />
+        </motion.g>
+
+        {/* Left Gap Arrow */}
+        <motion.g 
+          stroke="#ea580c" fill="none" opacity="0.8"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 0.8, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
+          <line x1="280" y1="180" x2="330" y2="340" strokeWidth="2" strokeDasharray="6,6" />
+          <path d="M 315 330 L 330 340 L 335 325" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </motion.g>
+
+        {/* Right Gap Arrow */}
+        <motion.g 
+          stroke="#ea580c" fill="none" opacity="0.8"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 0.8, y: 0 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          <line x1="760" y1="180" x2="710" y2="340" strokeWidth="2" strokeDasharray="6,6" />
+          <path d="M 725 330 L 710 340 L 705 325" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </motion.g>
+
+        {/* Thick Dotted Airflow Line across mid-depth Ground */}
+        <line x1="80" y1="360" x2="960" y2="360" stroke="#ea580c" strokeWidth="4" strokeDasharray="1,14" strokeLinecap="round" />
+        
+        {/* Far Left Outward Arrow */}
+        <motion.path 
+          d="M 80 350 L 60 360 L 80 370" 
+          fill="none" stroke="#ea580c" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 1.5 }}
+        />
+        
+        {/* Far Right Outward Arrow */}
+        <motion.path 
+          d="M 960 350 L 980 360 L 960 370" 
+          fill="none" stroke="#ea580c" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 1.5 }}
+        />
+
+        {/* Central Dashed Circle */}
+        <motion.circle 
+          cx="520" cy="360" r="75" 
+          fill="transparent" stroke="#ea580c" strokeWidth="2.5" strokeDasharray="10,8" 
+          animate={{ rotate: 360 }} 
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }} 
+          style={{ transformOrigin: "520px 360px" }}
+        />
+
+        {/* Sun Animation along Arc */}
+        <g>
+          <animateTransform 
+            attributeName="transform" 
+            type="rotate" 
+            from="36.87 520 360" 
+            to="143.13 520 360" 
+            dur="10s" 
+            repeatCount="indefinite" 
+          />
+          {/* Sun Body */}
+          <circle cx="220" cy="360" r="14" fill="#f97316" />
+          {/* Sun Halo */}
+          <circle cx="220" cy="360" r="22" fill="transparent" stroke="#f97316" strokeWidth="2" strokeDasharray="4,4" />
+          
+          {/* Animated Flowing Light Ray */}
+          <line x1="245" y1="360" x2="500" y2="360" stroke="url(#sunRayGrad)" strokeWidth="3" strokeDasharray="12,12">
+            <animate attributeName="stroke-dashoffset" from="24" to="0" dur="0.8s" repeatCount="indefinite" />
+          </line>
+
+          {/* Small directional arrow at the tip of the light ray */}
+          <path d="M 490 355 L 500 360 L 490 365" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+
+      </svg>
+    </div>
+  );
+};
+
 const TheMission = () => {
   return (
     <section className="w-full bg-slate-50 text-[#1e293b] pt-12 pb-8 md:pt-12 md:pb-12 px-6 md:px-12 font-serif overflow-hidden">
@@ -139,8 +323,11 @@ const TheMission = () => {
 
         </div>
 
-        {/* Section 2 */}
+        {/* Section 2 with Arch Sketch */}
         <div className="flex flex-col items-center gap-16">
+          <div className="w-full">
+            <ArchSketchAnimation />
+          </div>
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }} 
