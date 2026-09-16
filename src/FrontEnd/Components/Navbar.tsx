@@ -12,6 +12,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAtHero, setIsAtHero] = useState(true);
   const [isAtFooter, setIsAtFooter] = useState(false);
+  const [isHereHovered, setIsHereHovered] = useState(false);
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -70,18 +71,46 @@ const Navbar = () => {
       <div className="hidden lg:flex items-center min-w-[180px] z-20">
         <AnimatePresence mode="wait">
           {!isScrolled ? (
-            /* Unscrolled Left: Compact H.E.R.E Pill */
-            <motion.div
-              key="compact-here"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200/90 text-black rounded-full h-10 px-5 shadow-sm hover:shadow-md transition-all duration-300 gap-3 whitespace-nowrap cursor-pointer"
+            /* Unscrolled Left: Compact H.E.R.E Pill (Ultra-Smooth Hover Expand) */
+            <div
+              onMouseEnter={() => setIsHereHovered(true)}
+              onMouseLeave={() => setIsHereHovered(false)}
+              className="flex items-center bg-white/95 backdrop-blur-md border border-gray-200/90 text-black rounded-full h-10 px-5 shadow-sm hover:shadow-md transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer overflow-hidden"
             >
-              <span className="text-[13px] font-heading font-bold tracking-[0.25em] text-black">H.E.R.E</span>
-              <span className="text-[10px] font-heading font-medium tracking-widest text-[#E05A00] uppercase italic relative top-[0.5px]">FOR YOU</span>
-            </motion.div>
+              <span className="text-[13px] font-heading font-bold tracking-[0.25em] text-black shrink-0">
+                H.E.R.E
+              </span>
+
+              {/* Smoothly expanding pillars section */}
+              <div 
+                className={`flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden ${
+                  isHereHovered ? "max-w-[430px] opacity-100 ml-3.5 mr-3" : "max-w-0 opacity-0 ml-0 mr-0"
+                }`}
+              >
+                <nav className="flex items-center gap-3 text-[12px] font-heading tracking-wider text-gray-700 whitespace-nowrap">
+                  <span className="text-gray-400 font-light text-[10px]">•</span>
+                  <Link href="/healing" className="hover:text-black transition-colors">
+                    <span className="text-black font-bold">H</span>ealing
+                  </Link>
+                  <span className="text-gray-400 font-light text-[10px]">•</span>
+                  <a href="#" className="hover:text-black transition-colors">
+                    <span className="text-black font-bold">E</span>ducation
+                  </a>
+                  <span className="text-gray-400 font-light text-[10px]">•</span>
+                  <a href="#" className="hover:text-black transition-colors">
+                    <span className="text-black font-bold">R</span>esearch
+                  </a>
+                  <span className="text-gray-400 font-light text-[10px]">•</span>
+                  <a href="#" className="hover:text-black transition-colors">
+                    <span className="text-black font-bold">E</span>xploration
+                  </a>
+                </nav>
+              </div>
+
+              <span className="text-[10px] font-heading font-medium tracking-widest text-[#E05A00] uppercase italic shrink-0 relative top-[0.5px]">
+                FOR YOU
+              </span>
+            </div>
           ) : (
             /* Scrolled Left: Quantum Institute Logo */
             <motion.div
